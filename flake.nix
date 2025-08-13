@@ -8,10 +8,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {nixpkgs, home-manager, zen-browser, ...}: {
-    homeConfigurations = {
+  outputs = {nixpkgs, home-manager, zen-browser, ...} @ inputs: {
+    specialArgs = { inherit inputs; };
+    home-manager.extraSpecialArgs = { inherit inputs; };
+    homeConfigurations = 
+    let system = "x86_64-linux";
+    in
+    {
       "cardamom" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { system = "x86_64-linux"; };
+        extraSpecialArgs = { 
+	    inherit inputs; 
+            inherit system;
+        };
+        pkgs = import nixpkgs { inherit system; };
         modules = [ 
           ./home.nix 
         ];

@@ -4,7 +4,8 @@
   home.stateVersion = "25.11";
   home.packages = with pkgs; [
     eza
-    inputs.zen-browser.packages."${system}".specific
+    inputs.zen-browser.packages."${system}".default
+    kitty
   ];
 
   imports = [
