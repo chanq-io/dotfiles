@@ -3,7 +3,7 @@
   home.file = {
     "starship.toml" = {
       source = ./starship.toml;
-      target = "./config/starship.toml";
+      target = ".config/starship.toml";
     }; 
   };
 
