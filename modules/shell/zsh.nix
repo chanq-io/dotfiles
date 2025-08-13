@@ -49,7 +49,7 @@
       {
         name = "enhancd";
         file = "init.sh";
-        src = fetchFromGithub {
+        src = fetchFromGitHub {
           owner = "babarot";
           repo = "enchancd";
           rev = "5afb4eb";
