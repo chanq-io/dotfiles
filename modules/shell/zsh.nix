@@ -23,7 +23,7 @@
 
   programs.zsh = with pkgs; {
     enable = true;
-    dotDir = ".config/zsh";
+    dotDir = "$HOME/.config/zsh";
 
     sessionVariables = {
       RPS1 = "";
