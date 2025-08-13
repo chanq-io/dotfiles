@@ -6,6 +6,7 @@
     eza
     inputs.zen-browser.packages."${system}".default
     kitty
+    neofetch
   ];
 
   imports = [
