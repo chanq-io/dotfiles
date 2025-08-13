@@ -29,7 +29,7 @@
       RPS1 = "";
     };
 
-    initExtra = ''
+    initContent = ''
       eval "$(starship init zsh)"
     '';
 
