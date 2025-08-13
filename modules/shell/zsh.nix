@@ -23,14 +23,20 @@
 
   programs.zsh = with pkgs; {
     enable = true;
-    dotDir = "${config.xdg.configHome}/zsh";
+    dotDir = "/home/cardamom/.config/zsh";
 
     sessionVariables = {
       RPS1 = "";
-      ZDOTDIR = "/home/cardamom/.config/zsh";
     };
 
-    initExtraBeforeCompInit = builtins.readFile ./zshrc;
+    initExtra = ''
+      eval "$(starship init zsh)"
+    '';
+
+    profileExtra = ''
+      # Load Nix
+      if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+    '';
 
     history = {
       expireDuplicatesFirst = true;
