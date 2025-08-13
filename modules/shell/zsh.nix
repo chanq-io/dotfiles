@@ -23,14 +23,14 @@
 
   programs.zsh = with pkgs; {
     enable = true;
-    dotDir = "/home/cardamom/.config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
 
     sessionVariables = {
       RPS1 = "";
       ZDOTDIR = "/home/cardamom/.config/zsh";
     };
 
-    initExtraBeforeCompInit = builtins.readFile .zshrc;
+    initExtraBeforeCompInit = builtins.readFile ./zshrc;
 
     history = {
       expireDuplicatesFirst = true;
