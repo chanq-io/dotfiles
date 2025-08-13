@@ -1,5 +1,5 @@
 {
-  descriptions = "homemanager flake";
+  description = "homemanager flake";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
@@ -10,7 +10,7 @@
   outputs = {nixpkgs, home-manager, ...}: {
     homeConfigurations = {
       "cardamom" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { system = "x86_64-linux" };
+        pkgs = import nixpkgs { system = "x86_64-linux"; };
         modules = [ 
           ./home.nix 
         ];

@@ -19,15 +19,15 @@
 
   programs.jq = {
     enable = true;
-  }
+  };
 
-  programs.zsh = {
+  programs.zsh = with pkgs; {
     enable = true;
     dotDir = ".config/zsh";
 
     sessionVariables = {
       RPS1 = "";
-      ZDOTDIR "$HOME/.config/zsh";
+      ZDOTDIR = "$HOME/.config/zsh";
     };
 
     initExtraBeforeCompInit = builtins.readFile .zshrc;

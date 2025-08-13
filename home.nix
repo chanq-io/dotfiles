@@ -7,7 +7,7 @@
   ];
 
   imports = [
-    ./modules/shell.nix
+    ./modules/shell/zsh.nix
   ];
 
   programs.home-manager.enable = true;
