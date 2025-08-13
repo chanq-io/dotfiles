@@ -53,7 +53,7 @@
           owner = "babarot";
           repo = "enchancd";
           rev = "5afb4eb6ba36c15821de6e39c0a7bb9d6b0ba415";
-          sha256 = "pKQbwiqE0KdmRDbHQcW188WfxyJSsKfwmWt/TboY2iic=";
+          sha256 = "pKQbwiqE0KdmRDbHQcW18WfxyJSsKfymWt/TboY2iic=";
         };
       }
     ];
