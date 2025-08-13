@@ -23,7 +23,7 @@
 
   programs.zsh = with pkgs; {
     enable = true;
-    dotDir = "/home/cardamom/.config/zsh";
+    dotDir = "${config.xdg.configHome}/.config/zsh";
 
     sessionVariables = {
       RPS1 = "";
