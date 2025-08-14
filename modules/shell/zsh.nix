@@ -21,6 +21,13 @@
     enable = true;
   };
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
+
   programs.zsh = with pkgs; {
     enable = true;
     dotDir = "${config.xdg.configHome}/.config/zsh";

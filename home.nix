@@ -17,18 +17,19 @@
  
   programs.home-manager.enable = true;
 
-  home.file.".config/i3/config" = {
+  xdg.configFile."i3" = {
     source = ./config/i3/config;
     recursive = false;
   };
 
 
-  home.file.".config/polybar/config.ini" = {
-    source = ./config/polybar/config.ini;
+  xdg.configFile."polybar" = {
+    source = ./config/polybar;
     recursive = false;
   };
-  home.file.".config/polybar/launch.sh" = {
-    source = ./config/polybar/launch.sh;
+
+  xdg.configFile."nvim" = {
+    source = ./config/nvim;
     recursive = false;
   };
 }
