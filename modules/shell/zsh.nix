@@ -27,7 +27,7 @@
     viAlias = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
-      Comment-nvim
+      comment-nvim
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp
@@ -40,7 +40,6 @@
       mason-lspconfig-nvim
       mason-nvim
       mini-nvim
-      neofusion-nvim
       nvim-cmp
       nvim-lspconfig
       nvim-treesitter.withAllGrammars
