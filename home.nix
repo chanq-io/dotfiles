@@ -8,6 +8,7 @@
     eza
     inputs.zen-browser.packages."${system}".default
     neofetch
+    ripgrep
   ];
 
   imports = [
