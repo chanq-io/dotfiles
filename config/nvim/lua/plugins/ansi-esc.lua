@@ -1,3 +1,0 @@
-return {
-    "valeratrades/AnsiEsc",
-}

@@ -26,6 +26,37 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    plugins = with pkgs.vimPlugins; [
+      Comment-nvim
+      cmp-buffer
+      cmp-cmdline
+      cmp-nvim-lsp
+      cmp-path
+      cmp-vsnip
+      copilot-vim
+      fidget-nvim
+      fzf-lua
+      lualine-nvim
+      mason-lspconfig-nvim
+      mason-nvim
+      mini-nvim
+      neofusion-nvim
+      nvim-cmp
+      nvim-lspconfig
+      nvim-treesitter.withAllGrammars
+      nvim-web-devicons
+      nvim-surround
+      obsidian-nvim
+      nvim-origami
+      plenary-nvim
+      popup-nvim
+      rustaceanvim
+      telescope-file-browser-nvim
+      telescope-fzf-native-nvim
+      telescope-nvim
+      todo-comments-nvim
+      transparent-nvim
+    ];
   };
 
   programs.zsh = with pkgs; {

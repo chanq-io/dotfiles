@@ -1,8 +1,3 @@
--- workaround for nix linking .dotfiles/config/nvim to .config/nvim
-require("lazy").setup(plugins, {
-  lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json"
-})
-
 require("config.pre")
 require("config.lazy")
 require("config.commands")

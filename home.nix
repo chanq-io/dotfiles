@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, lib, ...}: 
+{ pkgs, inputs, fenix, system, lib, ...}: 
 {
   home.username = "cardamom";
   home.homeDirectory = "/home/cardamom";
@@ -6,9 +6,16 @@
 
   home.packages = with pkgs; [
     eza
+    fenix.packages.${pkgs.system}.rust-analyzer
+    fenix.packages.${pkgs.system}.stable.toolchain
+    graphviz
     inputs.zen-browser.packages."${system}".default
+    lldb
+    llvm
     neofetch
+    pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep
+    rust-analyzer
   ];
 
   imports = [
