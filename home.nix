@@ -11,7 +11,7 @@
     inputs.zen-browser.packages."${system}".default
     lldb
     lua5_1
-    luarocks.override { lua = lua5_1; }
+    luarocks
     llvm
     neofetch
     pkgs.vscode-extensions.vadimcn.vscode-lldb
