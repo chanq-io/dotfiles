@@ -49,13 +49,6 @@ vim.cmd [[
     nnoremap ,b :buffer *
     
     set t_Co=16
-    "colorscheme catppuccin-mocha"dim"base16-black-metal-bathory
-    "colorscheme tokyonight-moon
-    "colorscheme base16-catppuccin-mocha
-    "colorscheme base16-horizon-dark
-    "colorscheme base16-rose-pine
-    "colorscheme base16-gruvbox-dark-hard
-    colorscheme base16-gotham
     hi NormalFloat guibg=None ctermbg=None
     hi CursorLine guibg=NONE guifg=NONE
     hi NonText ctermbg=none
