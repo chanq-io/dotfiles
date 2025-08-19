@@ -56,7 +56,6 @@
       telescope-fzf-native-nvim
       telescope-nvim
       todo-comments-nvim
-      transparent-nvim
     ];
   };
 

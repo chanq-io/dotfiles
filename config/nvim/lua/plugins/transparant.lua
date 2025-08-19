@@ -1,3 +1,0 @@
-return {
-    'tribela/transparent.nvim',
-};
