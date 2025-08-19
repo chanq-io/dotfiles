@@ -15,7 +15,6 @@
     neofetch
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep
-    rust-analyzer
   ];
 
   imports = [
