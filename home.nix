@@ -20,6 +20,8 @@
     neofetch
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep
+    wget
+    unzip
   ];
 
   imports = [
