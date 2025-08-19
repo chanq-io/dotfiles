@@ -10,6 +10,8 @@
     graphviz
     inputs.zen-browser.packages."${system}".default
     lldb
+    lua
+    luarocks
     llvm
     neofetch
     pkgs.vscode-extensions.vadimcn.vscode-lldb
