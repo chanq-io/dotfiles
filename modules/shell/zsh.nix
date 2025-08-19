@@ -51,6 +51,7 @@
       mason-nvim
       mini-nvim
       nvim-cmp
+      nvim-dap
       nvim-lspconfig
       nvim-origami
       nvim-surround
