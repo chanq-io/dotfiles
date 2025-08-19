@@ -33,7 +33,6 @@
         ripgrep
         bat
         findutils
-      ])
     ];
 
     plugins = with pkgs.vimPlugins; [
