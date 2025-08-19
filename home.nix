@@ -25,9 +25,8 @@
  
   programs.home-manager.enable = true;
 
-  xdg.configFile."i3" = {
+  xdg.configFile."i3/config" = {
     source = ./config/i3/config;
-    recursive = true;
   };
 
 
