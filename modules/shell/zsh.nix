@@ -35,6 +35,7 @@
       cmp-vsnip
       comment-nvim
       copilot-vim
+      evergarden
       fidget-nvim
       fzf-lua
       lualine-nvim
