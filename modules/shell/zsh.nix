@@ -27,13 +27,12 @@
     viAlias = true;
     vimAlias = true;
 
-    extraMakeWrapperArgs = [
-      "--prefix" "PATH" ":" (lib.makeBinPath [
-        pkgs.fzf
-        pkgs.git
-        pkgs.ripgrep
-        pkgs.bat
-        pkgs.findutils
+    extraPackages = with pkgs; [
+        fzf
+        git
+        ripgrep
+        bat
+        findutils
       ])
     ];
 
