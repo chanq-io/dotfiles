@@ -5,8 +5,12 @@
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
+    bat
+    coreutils
     eza
     fenix.packages.${pkgs.system}.stable.toolchain
+    fzf
+    git
     graphviz
     inputs.zen-browser.packages."${system}".default
     lldb

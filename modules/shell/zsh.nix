@@ -26,6 +26,17 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+
+    extraMakeWrapperArgs = [
+      "--prefix" "PATH" ":" (lib.makeBinPath [
+        pkgs.fzf
+        pkgs.git
+        pkgs.ripgrep
+        pkgs.bat
+        pkgs.findutils
+      ])
+    ];
+
     plugins = with pkgs.vimPlugins; [
       base16-vim
       cmp-buffer
