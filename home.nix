@@ -27,17 +27,17 @@
 
   xdg.configFile."i3" = {
     source = ./config/i3/config;
-    recursive = false;
+    recursive = true;
   };
 
 
   xdg.configFile."polybar" = {
     source = ./config/polybar;
-    recursive = false;
+    recursive = true;
   };
 
   xdg.configFile."nvim" = {
     source = ./config/nvim;
-    recursive = false;
+    recursive = true;
   };
 }

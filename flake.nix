@@ -23,8 +23,11 @@
       pkgs = import nixpkgs { 
         inherit system; 
         overlays = [ nixneovimplugins.overlays.default ];
+	config.allowUnfree = true;
       };
-      modules = [ ./home.nix ];
+      modules = [ 
+        ./home.nix 
+      ];
     };
   };
 }
