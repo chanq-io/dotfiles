@@ -35,7 +35,6 @@
       cmp-vsnip
       comment-nvim
       copilot-vim
-      everviolet
       fidget-nvim
       fzf-lua
       lualine-nvim
@@ -50,6 +49,7 @@
       nvim-web-devicons
       plenary-nvim
       popup-nvim
+      rose-pine
       rustaceanvim
       telekasten-nvim
       telescope-file-browser-nvim
