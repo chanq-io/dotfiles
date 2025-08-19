@@ -27,6 +27,7 @@
     viAlias = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
+      base16-vim
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp
