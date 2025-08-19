@@ -15,7 +15,7 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.wildmode = "longest,list,full"
 vim.opt.wildmenu = true
-vim.opt.shell = "fish"
+vim.opt.shell = "zsh"
 vim.opt.conceallevel = 1
 
 
