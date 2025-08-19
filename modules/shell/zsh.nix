@@ -27,12 +27,12 @@
     viAlias = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
-      comment-nvim
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp
       cmp-path
       cmp-vsnip
+      comment-nvim
       copilot-vim
       fidget-nvim
       fzf-lua
@@ -42,14 +42,14 @@
       mini-nvim
       nvim-cmp
       nvim-lspconfig
+      nvim-origami
+      nvim-surround
       nvim-treesitter.withAllGrammars
       nvim-web-devicons
-      nvim-surround
-      obsidian-nvim
-      nvim-origami
       plenary-nvim
       popup-nvim
       rustaceanvim
+      telekasten-nvim
       telescope-file-browser-nvim
       telescope-fzf-native-nvim
       telescope-nvim
