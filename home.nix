@@ -35,6 +35,10 @@
     source = ./config/i3/config;
   };
 
+  xdg.configFile."kitty" = {
+    source = ./config/kitty;
+    recursive = true;
+  };
 
   xdg.configFile."polybar" = {
     source = ./config/polybar;
