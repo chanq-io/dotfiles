@@ -49,6 +49,12 @@ vim.g.rustaceanvim = {
   -- DAP configuration
   dap = {
   },
+
+  treesitter = {
+    enable = true,
+    use_virtual_text = false,
+    install = false
+  }
 }
 
 local cmp = require("cmp")
