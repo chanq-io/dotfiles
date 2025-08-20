@@ -28,11 +28,14 @@
     vimAlias = true;
 
     extraPackages = with pkgs; [
-        fzf
-        git
-        ripgrep
-        bat
-        findutils
+      chafa 
+      fzf
+      git
+      ripgrep
+      bat
+      findutils
+      viu
+      ueberzugpp
     ];
 
     plugins = with pkgs.vimPlugins; [

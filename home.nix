@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     bat
+    chafa
     coreutils
     eza
     fenix.packages.${pkgs.system}.stable.toolchain
@@ -20,8 +21,10 @@
     neofetch
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep
-    wget
+    ueberzugpp
     unzip
+    viu
+    wget
   ];
 
   imports = [
