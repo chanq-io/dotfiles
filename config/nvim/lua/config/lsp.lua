@@ -44,8 +44,10 @@ vim.g.rustaceanvim = {
   treesitter = {
     enable = true,
     install = false,
-    -- Remove the parser_path function - it's unnecessary
-  },
+    parser_path = function()
+      return vim.fn.stdpath("data") .. "/parsers/parser/rust.so"
+    end
+  }
 }
 
 local cmp = require("cmp")
