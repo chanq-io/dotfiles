@@ -54,6 +54,9 @@ vim.g.rustaceanvim = {
     enable = true,
     use_virtual_text = false,
     install = false
+    parser_path = function()
+      return vim.fn.stdpath("data") .. "/parsers/rust.so"
+    end
   }
 }
 
