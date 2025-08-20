@@ -30,7 +30,6 @@ local opts = {
   },
 }
 
---require("rust-tools").setup(opts)
 vim.g.rustaceanvim = {
   -- Plugin configuration
   tools = {
@@ -42,8 +41,7 @@ vim.g.rustaceanvim = {
     end,
     default_settings = {
       -- rust-analyzer language server configuration
-      ['rust-analyzer'] = {
-      },
+      ['rust-analyzer'] = { },
     },
   },
   -- DAP configuration
@@ -52,12 +50,11 @@ vim.g.rustaceanvim = {
 
   treesitter = {
     enable = true,
-    use_virtual_text = false,
-    install = false
+    install = false,
     parser_path = function()
       return vim.fn.stdpath("data") .. "/parsers/rust.so"
     end
-  }
+  },
 }
 
 local cmp = require("cmp")
