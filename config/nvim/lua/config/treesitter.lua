@@ -1,5 +1,6 @@
 require('nvim-treesitter.configs').setup({
   auto_install = false,
+  ignore_install = { "all" },
   parser_install_dir = vim.fn.stdpath("data") .. "/parsers",
   ensure_installed = { "rust" },
   highlight = { enable = true },
