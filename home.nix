@@ -26,7 +26,7 @@
     nodePackages.bash-language-server
     nodePackages.typescript
     nodePackages.typescript-language-server
-    nodePackages.vscode-languages-extracted
+    nodePackages.vscode-langservers-extracted
     nodePackages.yaml-language-server
     nodejs
     pkgs.vscode-extensions.vadimcn.vscode-lldb
