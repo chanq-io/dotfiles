@@ -29,8 +29,10 @@
 
     extraPackages = with pkgs; [
       chafa 
+      clang
       fzf
       git
+      gnumake
       ripgrep
       bat
       findutils

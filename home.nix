@@ -8,10 +8,13 @@
     bat
     chafa
     coreutils
+    clang
+    cmake
     eza
     fenix.packages.${pkgs.system}.stable.toolchain
     fzf
     git
+    gnumake
     graphviz
     inputs.zen-browser.packages."${system}".default
     lldb

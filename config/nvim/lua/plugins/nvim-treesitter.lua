@@ -14,6 +14,7 @@ return {
     }
   end,
   config = function(_, opts)
+    require('nvim-treesitter.install').compilers = { 'clang' }
     require('nvim-treesitter.configs').setup(opts)
     -- Make Neovim see the compiled parsers
     vim.opt.runtimepath:append(vim.fn.stdpath('data') .. '/parsers/parser')
