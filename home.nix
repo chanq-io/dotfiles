@@ -27,6 +27,7 @@
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep
     tree-sitter
+    tldr
     ueberzugpp
     unzip
     viu
