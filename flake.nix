@@ -3,10 +3,6 @@
   inputs = {
     fenix.url = "github:nix-community/fenix";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    #nixneovimplugins = {
-    #  url = "github:NixNeovim/NixNeovimPlugins";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,7 +11,6 @@
   };
   outputs = {
       fenix,
-      #nixneovimplugins,
       nixpkgs,
       home-manager,
       zen-browser,
@@ -29,7 +24,6 @@
       extraSpecialArgs = { inherit fenix inputs system; };
       pkgs = import nixpkgs { 
         inherit system; 
-        #overlays = [ nixneovimplugins.overlays.default ];
 	config.allowUnfree = true;
       };
       modules = [ 
