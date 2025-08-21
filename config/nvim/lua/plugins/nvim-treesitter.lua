@@ -1,7 +1,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  event = { 'BufReadPost', 'BufNewFile' }, 
+  -- event = { 'BufReadPost', 'BufNewFile' }, 
   opts = function()
     local root = vim.fn.stdpath('data') .. '/parsers'   
     local so_dir = root .. '/parser'                    
