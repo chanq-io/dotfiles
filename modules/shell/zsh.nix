@@ -58,7 +58,7 @@
       nvim-lspconfig
       nvim-origami
       nvim-surround
-      nvim-treesitter.withAllGrammars
+      #nvim-treesitter.withAllGrammars
       nvim-web-devicons
       plenary-nvim
       popup-nvim
