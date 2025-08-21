@@ -33,5 +33,9 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 -- workaround for nix linking .dotfiles/config/nvim to .config/nvim
-  lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json"
+  lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json", 
+  performance = {
+    reset_packpath = false
+  }
+
 })

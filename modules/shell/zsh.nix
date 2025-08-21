@@ -61,6 +61,8 @@
       nvim-origami
       nvim-surround
       nvim-web-devicons
+      nvim-treesitter
+      nvim-treesitter-parsers.rust
       plenary-nvim
       popup-nvim
       rose-pine
