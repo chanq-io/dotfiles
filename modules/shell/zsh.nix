@@ -38,6 +38,7 @@
       findutils
       viu
       ueberzugpp
+      xclip
     ];
 
     plugins = with pkgs.vimPlugins; [

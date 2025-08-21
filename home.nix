@@ -30,6 +30,7 @@
     unzip
     viu
     wget
+    xclip
   ];
 
   imports = [
