@@ -54,8 +54,6 @@
       fidget-nvim
       fzf-lua
       lualine-nvim
-      mason-lspconfig-nvim
-      mason-nvim
       mini-nvim
       nvim-cmp
       nvim-dap
@@ -64,6 +62,15 @@
       nvim-surround
       nvim-web-devicons
       nvim-treesitter
+      nvim-treesitter-parsers.cpp
+      nvim-treesitter-parsers.javascript
+      nvim-treesitter-parsers.html
+      nvim-treesitter-parsers.css
+      nvim-treesitter-parsers.bash
+      nvim-treesitter-parsers.toml
+      nvim-treesitter-parsers.yaml
+      nvim-treesitter-parsers.typescript
+      nvim-treesitter-parsers.tsx
       nvim-treesitter-parsers.rust
       nvim-treesitter-parsers.vim
       plenary-nvim

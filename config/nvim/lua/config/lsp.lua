@@ -2,13 +2,13 @@ vim.o.completeopt = "menuone,noinsert,noselect"
 vim.opt.shortmess = vim.opt.shortmess + "c"
 
 local function on_attach(client, buffer)
+  -- Add per-buffer LSP keymaps here if you want buffer-local bindings.
+  -- You already set global keymaps below, so this can stay empty.
 end
 
 local opts = {
   tools = {
-    runnables = {
-      use_telescope = true,
-    },
+    runnables = { use_telescope = true },
     inlay_hints = {
       auto = true,
       show_parameter_hints = false,
@@ -16,38 +16,33 @@ local opts = {
       other_hints_prefix = "",
     },
   },
-
   server = {
     on_attach = on_attach,
-    settings = {
-      --["rust-analyzer"] = {
-      --  checkOnSave = true,
-      --  check = {
-      --    command = "clippy",
-      --  },
-      --},
-    },
+    settings = {},
   },
 }
 
+-- rustaceanvim handles Rust
 vim.g.rustaceanvim = {
-  tools = { },
+  tools = {},
   server = {
     on_attach = function(client, bufnr)
-      -- you can also put keymaps in here
+      -- per-buffer Rust keymaps if you want
     end,
     default_settings = {
-      ['rust-analyzer'] = { },
+      ['rust-analyzer'] = {},
     },
   },
-  dap = { },
+  dap = {},
 }
 
+-- nvim-cmp
 local cmp = require("cmp")
 cmp.setup({
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
+      -- Requires 'vim-vsnip' plugin for this to work
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
@@ -65,7 +60,6 @@ cmp.setup({
       select = true,
     }),
   },
-
   sources = {
     { name = "nvim_lsp" },
     { name = "vsnip" },
@@ -74,6 +68,7 @@ cmp.setup({
   },
 })
 
+-- Global LSP keymaps (you already have these)
 vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "gD", vim.lsp.buf.implementation)
@@ -91,7 +86,7 @@ vim.opt.updatetime = 100
 local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
-   vim.diagnostic.open_float(nil, { focusable = false })
+    vim.diagnostic.open_float(nil, { focusable = false })
   end,
   group = diag_float_grp,
 })
@@ -108,3 +103,50 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
+
+-- LSP servers (no mason; binaries provided by Nix)
+local lsp = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- C/C++
+lsp.clangd.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+-- JavaScript / TypeScript
+local ts_name = lsp.ts_ls and "ts_ls" or "tsserver"
+lsp[ts_name].setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+-- HTML / CSS
+lsp.html.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+lsp.cssls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+-- Bash
+lsp.bashls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+-- YAML
+lsp.yamlls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+-- TOML (Taplo)
+lsp.taplo.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+-- Rust is handled by rustaceanvim (do not set rust_analyzer here)

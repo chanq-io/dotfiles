@@ -23,11 +23,17 @@
     lua5_1
     luarocks
     neofetch
+    nodePackages.bash-language-server
+    nodePackages.typescript
+    nodePackages.typescript-language-server
+    nodePackages.vscode-languages-extracted
+    nodePackages.yaml-language-server
     nodejs
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep
-    tree-sitter
+    taplo
     tldr
+    tree-sitter
     ueberzugpp
     unzip
     viu
