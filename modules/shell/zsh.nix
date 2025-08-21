@@ -63,6 +63,11 @@
       nvim-web-devicons
       nvim-treesitter
       nvim-treesitter-parsers.rust
+      nvim-treesitter-parsers.vim
+      nvim-treesitter-parsers.vimdoc
+      nvim-treesitter-parsers.lua
+      nvim-treesitter-parsers.query
+      nvim-treesitter-parsers.
       plenary-nvim
       popup-nvim
       rose-pine
