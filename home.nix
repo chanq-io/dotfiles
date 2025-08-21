@@ -11,6 +11,7 @@
     cmake
     coreutils
     eza
+    fd
     fenix.packages.${pkgs.system}.stable.toolchain
     fzf
     git

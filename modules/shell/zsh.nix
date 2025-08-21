@@ -30,6 +30,7 @@
     extraPackages = with pkgs; [
       chafa 
       clang
+      fd
       fzf
       git
       gnumake
