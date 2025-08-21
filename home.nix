@@ -7,9 +7,9 @@
   home.packages = with pkgs; [
     bat
     chafa
-    coreutils
     clang
     cmake
+    coreutils
     eza
     fenix.packages.${pkgs.system}.stable.toolchain
     fzf
@@ -18,12 +18,14 @@
     graphviz
     inputs.zen-browser.packages."${system}".default
     lldb
+    llvm
     lua5_1
     luarocks
-    llvm
     neofetch
+    nodejs
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep
+    tree-sitter
     ueberzugpp
     unzip
     viu
