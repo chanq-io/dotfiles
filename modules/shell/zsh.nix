@@ -67,7 +67,6 @@
       nvim-treesitter-parsers.vimdoc
       nvim-treesitter-parsers.lua
       nvim-treesitter-parsers.query
-      nvim-treesitter-parsers.
       plenary-nvim
       popup-nvim
       rose-pine
