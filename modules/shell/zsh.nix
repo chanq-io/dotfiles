@@ -87,7 +87,7 @@
 
   programs.zsh = with pkgs; {
     enable = true;
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
 
     sessionVariables = {
       RPS1 = "";
