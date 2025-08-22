@@ -133,6 +133,7 @@
           owner = "zdharma-continuum";
           repo = "fast-syntax-highlighting";
           rev = "v1.56";
+          sha256 = "sha256-caVMOdDJbAwo8dvKNgwwidmxOVst/YDda7lNx2GvOjY=";
         };
       }
       {
@@ -141,7 +142,6 @@
           owner = "zsh-users";
           repo = "zsh-autosuggestions";
           rev = "v0.7.1";
-          sha256 = "sha256-vpTyYq9ZgfgdDsWzjxVAE7FZH4MALMNZIFyEOBLm5Qo=";
         };
       }
     ];
