@@ -16,6 +16,7 @@
     fenix.packages.${pkgs.system}.stable.toolchain
     fzf
     git
+    glib
     gnumake
     graphviz
     just
