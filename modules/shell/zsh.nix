@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }: 
 let
   pcPath = lib.makeSearchPathOutput "dev" "lib/pkgconfig" [
+    pkgs.alsa-lib
     pkgs.atk
     pkgs.cairo
     pkgs.fontconfig

@@ -5,6 +5,7 @@
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
+    alsa-lib
     atk
     bat
     cairo
