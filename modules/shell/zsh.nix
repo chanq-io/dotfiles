@@ -19,8 +19,9 @@ let
   ];
   pkgConfigPath = lib.makeSearchPathOutput "dev" "lib/pkgconfig" pkgConfigBuildDeps;
   has = name: builtins.hasAttr name pkgs;
+
   alsaPluginPath =
-    if has "pipewire-alsa"
+    if builtins.hasAttr "pipewire-alsa" pkgs
     then "${pkgs.pipewire-alsa}/lib/alsa-lib"
     else "${pkgs.pipewire}/lib/alsa-lib";
 in {
@@ -114,18 +115,6 @@ in {
     enable = true;
     dotDir = "${config.xdg.configHome}/zsh";  
   
-    #envExtra = ''
-    #  if [ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
-    #    . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-    #  fi
-
-    #  export PKG_CONFIG="${pkgs.pkg-config}/bin/pkg-config"
-    #  export PKG_CONFIG_PATH="${pkgConfigPath}:$PKG_CONFIG_PATH"
-    #  
-    #  # Help alsa find pipewire alsa plugin 
-    #  export ALSA_PLUGIN_DIR="${alsaPluginPath}:${ALSA_PLUGIN_DIR:-}"
-    #''; 
-
     envExtra = ''
       if [ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
@@ -133,9 +122,7 @@ in {
 
       export PKG_CONFIG="${pkgs.pkg-config}/bin/pkg-config"
       export PKG_CONFIG_PATH="${pkgConfigPath}:$PKG_CONFIG_PATH"
-
-      # Let ALSA find the PipeWire ALSA plugin (note the escaped shell expansion below)
-      export ALSA_PLUGIN_DIR="${alsaPluginPath}''${ALSA_PLUGIN_DIR:+":$ALSA_PLUGIN_DIR"}"
+      export ALSA_PLUGIN_DIR="${alsaPluginPath}"
     '';    
 
     sessionVariables = {
