@@ -87,7 +87,7 @@
 
   programs.zsh = with pkgs; {
     enable = true;
-    dotDir = "${config.xdg.configHome}/.config/zsh";
+    dotDir = ".config/zsh";
 
     sessionVariables = {
       RPS1 = "";
@@ -97,7 +97,7 @@
       OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
     };
 
-    initContent = ''
+    initExtra = ''
       eval "$(starship init zsh)"
     '';
 
