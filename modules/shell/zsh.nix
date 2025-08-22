@@ -92,46 +92,41 @@
     fi
   '';
 
-  programs.zsh = with pkgs; {
+  programs.zsh = {
     enable = true;
-    dotDir = "${config.xdg.configHome}/zsh";
-
+    dotDir = "${config.xdg.configHome}/zsh";  
+  
+    envExtra = ''
+      export ZDOTDIR="${config.xdg.configHome}/zsh"
+  
+      if [ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      fi
+    '';
+  
     sessionVariables = {
       RPS1 = "";
-      PKG_CONFIG_PATH ="${pkgs.openssl.dev}/lib/pkgconfig";
+      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
       OPENSSL_DIR = "${pkgs.openssl.dev}";
       OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
       OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
     };
-
+  
     initExtra = ''
       eval "$(starship init zsh)"
     '';
-
+  
     profileExtra = ''
-      # Load Nix
-      if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+      if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+        . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+      fi
     '';
-
-    history = {
-      expireDuplicatesFirst = true;
-      ignoreSpace = false;
-      save = 100000000;
-      size = 1000000000;
-    };
-
-    shellAliases = {
-      ls = "${pkgs.eza}/bin/eza -l --group-directories-first";
-      l  = "${pkgs.eza}/bin/eza -l --group-directories-first";
-      la = "${pkgs.eza}/bin/eza -la --group-directories-first";
-      docker = "${pkgs.podman}/bin/podman";
-    };
-
+  
     plugins = [
       {
         name = "enhancd";
         file = "init.sh";
-        src = fetchFromGitHub {
+        src = pkgs.fetchFromGitHub {
           owner = "babarot";
           repo = "enhancd";
           rev = "5afb4eb6ba36c15821de6e39c0a7bb9d6b0ba415";
