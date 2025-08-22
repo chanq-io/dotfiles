@@ -1,0 +1,7 @@
+pcm.!default {
+  type plug
+  slave.pcm pipewire
+}
+ctl.!default {
+  type pipewire
+}

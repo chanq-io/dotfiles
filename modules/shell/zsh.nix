@@ -18,6 +18,11 @@ let
     webkitgtk_4_1
   ];
   pkgConfigPath = lib.makeSearchPathOutput "dev" "lib/pkgconfig" pkgConfigBuildDeps;
+  has = name: builtins.hasAttr name pkgs;
+  alsaPluginPath =
+    if has "pipewire-alsa"
+    then "${pkgs.pipewire-alsa}/lib/alsa-lib"
+    else "${pkgs.pipewire}/lib/alsa-lib";
 in {
   home.packages = with pkgs; [ starship ];
   home.file = {
@@ -116,6 +121,9 @@ in {
 
       export PKG_CONFIG="${pkgs.pkg-config}/bin/pkg-config"
       export PKG_CONFIG_PATH="${pkgConfigPath}:$PKG_CONFIG_PATH"
+      
+      # Help alsa find pipewire alsa plugin 
+      export ALSA_PLUGIN_DIR="${alsaPluginPath}:${ALSA_PLUGIN_DIR:-}"
     ''; 
 
     sessionVariables = {
@@ -132,6 +140,11 @@ in {
     profileExtra = ''
       if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
         . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+      fi
+
+
+      if [ -z "$XDG_RUNTIME_DIR" ] && [ -d "/run/user/$(id -u)" ]; then
+        export XDG_RUNTIME_DIR="/run/user/$(id -u)"
       fi
 
       if [ ! -f "$HOME/.config/pulse/client.conf" ]; then

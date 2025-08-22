@@ -80,24 +80,34 @@ in
 
   programs.home-manager.enable = true;
 
+  # alsa / pipewire conf
+  home.file.".asoundrc" = {
+    source = ./config/.asoundrc;
+  };
+
+  # cargo conf
   home.file.".cargo/config.toml" = {
     source = ./config/cargo/config.toml;
   };
 
+  # cargo conf
   xdg.configFile."i3/config" = {
     source = ./config/i3/config;
   };
 
+  # cargo conf
   xdg.configFile."kitty" = {
     source = ./config/kitty;
     recursive = true;
   };
 
+  # cargo conf
   xdg.configFile."polybar" = {
     source = ./config/polybar;
     recursive = true;
   };
 
+  # cargo conf
   xdg.configFile."nvim" = {
     source = ./config/nvim;
     recursive = true;
