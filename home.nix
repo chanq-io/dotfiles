@@ -10,6 +10,7 @@
     clang
     cmake
     coreutils
+    cargo-make
     eza
     fd
     fenix.packages.${pkgs.system}.stable.toolchain
@@ -17,6 +18,7 @@
     git
     gnumake
     graphviz
+    just
     inputs.zen-browser.packages."${system}".default
     lldb
     llvm
