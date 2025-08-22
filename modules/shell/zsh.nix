@@ -10,7 +10,6 @@ let
     pkgs.openssl
   ];
 in {
-{
   home.packages = with pkgs; [ starship ];
   home.file = {
     "starship.toml" = {
