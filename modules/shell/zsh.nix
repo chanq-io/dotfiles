@@ -85,20 +85,11 @@
     ];
   };
 
-  home.file.".zshenv".text = ''
-    export ZDOTDIR="${config.xdg.configHome}/zsh"
-    if [ -r "${config.home.homeDirectory}/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
-      . "${config.home.homeDirectory}/.nix-profile/etc/profile.d/hm-session-vars.sh"
-    fi
-  '';
-
   programs.zsh = {
     enable = true;
     dotDir = "${config.xdg.configHome}/zsh";  
   
     envExtra = ''
-      export ZDOTDIR="${config.xdg.configHome}/zsh"
-  
       if [ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
       fi
@@ -112,7 +103,7 @@
       OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
     };
   
-    initExtra = ''
+    initContent = ''
       eval "$(starship init zsh)"
     '';
   
