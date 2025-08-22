@@ -33,6 +33,7 @@
     nodejs
     openssl
     pkg-config
+    protobuf
     podman
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep

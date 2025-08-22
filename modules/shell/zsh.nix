@@ -112,6 +112,21 @@
         . "$HOME/.nix-profile/etc/profile.d/nix.sh"
       fi
     '';
+
+    history = {
+      expireDuplicatesFirst = true;
+      ignoreSpace = false;
+      save = 100000000;
+      size = 1000000000;
+    };
+
+    shellAliases = {
+      ls = "${pkgs.eza}/bin/eza -l --group-directories-first";
+      l  = "${pkgs.eza}/bin/eza -l --group-directories-first";
+      la = "${pkgs.eza}/bin/eza -la --group-directories-first";
+      docker = "${pkgs.podman}/bin/podman";
+      cdot = "cd ~/.dotfiles"
+    };
   
     plugins = [
       {
