@@ -29,6 +29,7 @@
     nodePackages.vscode-langservers-extracted
     nodePackages.yaml-language-server
     nodejs
+    podman
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep
     taplo

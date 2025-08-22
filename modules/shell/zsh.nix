@@ -113,6 +113,7 @@
       ls = "${pkgs.eza}/bin/eza -l --group-directories-first";
       l  = "${pkgs.eza}/bin/eza -l --group-directories-first";
       la = "${pkgs.eza}/bin/eza -la --group-directories-first";
+      docker = "${pkgs.podman}/bin/podman";
     };
 
     plugins = [
