@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     alsa-lib
+    alsa-utils
     atk
     bat
     cairo
@@ -31,9 +32,9 @@
     harfbuzz
     inputs.zen-browser.packages."${system}".default
     just
+    libsoup_3
     lldb
     llvm
-    libsoup_3
     lua5_1
     luarocks
     neofetch
@@ -45,6 +46,11 @@
     nodejs
     openssl
     pango
+    pavucontrol
+    pipewire
+    pipewire-alsa
+    pipewire-jack
+    pipewire-pulse
     pkg-config
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     podman
@@ -58,6 +64,7 @@
     viu
     webkitgtk_4_1
     wget
+    wireplumber
     xclip
   ];
 

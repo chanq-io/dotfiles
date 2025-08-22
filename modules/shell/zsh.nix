@@ -1,21 +1,31 @@
 { config, pkgs, lib, ... }: 
 let
-  pcPath = lib.makeSearchPathOutput "dev" "lib/pkgconfig" [
-    pkgs.alsa-lib
-    pkgs.atk
-    pkgs.cairo
-    pkgs.fontconfig
-    pkgs.freetype
-    pkgs.fribidi
-    pkgs.gdk-pixbuf
-    pkgs.glib
-    pkgs.graphite2
-    pkgs.gtk3
-    pkgs.harfbuzz
-    pkgs.libsoup_3
-    pkgs.openssl
-    pkgs.pango
-    pkgs.webkitgtk_4_1
+  pkgConfigBuildDeps = with pkgs; [
+    alsa-lib
+    atk
+    cairo
+    fontconfig
+    freetype
+    fribidi
+    gdk-pixbuf
+    glib
+    graphite2
+    gtk3
+    harfbuzz
+    libsoup_3
+    openssl
+    pango
+    webkitgtk_4_1
+  ];
+  pkgConfigPath = lib.makeSearchPathOutput "dev" "lib/pkgconfig" pkgConfigBuildDeps;
+  pipewirePkgs = with pkgs; [
+    pipewire
+    wireplumber
+    pipewire-alsa
+    pipewire-pulse
+    pipewire-jack
+    alsa-utils
+    pavucontrol
   ];
 in {
   home.packages = with pkgs; [ starship ];
@@ -114,8 +124,9 @@ in {
       fi
 
       export PKG_CONFIG="${pkgs.pkg-config}/bin/pkg-config"
-      export PKG_CONFIG_PATH="${pcPath}:$PKG_CONFIG_PATH"
+      export PKG_CONFIG_PATH="${pkgConfigPath}:$PKG_CONFIG_PATH"
     ''; 
+
     sessionVariables = {
       RPS1 = "";
       OPENSSL_DIR = "${pkgs.openssl.dev}";
@@ -131,6 +142,15 @@ in {
       if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
         . "$HOME/.nix-profile/etc/profile.d/nix.sh"
       fi
+
+      if [ ! -f "$HOME/.config/pulse/client.conf" ]; then
+        mkdir -p "$HOME/.config/pulse"
+        printf '%s\n' 'autospawn = no' > "$HOME/.config/pulse/client.conf"
+      fi
+
+      pgrep -xu "$USER" pipewire >/dev/null || pipewire &>/dev/null &
+      pgrep -xu "$USER" wireplumber >/dev/null || wireplumber &>/dev/null &
+      pgrep -xu "$USER" pipewire-pulse >/dev/null || pipewire-pulse &>/dev/null &
     '';
 
     history = {
