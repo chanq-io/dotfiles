@@ -55,6 +55,7 @@
     ueberzugpp
     unzip
     viu
+    webkitgtk_4_1
     wget
     xclip
   ];

@@ -14,6 +14,7 @@ let
     pkgs.libsoup_3
     pkgs.openssl
     pkgs.pango
+    pkgs.webkitgtk_4_1
   ];
 in {
   home.packages = with pkgs; [ starship ];
