@@ -85,6 +85,14 @@
     ];
   };
 
+  home.file.".zshenv".text = ''
+    export ZDOTDIR="${HOME}/.config/zsh"
+  
+    if [ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+      . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    fi
+  '';
+
   programs.zsh = with pkgs; {
     enable = true;
     dotDir = "${config.xdg.configHome}/zsh";
