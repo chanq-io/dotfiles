@@ -1,4 +1,14 @@
 { pkgs, inputs, fenix, system, lib, ...}: 
+let
+  has = name: builtins.hasAttr name pkgs;
+  get = name: builtins.getAttr name pkgs;
+
+  pipewirePkgs =
+    [ pkgs.pipewire pkgs.wireplumber ]
+    ++ lib.optional (has "pipewire-alsa") (get "pipewire-alsa")
+    ++ lib.optional (has "pipewire-pulse") (get "pipewire-pulse")
+    ++ lib.optional (has "pipewire-jack") (get "pipewire-jack");
+in
 {
   home.username = "cardamom";
   home.homeDirectory = "/home/cardamom";
@@ -47,10 +57,6 @@
     openssl
     pango
     pavucontrol
-    pipewire
-    pipewire-alsa
-    pipewire-jack
-    pipewire-pulse
     pkg-config
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     podman
@@ -66,7 +72,7 @@
     wget
     wireplumber
     xclip
-  ];
+  ] ++ pipewirePkgs;
 
   imports = [
     ./modules/shell/zsh.nix

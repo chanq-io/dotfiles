@@ -18,15 +18,6 @@ let
     webkitgtk_4_1
   ];
   pkgConfigPath = lib.makeSearchPathOutput "dev" "lib/pkgconfig" pkgConfigBuildDeps;
-  pipewirePkgs = with pkgs; [
-    pipewire
-    wireplumber
-    pipewire-alsa
-    pipewire-pulse
-    pipewire-jack
-    alsa-utils
-    pavucontrol
-  ];
 in {
   home.packages = with pkgs; [ starship ];
   home.file = {
