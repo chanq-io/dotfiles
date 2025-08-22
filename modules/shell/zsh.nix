@@ -114,6 +114,18 @@ in {
     enable = true;
     dotDir = "${config.xdg.configHome}/zsh";  
   
+    #envExtra = ''
+    #  if [ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+    #    . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    #  fi
+
+    #  export PKG_CONFIG="${pkgs.pkg-config}/bin/pkg-config"
+    #  export PKG_CONFIG_PATH="${pkgConfigPath}:$PKG_CONFIG_PATH"
+    #  
+    #  # Help alsa find pipewire alsa plugin 
+    #  export ALSA_PLUGIN_DIR="${alsaPluginPath}:${ALSA_PLUGIN_DIR:-}"
+    #''; 
+
     envExtra = ''
       if [ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
@@ -121,11 +133,10 @@ in {
 
       export PKG_CONFIG="${pkgs.pkg-config}/bin/pkg-config"
       export PKG_CONFIG_PATH="${pkgConfigPath}:$PKG_CONFIG_PATH"
-      
-      # Help alsa find pipewire alsa plugin 
-      export ALSA_PLUGIN_DIR="${alsaPluginPath}:${ALSA_PLUGIN_DIR:-}"
-    ''; 
 
+      # Let ALSA find the PipeWire ALSA plugin (escape shell ${...} so Nix doesn't interpolate it)
+      export ALSA_PLUGIN_DIR="${alsaPluginPath}''${ALSA_PLUGIN_DIR:+":$ALSA_PLUGIN_DIR"}"
+    '';
     sessionVariables = {
       RPS1 = "";
       OPENSSL_DIR = "${pkgs.openssl.dev}";
