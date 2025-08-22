@@ -134,9 +134,10 @@ in {
       export PKG_CONFIG="${pkgs.pkg-config}/bin/pkg-config"
       export PKG_CONFIG_PATH="${pkgConfigPath}:$PKG_CONFIG_PATH"
 
-      # Let ALSA find the PipeWire ALSA plugin (escape shell ${...} so Nix doesn't interpolate it)
+      # Let ALSA find the PipeWire ALSA plugin (note the escaped shell expansion below)
       export ALSA_PLUGIN_DIR="${alsaPluginPath}''${ALSA_PLUGIN_DIR:+":$ALSA_PLUGIN_DIR"}"
-    '';
+    '';    
+
     sessionVariables = {
       RPS1 = "";
       OPENSSL_DIR = "${pkgs.openssl.dev}";
