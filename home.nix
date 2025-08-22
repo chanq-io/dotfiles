@@ -51,6 +51,11 @@
  
   programs.home-manager.enable = true;
 
+  xdg.configFile."cargo" = {
+    source = ./config/cargo;
+    recursive = true;
+  };
+
   xdg.configFile."i3/config" = {
     source = ./config/i3/config;
   };
