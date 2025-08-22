@@ -32,6 +32,7 @@
     just
     lldb
     llvm
+    libsoup_3
     lua5_1
     luarocks
     neofetch

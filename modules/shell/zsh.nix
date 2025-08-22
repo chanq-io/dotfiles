@@ -1,18 +1,19 @@
 { config, pkgs, lib, ... }: 
 let
   pcPath = lib.makeSearchPathOutput "dev" "lib/pkgconfig" [
-    pkgs.glib
-    pkgs.gtk3
-    pkgs.gdk-pixbuf
-    pkgs.pango
-    pkgs.cairo
     pkgs.atk
-    pkgs.openssl
-    pkgs.harfbuzz
-    pkgs.freetype
+    pkgs.cairo
     pkgs.fontconfig
+    pkgs.freetype
     pkgs.fribidi
+    pkgs.gdk-pixbuf
+    pkgs.glib
     pkgs.graphite2
+    pkgs.gtk3
+    pkgs.harfbuzz
+    pkgs.libsoup_3
+    pkgs.openssl
+    pkgs.pango
   ];
 in {
   home.packages = with pkgs; [ starship ];
