@@ -86,12 +86,9 @@
   };
 
   home.file.".zshenv".text = ''
-    # Tell zsh where to find its config
-    export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-  
-    # Make HM session variables available in all shells
-    if [ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
-      . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    export ZDOTDIR="${config.xdg.configHome}/zsh"
+    if [ -r "${config.home.homeDirectory}/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+      . "${config.home.homeDirectory}/.nix-profile/etc/profile.d/hm-session-vars.sh"
     fi
   '';
 
