@@ -1,4 +1,16 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }: 
+let
+  pcPath = lib.makeSearchPathOutput "dev" "lib/pkgconfig" [
+    pkgs.glib
+    pkgs.gtk3
+    pkgs.gdk-pixbuf
+    pkgs.pango
+    pkgs.cairo
+    pkgs.atk
+    pkgs.openssl
+  ];
+in {
+{
   home.packages = with pkgs; [ starship ];
   home.file = {
     "starship.toml" = {
@@ -93,11 +105,12 @@
       if [ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
       fi
-    '';
-  
+
+      export PKG_CONFIG="${pkgs.pkg-config}/bin/pkg-config"
+      export PKG_CONFIG_PATH="${pcPath}:$PKG_CONFIG_PATH"
+    ''; 
     sessionVariables = {
       RPS1 = "";
-      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
       OPENSSL_DIR = "${pkgs.openssl.dev}";
       OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
       OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
