@@ -51,9 +51,8 @@
  
   programs.home-manager.enable = true;
 
-  xdg.configFile."cargo" = {
-    source = ./config/cargo;
-    recursive = true;
+  home.file.".cargo/config.toml" = {
+    source = ./config/cargo/config.toml;
   };
 
   xdg.configFile."i3/config" = {
