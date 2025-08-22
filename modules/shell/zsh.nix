@@ -8,6 +8,11 @@ let
     pkgs.cairo
     pkgs.atk
     pkgs.openssl
+    pkgs.harfbuzz
+    pkgs.freetype
+    pkgs.fontconfig
+    pkgs.fribidi
+    pkgs.graphite2
   ];
 in {
   home.packages = with pkgs; [ starship ];

@@ -16,13 +16,18 @@
     eza
     fd
     fenix.packages.${pkgs.system}.stable.toolchain
+    fontconfig
+    freetype
+    fribidi
     fzf
     gdk-pixbuf
     git
     glib
     gnumake
+    graphite2
     graphviz
     gtk3
+    harfbuzz
     inputs.zen-browser.packages."${system}".default
     just
     lldb
