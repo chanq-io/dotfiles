@@ -31,6 +31,8 @@
     nodePackages.vscode-langservers-extracted
     nodePackages.yaml-language-server
     nodejs
+    openssl
+    pkg-config
     podman
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     ripgrep
@@ -44,11 +46,12 @@
     xclip
   ];
 
+  home.sessionVariables.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+
   imports = [
     ./modules/shell/zsh.nix
   ];
 
- 
   programs.home-manager.enable = true;
 
   home.file.".cargo/config.toml" = {
