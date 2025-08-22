@@ -5,22 +5,26 @@
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
+    atk
     bat
+    cairo
+    cargo-make
     chafa
     clang
     cmake
     coreutils
-    cargo-make
     eza
     fd
     fenix.packages.${pkgs.system}.stable.toolchain
     fzf
+    gdk-pixbuf
     git
     glib
     gnumake
     graphviz
-    just
+    gtk3
     inputs.zen-browser.packages."${system}".default
+    just
     lldb
     llvm
     lua5_1
@@ -33,10 +37,11 @@
     nodePackages.yaml-language-server
     nodejs
     openssl
+    pango
     pkg-config
-    protobuf
-    podman
     pkgs.vscode-extensions.vadimcn.vscode-lldb
+    podman
+    protobuf
     ripgrep
     taplo
     tldr
