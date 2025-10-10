@@ -90,26 +90,32 @@ in
     source = ./config/cargo/config.toml;
   };
 
-  # cargo conf
+  # i3 conf
   xdg.configFile."i3/config" = {
     source = ./config/i3/config;
   };
 
-  # cargo conf
+  # kitty conf
   xdg.configFile."kitty" = {
     source = ./config/kitty;
     recursive = true;
   };
 
-  # cargo conf
+  # polybar conf
   xdg.configFile."polybar" = {
     source = ./config/polybar;
     recursive = true;
   };
 
-  # cargo conf
+  # nvim conf
   xdg.configFile."nvim" = {
     source = ./config/nvim;
+    recursive = true;
+  };
+
+  # wezterm conf
+  home.file.".wezterm.lua" = {
+    source = ./config/wezterm.lua;
     recursive = true;
   };
 }

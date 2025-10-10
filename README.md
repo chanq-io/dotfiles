@@ -1,0 +1,17 @@
+- [ ] theme i3
+    - [ ] set background 
+    - [ ] set window style
+    - [ ] set window fonts
+- [ ] theme polybar
+- [ ] setup startup screen
+- [ ] validate bluetooth audio 
+- [ ] ensure rust compilation is working 
+- [ ] ensure cpp compilation is working 
+- [ ] setup monarch devenv
+- [ ] setup intorno devenv
+- [ ] applications
+    - [ ] terminal calendar
+    - [ ] terminal email
+    - [ ] terminal rss reader
+    - [ ] move to linux friendly password manager
+    - [ ] add bitwig
