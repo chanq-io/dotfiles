@@ -197,8 +197,32 @@ bindsym $mod+r mode "resize"
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-# Border
+# Gaps configuration - always visible
+gaps inner 15
+gaps outer 10
+smart_gaps off
+smart_borders off
+
+# Border configuration
 default_border pixel 1
+default_floating_border pixel 1
+
+# Darkmatrix colors
+set $bg-color            #0a0e14
+set $border-color        #00ff00
+set $inactive-border     #0d1117
+set $text-color          #b3b1ad
+set $inactive-text-color #626a73
+set $urgent-bg-color     #ff3333
+
+# Window colors
+client.focused          $border-color    $bg-color          $text-color          #00ff00  $border-color
+client.unfocused        $inactive-border $bg-color          $inactive-text-color #0d1117  $inactive-border
+client.focused_inactive $inactive-border $bg-color          $inactive-text-color #0d1117  $inactive-border
+client.urgent           $urgent-bg-color $urgent-bg-color   $text-color          #ff3333  $urgent-bg-color
+
+# Start compositor for transparency
+exec_always --no-startup-id picom -b
 
 # Resolution
 exec --no-startup-id xrdb -merge ~/.Xresources
