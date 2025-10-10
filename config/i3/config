@@ -198,7 +198,7 @@ bindsym $mod+r mode "resize"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Gaps configuration - always visible
-gaps inner 15
+gaps inner 20
 gaps outer 5
 smart_gaps off
 smart_borders on
