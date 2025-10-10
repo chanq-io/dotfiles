@@ -70,7 +70,6 @@ in
     viu
     webkitgtk_4_1
     wget
-    wireplumber
     xclip
   ] ++ pipewirePkgs;
 
