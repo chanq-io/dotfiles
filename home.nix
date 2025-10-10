@@ -95,6 +95,11 @@ in
     source = ./config/i3/config;
   };
 
+  # picom conf
+  xdg.configFile."picom/picom.conf" = {
+    source = ./config/picom/picom.conf;
+  };
+
   # kitty conf
   xdg.configFile."kitty" = {
     source = ./config/kitty;
