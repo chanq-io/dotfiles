@@ -1,5 +1,5 @@
 return {
-  "benjamin-kruger/fahrenheit.nvim",
+  "benjamin-kruger/fahrenheit-nvim",
   lazy = false,
   priority = 1000,
   config = function()
