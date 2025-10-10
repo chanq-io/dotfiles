@@ -199,7 +199,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Gaps configuration - always visible
 gaps inner 15
-gaps outer 15
+gaps outer 5
 smart_gaps off
 smart_borders on
 
