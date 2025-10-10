@@ -1,10 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Terminate already running polybar instances
+# Terminate already running bar instances
 killall -q polybar
 
-# Wait until the processes have been shutdown
+# Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# Launch Polybar
-polybar example
+# Launch polybar
+echo "---" | tee -a /tmp/polybar.log
+polybar main 2>&1 | tee -a /tmp/polybar.log & disown
+
+echo "Polybar launched..."
+
