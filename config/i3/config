@@ -228,4 +228,4 @@ exec_always --no-startup-id picom -b
 exec --no-startup-id xrdb -merge ~/.Xresources
 
 # Background 
-exec_always --no-startup-id feh --bg-fill ~/pictures/farhan-reza-_uJcrgBzETk-unsplash.jpg
+exec_always --no-startup-id feh --bg-fill ~/pictures/david-bridle-XFGC3cFzHIM-unsplash.jpg
