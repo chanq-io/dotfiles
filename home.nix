@@ -28,6 +28,7 @@ in
     eza
     fd
     fenix.packages.${pkgs.system}.stable.toolchain
+    feh
     fontconfig
     freetype
     fribidi
