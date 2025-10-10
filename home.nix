@@ -100,6 +100,15 @@ in
     source = ./config/picom/picom.conf;
   };
 
+  # rofi conf
+  xdg.configFile."rofi/config.rasi" = {
+    source = ./config/rofi/config.rasi;
+  };
+
+  xdg.configFile."rofi/darkmatrix.rasi" = {
+    source = ./config/rofi/darkmatrix.rasi;
+  };
+
   # kitty conf
   xdg.configFile."kitty" = {
     source = ./config/kitty;
