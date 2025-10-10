@@ -209,7 +209,7 @@ default_floating_border pixel 1
 
 # Darkmatrix colors
 set $bg-color            #0a0e14
-set $border-color        #00ff00
+set $border-color        #bb9af7
 set $inactive-border     #0d1117
 set $text-color          #b3b1ad
 set $inactive-text-color #626a73
