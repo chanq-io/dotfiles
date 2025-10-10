@@ -9,7 +9,7 @@ local config = wezterm.config_builder()
 -- or, changing the font size and color scheme.
 config.font = wezterm.font('FiraCode Nerd Font Mono')
 config.font_size = 10
-config.color_scheme = 'AdventureTime'
+config.color_scheme = 'Fahrenheit'
 
 -- Finally, return the configuration to wezterm:
 return config
