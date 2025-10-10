@@ -201,7 +201,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 gaps inner 15
 gaps outer 10
 smart_gaps off
-smart_borders off
+smart_borders on
 
 # Border configuration
 default_border pixel 1
