@@ -54,6 +54,8 @@ vim.cmd [[
     hi NonText ctermbg=none
     hi Normal guibg=NONE ctermbg=NONE
 
+    colorscheme darkmatrix
+
     au BufNewFile,BufRead *.rs set filetype=rust
     au BufNewFile,BufRead *.toml set filetype=toml
     au FileType make setlocal noexpandtab
