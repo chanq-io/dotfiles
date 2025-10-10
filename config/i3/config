@@ -202,3 +202,6 @@ default_border pixel 1
 
 # Resolution
 exec --no-startup-id xrdb -merge ~/.Xresources
+
+# Background 
+exec_always --no-startup-id feh --bg-fill ~/pictures/farhan-reza-_uJcrgBzETk-unsplash.jpg
