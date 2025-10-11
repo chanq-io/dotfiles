@@ -52,7 +52,6 @@ in
     luarocks
     neofetch
     nodePackages.bash-language-server
-    nodePackages.pyright
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
@@ -65,6 +64,7 @@ in
     pkgs.vscode-extensions.vadimcn.vscode-lldb
     podman
     protobuf
+    pyright
     python3
     ripgrep
     taplo
