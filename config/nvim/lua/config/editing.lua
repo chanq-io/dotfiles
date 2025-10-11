@@ -37,18 +37,13 @@ vim.opt.fillchars = { eob = ' ' }
 require("markdown-toggle").setup({
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  desc = "markdown-toggle.nvim keymaps",
-  pattern = { "markdown", "markdown.mdx" },
-  callback = function(args)
-    local opts = { silent = true, noremap = true, buffer = args.buf }
-    local toggle = require("markdown-toggle")
+local toggle = require("markdown-toggle").toggle
+local opts = { noremap = true, silent = true }
+opts.expr = true
+vim.keymap.set("n", "<S-CR>", toggle.checkbox_dot, opts)
+opts.expr = false
+vim.keymap.set("x", "<S-CR>", toggle.checkbox, opts)
 
-    opts.expr = false -- required for Visual mode
-    vim.keymap.set("x", "<CR>", toggle.checkbox, opts)
-
-  end,
-})
 
 vim.cmd [[
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
