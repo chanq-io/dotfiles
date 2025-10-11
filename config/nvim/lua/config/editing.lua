@@ -17,8 +17,6 @@ vim.opt.wildmode = "longest,list,full"
 vim.opt.wildmenu = true
 vim.opt.shell = "zsh"
 vim.opt.conceallevel = 1
-
-
 vim.g.pymode_rope = 0
 vim.g.pymode_folding = 0
 vim.opt.wildmenu = true
@@ -34,10 +32,23 @@ vim.g.monochrome_italic_comments = true
 vim.g.rustfmt_autosave = true
 vim.g.rustfmt_emit_files = true
 vim.g.rustfmt_fail_silently = false
-
 vim.opt.fillchars = { eob = ' ' }
 
-require("markdown-toggle").setup()
+require("markdown-toggle").setup({
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "markdown-toggle.nvim keymaps",
+  pattern = { "markdown", "markdown.mdx" },
+  callback = function(args)
+    local opts = { silent = true, noremap = true, buffer = args.buf }
+    local toggle = require("markdown-toggle")
+
+    opts.expr = false -- required for Visual mode
+    vim.keymap.set("x", "<CR>", toggle.checkbox, opts)
+
+  end,
+})
 
 vim.cmd [[
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
