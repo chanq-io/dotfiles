@@ -4,7 +4,6 @@ return {
   event = "InsertEnter",
   config = function()
     require("copilot").setup({
-
       suggestion = {
         enabled = true,
         auto_trigger = true,
@@ -15,7 +14,7 @@ return {
           accept_line = false,
           next = "<M-]>",
           prev = "<M-[>",
-          dismiss = "<C-BS>",    
+          dismiss = "<C-c>",    
         },
       },
     })
