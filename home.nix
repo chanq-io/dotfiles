@@ -20,6 +20,7 @@ in
     atk
     bat
     cairo
+    calcure
     cargo-make
     chafa
     clang
