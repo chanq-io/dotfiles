@@ -105,41 +105,44 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- LSP servers (no mason; binaries provided by Nix)
+-- Common opts
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local common = {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 
-local function enable(server, opts)
-  local cfg = vim.lsp.config(server, vim.tbl_extend("force", {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }, opts or {}))
-  vim.lsp.enable(cfg)
+-- Safe helper: tries to enable a server, warns if missing
+local function try_enable(name, opts)
+  local ok, err = pcall(vim.lsp.enable, name, vim.tbl_extend("force", common, opts or {}))
+  if not ok then
+    vim.notify(("LSP server '%s' not enabled: %s"):format(name, tostring(err)), vim.log.levels.WARN)
+    return false
+  end
+  return true
 end
 
--- Figure out the correct TS server id for your lspconfig version
-local ts_server = "ts_ls"
-local ok = pcall(function() vim.lsp.config(ts_server) end)
-if not ok then ts_server = "tsserver" end
-
 -- C/C++
-enable("clangd")
+try_enable("clangd")
 
 -- JavaScript / TypeScript
-enable(ts_server)
+if not try_enable("ts_ls") then
+  try_enable("tsserver")
+end
 
 -- HTML / CSS
-enable("html")
-enable("cssls")
+try_enable("html")
+try_enable("cssls")
 
 -- Bash
-enable("bashls")
+try_enable("bashls")
 
 -- YAML
-enable("yamlls")
+try_enable("yamlls")
 
 -- TOML (Taplo)
-enable("taplo")
+try_enable("taplo")
 
--- PYTHON 
-enable("pyright")
+-- Python
+try_enable("pyright")
 
--- Rust is handled by rustaceanvim (do not set rust_analyzer here)
