@@ -4,14 +4,15 @@
     - [x] set window fonts
 - [x] theme polybar
 - [x] theme rofi
-- [ ] setup startup screen
-- [ ] validate bluetooth audio 
+- [x] setup startup screen
 - [ ] ensure rust compilation is working 
 - [ ] ensure cpp compilation is working 
 - [ ] migrate to copilot nvim chat
 - [ ] install whatever plugin is needed to support checklists in md
 - [ ] setup monarch devenv
 - [ ] setup intorno devenv
+- [ ] install steam to validate graphics drivers
+- [ ] validate bluetooth audio 
 - [ ] applications
     - [ ] terminal calendar
     - [ ] terminal email
