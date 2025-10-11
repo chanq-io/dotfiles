@@ -15,6 +15,7 @@ vim.api.nvim_create_user_command('CppTest', 'split | terminal cd build && make -
 vim.api.nvim_create_user_command('CppCleanBuild', 'split | terminal rm -rf build && mkdir build && cd build && cmake --preset all .. && make -j12 <args>', { nargs = '*' })
 vim.api.nvim_create_user_command('Run', 'split | terminal <args>', { nargs = '*', complete = 'file' } )
 
+# command for running cargo nextest 
 
 vim.cmd [[
     no <F2> :ZettelNew
@@ -25,10 +26,11 @@ vim.cmd [[
     no <F10> :CargoTestUnitExact
     no <F11> :CargoTestUnit --workspace<CR>
     no <F12> :CargoTestAll --workspace<CR>
+    no <leader>c :Copilot panel<CR>
     no <leader>f :Telescope find_files<CR>
     no <leader>s :Telescope live_grep<CR>
     no <leader>b :Telescope buffers<CR>
-    no <leader>c :Telescope commands<CR>
+    no <leader>C :Telescope commands<CR>
     no <leader>l :Telescope builtin.lsp_
     map <C-n> :Telescope file_browser<CR>
     no <leader>j :%!jq .<CR>
