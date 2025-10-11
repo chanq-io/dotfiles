@@ -8,7 +8,7 @@
 - [ ] ensure rust compilation is working 
 - [ ] ensure cpp compilation is working 
 - [x] migrate to copilot nvim chat
-- [ ] install whatever plugin is needed to support checklists in md
+- [x] install whatever plugin is needed to support checklists in md
 - [ ] setup monarch devenv
 - [ ] setup intorno devenv
 - [ ] install steam to validate graphics drivers
