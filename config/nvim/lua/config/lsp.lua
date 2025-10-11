@@ -105,48 +105,41 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- LSP servers (no mason; binaries provided by Nix)
-local lsp = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+local function enable(server, opts)
+  local cfg = vim.lsp.config(server, vim.tbl_extend("force", {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }, opts or {}))
+  vim.lsp.enable(cfg)
+end
+
+-- Figure out the correct TS server id for your lspconfig version
+local ts_server = "ts_ls"
+local ok = pcall(function() vim.lsp.config(ts_server) end)
+if not ok then ts_server = "tsserver" end
+
 -- C/C++
-lsp.clangd.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+enable("clangd")
 
 -- JavaScript / TypeScript
-local ts_name = lsp.ts_ls and "ts_ls" or "tsserver"
-lsp[ts_name].setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+enable(ts_server)
 
 -- HTML / CSS
-lsp.html.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-lsp.cssls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+enable("html")
+enable("cssls")
 
 -- Bash
-lsp.bashls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+enable("bashls")
 
 -- YAML
-lsp.yamlls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+enable("yamlls")
 
 -- TOML (Taplo)
-lsp.taplo.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+enable("taplo")
+
+-- PYTHON 
+enable("pyright")
 
 -- Rust is handled by rustaceanvim (do not set rust_analyzer here)
