@@ -1,1 +1,1 @@
-use { "zbirenbaum/copilot.lua" }
+return { "zbirenbaum/copilot.lua" }
