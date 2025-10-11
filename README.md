@@ -19,3 +19,5 @@
     - [ ] terminal rss reader
     - [ ] move to linux friendly password manager
     - [ ] add bitwig
+
+
