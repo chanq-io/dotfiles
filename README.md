@@ -14,9 +14,6 @@
 - [ ] install steam to validate graphics drivers
 - [ ] validate bluetooth audio 
 - [ ] applications
-    - [ ] terminal calendar
-    - [ ] terminal email
-    - [ ] terminal rss reader
     - [ ] move to linux friendly password manager
     - [ ] add bitwig
 
