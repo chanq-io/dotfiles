@@ -1,13 +1,15 @@
-- [ ] theme i3
+- [x] theme i3
     - [x] set background 
-    - [ ] set window style
+    - [x] set window style
     - [x] set window fonts
-- [ ] theme polybar
+- [x] theme polybar
+- [x] theme rofi
 - [ ] setup startup screen
 - [ ] validate bluetooth audio 
 - [ ] ensure rust compilation is working 
 - [ ] ensure cpp compilation is working 
 - [ ] migrate to copilot nvim chat
+- [ ] install whatever plugin is needed to support checklists in md
 - [ ] setup monarch devenv
 - [ ] setup intorno devenv
 - [ ] applications
