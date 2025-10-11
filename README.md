@@ -7,7 +7,7 @@
 - [x] setup startup screen
 - [ ] ensure rust compilation is working 
 - [ ] ensure cpp compilation is working 
-- [ ] migrate to copilot nvim chat
+- [x] migrate to copilot nvim chat
 - [ ] install whatever plugin is needed to support checklists in md
 - [ ] setup monarch devenv
 - [ ] setup intorno devenv
