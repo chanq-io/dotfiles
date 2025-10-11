@@ -41,8 +41,8 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown" },
   callback = function()
     local mt = require("markdown-toggle")
-    vim.keymap.set("n", "<C-Space>", mt.checkbox_dot, { buffer = true, expr = true, silent = true })
-    vim.keymap.set("x", "<C-Space>", mt.checkbox, { buffer = true, silent = true })
+    vim.keymap.set("n", "<C-@>", mt.checkbox_dot, { buffer = true, expr = true, silent = true })
+    vim.keymap.set("x", "<C-@>", mt.checkbox, { buffer = true, silent = true })
   end,
 })
 
