@@ -15,8 +15,6 @@ vim.api.nvim_create_user_command('CppTest', 'split | terminal cd build && make -
 vim.api.nvim_create_user_command('CppCleanBuild', 'split | terminal rm -rf build && mkdir build && cd build && cmake --preset all .. && make -j12 <args>', { nargs = '*' })
 vim.api.nvim_create_user_command('Run', 'split | terminal <args>', { nargs = '*', complete = 'file' } )
 
-# command for running cargo nextest 
-
 vim.cmd [[
     no <F2> :ZettelNew
     no <F3> :ZettelOpen<CR>
