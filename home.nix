@@ -34,6 +34,7 @@ in
     fribidi
     fzf
     gdk-pixbuf
+    gh
     git
     glib
     gnumake
