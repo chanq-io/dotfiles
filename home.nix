@@ -43,7 +43,6 @@ in
     graphviz
     gtk3
     harfbuzz
-    inputs.zen-browser.packages."${system}".default
     just
     libsoup_3
     lldb
@@ -79,14 +78,13 @@ in
     zoom-us
     nixgl.packages.${pkgs.system}.nixGLNvidia
     (pkgs.writeShellScriptBin "zoom-nixgl" ''
-      exec nixGLNvidia ${pkgs.zoom-us}/bin/zoom-us "$@"
+      exec ${nixgl.packages.${pkgs.system}.nixGLNvidia}/bin/nixGLNvidia \
+        ${pkgs.zoom-us}/bin/zoom-us "$@"
     '')
   ] ++ pipewirePkgs;
 
   xdg.desktopEntries."zoom-us-nixgl" = {
     name = "Zoom (nixGL)";
-    genericName = "Video Conferencing";
-    comment = "Start Zoom using system GPU drivers via nixGL";
     exec = "zoom-nixgl";
     terminal = false;
     type = "Application";

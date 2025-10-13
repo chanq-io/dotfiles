@@ -7,13 +7,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    nixgl.url = "github:guibou/nixGL";
   };
   outputs = {
       fenix,
       nixpkgs,
       home-manager,
-      zen-browser,
       ...
   } @ inputs: 
   let 
@@ -21,7 +20,7 @@
   in 
   {
     homeConfigurations.cardamom = home-manager.lib.homeManagerConfiguration {
-      extraSpecialArgs = { inherit fenix inputs system; };
+      extraSpecialArgs = { inherit fenix nixgl inputs system; };
       pkgs = import nixpkgs { 
         inherit system; 
 	config.allowUnfree = true;
