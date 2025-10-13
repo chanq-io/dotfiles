@@ -77,7 +77,22 @@ in
     wget
     xclip
     zoom-us
+    nixgl.packages.${pkgs.system}.nixGLNvidia
+    (pkgs.writeShellScriptBin "zoom-nixgl" ''
+      exec nixGLNvidia ${pkgs.zoom-us}/bin/zoom-us "$@"
+    '')
   ] ++ pipewirePkgs;
+
+  xdg.desktopEntries."zoom-us-nixgl" = {
+    name = "Zoom (nixGL)";
+    genericName = "Video Conferencing";
+    comment = "Start Zoom using system GPU drivers via nixGL";
+    exec = "zoom-nixgl";
+    terminal = false;
+    type = "Application";
+    categories = [ "Network" "VideoConference" ];
+    icon = "zoom";
+  };
 
   imports = [
     ./modules/shell/zsh.nix
