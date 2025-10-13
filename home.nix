@@ -2,7 +2,8 @@
 let
   has = name: builtins.hasAttr name pkgs;
   get = name: builtins.getAttr name pkgs;
-
+  nixglIntel  = pkgs.nixgl.nixGLIntel;
+  nixglNvidia = pkgs.nixgl.nixGLNvidia;
   pipewirePkgs =
     [ pkgs.pipewire pkgs.wireplumber ]
     ++ lib.optional (has "pipewire-alsa") (get "pipewire-alsa")
@@ -78,30 +79,26 @@ in
     zoom-us
     nixgl.nixGLIntel
     nixgl.nixGLNvidia
-    # Intel launcher (with GLX fixes below)
-    (pkgs.writeShellScriptBin "zoom-intel" ''
-      # Prefer XCB on X11 and try EGL first; disable DRI3 to avoid odd FBConfig picks
+    (writeShellScriptBin "zoom-intel" ''
       export QT_QPA_PLATFORM=xcb
       export QT_XCB_GL_INTEGRATION=xcb_egl
       export LIBGL_DRI3_DISABLE=1
-      exec nixGLIntel ${pkgs.zoom-us}/bin/zoom-us "$@"
+      exec ${nixglIntel}/bin/nixGLIntel ${zoom-us}/bin/zoom-us "$@"
     '')
 
-    # Intel (software fallback) if the above still fails
-    (pkgs.writeShellScriptBin "zoom-intel-soft" ''
+    (writeShellScriptBin "zoom-intel-soft" ''
       export QT_QPA_PLATFORM=xcb
       export QT_XCB_GL_INTEGRATION=none
       export QT_OPENGL=software
       export LIBGL_ALWAYS_SOFTWARE=1
-      exec nixGLIntel ${pkgs.zoom-us}/bin/zoom-us "$@"
+      exec ${nixglIntel}/bin/nixGLIntel ${zoom-us}/bin/zoom-us "$@"
     '')
 
-    # NVIDIA offload launcher
-    (pkgs.writeShellScriptBin "zoom-nvidia" ''
+    (writeShellScriptBin "zoom-nvidia" ''
       export __NV_PRIME_RENDER_OFFLOAD=1
       export __GLX_VENDOR_LIBRARY_NAME=nvidia
       export __VK_LAYER_NV_optimus=NVIDIA_only
-      exec nixGLNvidia ${pkgs.zoom-us}/bin/zoom-us "$@"
+      exec ${nixglNvidia}/bin/nixGLNvidia ${zoom-us}/bin/zoom-us "$@"
     '')
   ] ++ pipewirePkgs;
 
