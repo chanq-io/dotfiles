@@ -1,6 +1,11 @@
 require('telekasten').setup({
-  home = vim.fn.expand("~/src/personal/zettelkasten"), -- Put the name of your notes directory here
+  home = vim.fn.expand('~/src/personal/zettelkasten'),
+  templates = vim.fn.expand('~/src/personal/zettelkasten/templates'),
+  template_new_note   = vim.fn.expand('~/src/personal/zettelkasten/templates/new_note.md'),
+  template_new_daily  = vim.fn.expand('~/src/personal/zettelkasten/templates/daily.md'),
+  template_new_weekly = vim.fn.expand('~/src/personal/zettelkasten/templates/weekly.md'),
 })
+
 
 -- Launch panel if nothing is typed after <leader>z
 vim.keymap.set("n", "<leader>z", "<cmd>Telekasten panel<CR>")
