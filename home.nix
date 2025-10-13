@@ -83,13 +83,10 @@ in
         ${pkgs.zoom-us}/bin/zoom-us "$@"
     '')
     (pkgs.writeShellScriptBin "zoom-nvidia" ''
-      # PRIME offload to NVIDIA on X11
       export __NV_PRIME_RENDER_OFFLOAD=1
       export __GLX_VENDOR_LIBRARY_NAME=nvidia
-      # Optional, helps Vulkan-based apps:
       export __VK_LAYER_NV_optimus=NVIDIA_only
-      exec ${nixgl.packages.${pkgs.system}.nixGLNvidia}/bin/nixGLNvidia \
-        ${pkgs.zoom-us}/bin/zoom-us "$@"
+      exec nixGLNvidia ${pkgs.zoom-us}/bin/zoom-us "$@"
     '')
   ] ++ pipewirePkgs;
 
