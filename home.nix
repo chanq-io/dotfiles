@@ -76,12 +76,27 @@ in
     wget
     xclip
     zoom-us
-    nixgl.packages.${pkgs.system}.nixGLIntel
-    nixgl.packages.${pkgs.system}.nixGLNvidia
+    nixGLIntel
+    nixGLNvidia
+    # Intel launcher (with GLX fixes below)
     (pkgs.writeShellScriptBin "zoom-intel" ''
-      exec ${nixgl.packages.${pkgs.system}.nixGLIntel}/bin/nixGLIntel \
-        ${pkgs.zoom-us}/bin/zoom-us "$@"
+      # Prefer XCB on X11 and try EGL first; disable DRI3 to avoid odd FBConfig picks
+      export QT_QPA_PLATFORM=xcb
+      export QT_XCB_GL_INTEGRATION=xcb_egl
+      export LIBGL_DRI3_DISABLE=1
+      exec nixGLIntel ${pkgs.zoom-us}/bin/zoom-us "$@"
     '')
+
+    # Intel (software fallback) if the above still fails
+    (pkgs.writeShellScriptBin "zoom-intel-soft" ''
+      export QT_QPA_PLATFORM=xcb
+      export QT_XCB_GL_INTEGRATION=none
+      export QT_OPENGL=software
+      export LIBGL_ALWAYS_SOFTWARE=1
+      exec nixGLIntel ${pkgs.zoom-us}/bin/zoom-us "$@"
+    '')
+
+    # NVIDIA offload launcher
     (pkgs.writeShellScriptBin "zoom-nvidia" ''
       export __NV_PRIME_RENDER_OFFLOAD=1
       export __GLX_VENDOR_LIBRARY_NAME=nvidia
@@ -90,9 +105,18 @@ in
     '')
   ] ++ pipewirePkgs;
 
-   xdg.desktopEntries."zoom-us-nixgl-intel" = {
+  xdg.desktopEntries."zoom-us-nixgl-intel" = {
     name = "Zoom (Intel)";
     exec = "zoom-intel";
+    terminal = false;
+    type = "Application";
+    categories = [ "Network" "VideoConference" ];
+    icon = "zoom";
+  };
+
+  xdg.desktopEntries."zoom-us-nixgl-intel-soft" = {
+    name = "Zoom (Intel, software)";
+    exec = "zoom-intel-soft";
     terminal = false;
     type = "Application";
     categories = [ "Network" "VideoConference" ];
