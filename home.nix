@@ -1,4 +1,4 @@
-{ pkgs, inputs, fenix, system, lib, ...}: 
+{ pkgs, inputs, fenix, nixgl, system, lib, ...}: 
 let
   has = name: builtins.hasAttr name pkgs;
   get = name: builtins.getAttr name pkgs;
