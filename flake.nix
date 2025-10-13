@@ -19,18 +19,18 @@
     } @ inputs: 
     let 
         system = "x86_64-linux";
-    in 
-    {
-        homeConfigurations.cardamom = home-manager.lib.homeManagerConfiguration {
-            extraSpecialArgs = { inherit fenix nixgl inputs system; };
-            pkgs = import nixpkgs { 
-                inherit system; 
-                overlays = [ nixgl.overlay or nixgl.overlays.default ];
-                config.allowUnfree = true;
-            };
-      modules = [ 
-        ./home.nix 
-      ];
+        pkgs = import nixpkgs { 
+            inherit system; 
+            overlays = [ nixgl.overlay or nixgl.overlays.default ];
+            config.allowUnfree = true;
+        };
+    in {
+      homeConfigurations.cardamom = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit fenix nixgl inputs system; };
+        modules = [ 
+          ./home.nix 
+        ];
     };
   };
 }
