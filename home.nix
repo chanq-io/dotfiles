@@ -77,8 +77,8 @@ in
     wget
     xclip
     zoom-us
-    nixgl.nixGLIntel
-    nixgl.nixGLNvidia
+    nixGLIntel
+    nixGLNvidia
     (writeShellScriptBin "zoom-intel" ''
       export QT_QPA_PLATFORM=xcb
       export QT_XCB_GL_INTEGRATION=xcb_egl
