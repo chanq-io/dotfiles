@@ -111,6 +111,11 @@ in
     icon = "zoom";
   };
 
+  xdg.userDirs = {
+    enable = true;
+    download = "${config.home.homeDirectory}/downloads";
+  };
+
   imports = [
     ./modules/shell/zsh.nix
   ];
@@ -130,11 +135,6 @@ in
   # i3 conf
   xdg.configFile."i3/config" = {
     source = ./config/i3/config;
-  };
-
-  # chromium conf
-  xdg.configFile."chromium/Default/Preferences" = {
-    source = ./config/chromium/Preferences;
   };
 
   # picom conf
