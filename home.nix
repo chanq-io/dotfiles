@@ -80,9 +80,7 @@ in
     xclip
     zoom-us
     nixglIntel
-  ] ++ nixglNvidia ++ pipewirePkgs;
-
-  home.packages = home.packages ++ (with pkgs; [
+  ] ++ nixglNvidia ++ pipewirePkgs ++ (with pkgs; [
     (writeShellScriptBin "zoom-intel" ''
       export QT_QPA_PLATFORM=xcb
       export QT_XCB_GL_INTEGRATION=xcb_egl
