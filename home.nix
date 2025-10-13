@@ -76,16 +76,35 @@ in
     wget
     xclip
     zoom-us
+    nixgl.packages.${pkgs.system}.nixGLIntel
     nixgl.packages.${pkgs.system}.nixGLNvidia
-    (pkgs.writeShellScriptBin "zoom-nixgl" ''
+    (pkgs.writeShellScriptBin "zoom-intel" ''
+      exec ${nixgl.packages.${pkgs.system}.nixGLIntel}/bin/nixGLIntel \
+        ${pkgs.zoom-us}/bin/zoom-us "$@"
+    '')
+    (pkgs.writeShellScriptBin "zoom-nvidia" ''
+      # PRIME offload to NVIDIA on X11
+      export __NV_PRIME_RENDER_OFFLOAD=1
+      export __GLX_VENDOR_LIBRARY_NAME=nvidia
+      # Optional, helps Vulkan-based apps:
+      export __VK_LAYER_NV_optimus=NVIDIA_only
       exec ${nixgl.packages.${pkgs.system}.nixGLNvidia}/bin/nixGLNvidia \
         ${pkgs.zoom-us}/bin/zoom-us "$@"
     '')
   ] ++ pipewirePkgs;
 
-  xdg.desktopEntries."zoom-us-nixgl" = {
-    name = "Zoom (nixGL)";
-    exec = "zoom-nixgl";
+   xdg.desktopEntries."zoom-us-nixgl-intel" = {
+    name = "Zoom (Intel)";
+    exec = "zoom-intel";
+    terminal = false;
+    type = "Application";
+    categories = [ "Network" "VideoConference" ];
+    icon = "zoom";
+  };
+
+  xdg.desktopEntries."zoom-us-nixgl-nvidia" = {
+    name = "Zoom (NVIDIA offload)";
+    exec = "zoom-nvidia";
     terminal = false;
     type = "Application";
     categories = [ "Network" "VideoConference" ];
