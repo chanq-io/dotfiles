@@ -133,18 +133,19 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# Assign applications to workspaces
-assign [class="WezTerm" title="code-vim"] $ws1
-assign [class="Chromium"] $ws2
-assign [class="WezTerm" title="notes-vim"] $ws2
+# Assign applications to workspaces (match WezTerm by instance)
+assign [class="^Chromium$"] $ws2
+assign [instance="^code$"] $ws1
+assign [instance="^notes-vim$"] $ws2
 
-exec --no-startup-id chromium
-exec --no-startup-id wezterm start --class code-vim -- bash -lc 'nvim'
+# Autostart apps
+exec --no-startup-id chromium --disable-features=SessionCrashedBubble
+exec --no-startup-id wezterm start --class code
 exec --no-startup-id wezterm start --class notes-vim -- bash -lc 'nvim'
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
@@ -155,8 +156,8 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
