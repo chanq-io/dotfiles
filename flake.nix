@@ -12,6 +12,7 @@
   outputs = {
       fenix,
       nixpkgs,
+      nixgl,
       home-manager,
       ...
   } @ inputs: 
