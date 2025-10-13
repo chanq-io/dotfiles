@@ -2,8 +2,10 @@
 let
   has = name: builtins.hasAttr name pkgs;
   get = name: builtins.getAttr name pkgs;
-  nixglIntel  = pkgs.nixgl.nixGLIntel;
-  nixglNvidia = pkgs.nixgl.nixGLNvidia;
+  nixglPkgs   = inputs.nixgl.packages.${pkgs.system};
+  nixglIntel  = nixglPkgs.nixGLIntel;
+  hasNvidia   = lib.hasAttr "nixGLNvidia" nixglPkgs;
+  nixglNvidia = lib.optional hasNvidia nixglPkgs.nixGLNvidia;
   pipewirePkgs =
     [ pkgs.pipewire pkgs.wireplumber ]
     ++ lib.optional (has "pipewire-alsa") (get "pipewire-alsa")
@@ -78,7 +80,9 @@ in
     xclip
     zoom-us
     nixglIntel
-    nixglNvidia
+  ] ++ nixglNvidia ++ pipewirePkgs;
+
+  home.packages = home.packages ++ (with pkgs; [
     (writeShellScriptBin "zoom-intel" ''
       export QT_QPA_PLATFORM=xcb
       export QT_XCB_GL_INTEGRATION=xcb_egl
@@ -93,14 +97,13 @@ in
       export LIBGL_ALWAYS_SOFTWARE=1
       exec ${nixglIntel}/bin/nixGLIntel ${zoom-us}/bin/zoom-us "$@"
     '')
-
-    (writeShellScriptBin "zoom-nvidia" ''
+  ] ++ lib.optional hasNvidia (writeShellScriptBin "zoom-nvidia" ''
       export __NV_PRIME_RENDER_OFFLOAD=1
       export __GLX_VENDOR_LIBRARY_NAME=nvidia
       export __VK_LAYER_NV_optimus=NVIDIA_only
-      exec ${nixglNvidia}/bin/nixGLNvidia ${zoom-us}/bin/zoom-us "$@"
+      exec ${nixglPkgs.nixGLNvidia}/bin/nixGLNvidia ${zoom-us}/bin/zoom-us "$@"
     '')
-  ] ++ pipewirePkgs;
+  );
 
   xdg.desktopEntries."zoom-us-nixgl-intel" = {
     name = "Zoom (Intel)";
