@@ -76,8 +76,8 @@ in
     wget
     xclip
     zoom-us
-    nixGLIntel
-    nixGLNvidia
+    nixgl.nixGLIntel
+    nixgl.nixGLNvidia
     # Intel launcher (with GLX fixes below)
     (pkgs.writeShellScriptBin "zoom-intel" ''
       # Prefer XCB on X11 and try EGL first; disable DRI3 to avoid odd FBConfig picks

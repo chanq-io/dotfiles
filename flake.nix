@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl.url = "github:guibou/nixGL";
+    nixgl.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = {
       fenix,
@@ -24,7 +25,8 @@
       extraSpecialArgs = { inherit fenix nixgl inputs system; };
       pkgs = import nixpkgs { 
         inherit system; 
-	config.allowUnfree = true;
+	    config.allowUnfree = true;
+        overlays = [ nixgl.overlay ];
       };
       modules = [ 
         ./home.nix 
