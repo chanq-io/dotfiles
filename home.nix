@@ -76,6 +76,7 @@ in
     webkitgtk_4_1
     wget
     xclip
+    zoom-us
   ] ++ pipewirePkgs;
 
   imports = [
