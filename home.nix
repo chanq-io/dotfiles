@@ -99,6 +99,11 @@ in
     source = ./config/i3/config;
   };
 
+  # chromium conf
+  xdg.configFile."chromium/Default/Preferences" = {
+    source = ./config/chromium/Preferences;
+  };
+
   # picom conf
   xdg.configFile."picom/picom.conf" = {
     source = ./config/picom/picom.conf;
