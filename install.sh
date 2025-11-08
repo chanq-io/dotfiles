@@ -139,6 +139,7 @@ create_symlink "$HOME/.dotfiles/ghostty/config" ~/.config/ghostty/config
 create_symlink "$HOME/.dotfiles/cargo/config.toml" ~/.cargo/config.toml
 create_symlink "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"
 
+brew_install_if_missing 1Password-cli
 brew_install_if_missing ag
 brew_install_if_missing bat
 brew_install_if_missing chafa
@@ -148,13 +149,14 @@ brew_install_if_missing fd
 brew_install_if_missing ffmpeg
 brew_install_if_missing fzf
 brew_install_if_missing jq
-brew_install_if_missing ueberzugpp jstkdng/programs/ueberzugpp
 brew_install_if_missing llvm
 brew_install_if_missing nvim
+brew_install_if_missing p7zip
 brew_install_if_missing podman
 brew_install_if_missing rg
 brew_install_if_missing tldr
 brew_install_if_missing tree-sitter tree-sitter-cli
+brew_install_if_missing ueberzugpp jstkdng/programs/ueberzugpp
 brew_install_if_missing utftex
 brew_install_if_missing viu
 brew_install_if_missing wget
