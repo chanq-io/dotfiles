@@ -15,7 +15,7 @@ starter.setup({
     items = {
         starter.sections.telescope(),
         {
-          action = 'edit ~/src/personal/zettelkasten/index.md',
+          action = 'edit ~/Code/personal/zettelkasten/index.md',
           name = 'Open Zettelkasten Index',
           section = 'Shortcuts'
         },

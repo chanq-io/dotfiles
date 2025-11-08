@@ -16,6 +16,11 @@ alias zconf="v ~/.dotfiles/shell/zshrc"
 alias acreds="v ~/.aws/credentials"
 alias latest_commit_hash='git log | head -n1 | awk "{print \$2;}"'
 alias aws-sso="source ~/.aws-sso-login.sh"
+alias python="uv run python"
+alias python3="uv run python"
+alias pip="uv run pip"
+alias pip3="uv run pip"
+
 
 docker-rm-all() {
     docker rm $(docker ps -a -q)

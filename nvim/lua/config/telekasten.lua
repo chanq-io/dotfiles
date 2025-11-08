@@ -1,9 +1,9 @@
 require('telekasten').setup({
-  home = vim.fn.expand('~/src/personal/zettelkasten'),
-  templates = vim.fn.expand('~/src/personal/zettelkasten/templates'),
-  template_new_note   = vim.fn.expand('~/src/personal/zettelkasten/templates/new_note.md'),
-  template_new_daily  = vim.fn.expand('~/src/personal/zettelkasten/templates/daily.md'),
-  template_new_weekly = vim.fn.expand('~/src/personal/zettelkasten/templates/weekly.md'),
+  home = vim.fn.expand('~/Code/personal/zettelkasten'),
+  templates = vim.fn.expand('~/Code/personal/zettelkasten/templates'),
+  template_new_note   = vim.fn.expand('~/Code/personal/zettelkasten/templates/new_note.md'),
+  template_new_daily  = vim.fn.expand('~/Code/personal/zettelkasten/templates/daily.md'),
+  template_new_weekly = vim.fn.expand('~/Code/personal/zettelkasten/templates/weekly.md'),
 })
 
 

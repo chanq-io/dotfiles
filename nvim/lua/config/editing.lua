@@ -64,7 +64,9 @@ vim.cmd [[
     hi NonText ctermbg=none
     hi Normal guibg=NONE ctermbg=NONE
 
-    colorscheme darkmatrix
+    "colorscheme darkmatrix
+    colorscheme ayu
+
 
     au BufNewFile,BufRead *.rs set filetype=rust
     au BufNewFile,BufRead *.toml set filetype=toml
