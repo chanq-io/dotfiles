@@ -34,7 +34,7 @@ brew_install_if_missing() {
     local YELLOW='\033[0;33m'
     local RESET='\033[0m' # No Color
 
-    if ! brew ls --versions $cmd > /dev/null 2>&1; then
+    if ! brew ls --formulae $cmd > /dev/null 2>&1 && ! brew ls --cask $cmd > /dev/null 2>&1; then
         echo -e "${YELLOW}Command '$cmd' not found. Installing via Homebrew...${RESET}"
 
         if ! command -v brew >/dev/null 2>&1; then
