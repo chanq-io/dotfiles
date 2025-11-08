@@ -1,0 +1,9 @@
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+autoload -U compinit && compinit
+antidote load
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+eval "$(starship init zsh)"
+
+source ~/.dotfiles/shell/aliases.zsh
