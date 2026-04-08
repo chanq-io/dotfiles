@@ -1,0 +1,6 @@
+## Cycle Types
+
+- `daily` (default): Cycles through values based on day of year (1-365/366)
+- `weekly`: Cycles through values based on week of year (1-52/53)
+- `monthly`: Cycles through values based on month of year (1-12)
+- `custom`: Cycles through values every N days (requires `days` parameter)

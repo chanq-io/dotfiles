@@ -1,0 +1,10 @@
+-- Get the current cycle index based on cycle type
+local function get_cycle_index(cycle_type)
+  if cycle_type == "weekly" then
+    return get_week_of_year()
+  elseif cycle_type == "monthly" then
+    return get_month_of_year()
+  else -- default to "daily"
+    return get_day_of_year()
+  end
+end

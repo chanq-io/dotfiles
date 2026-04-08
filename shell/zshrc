@@ -1,15 +1,26 @@
 source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
 autoload -U compinit && compinit
-antidote load
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-eval "$(starship init zsh)"
+# Prevent Python venv from modifying the prompt (starship will handle it)
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# zsh-vi-mode overrides prompts, so we need to initialize starship AFTER it loads
+# This function will be called after zsh-vi-mode is initialized
+zvm_after_init() {
+  eval "$(starship init zsh)"
+}
+
+antidote load
 
 source ~/.dotfiles/shell/aliases.zsh
 source ~/.dotfiles/shell/variables.zsh
 
+export NVM_DIR="$HOME/.nvm"
+[ ! -d "$NVM_DIR" ] && mkdir -p "$NVM_DIR"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 source $(brew --prefix nvm)/nvm.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-

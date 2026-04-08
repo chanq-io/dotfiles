@@ -1,10 +1,14 @@
 -- default settings
 require("origami").setup {
-	useLspFoldsWithTreesitterFallback = true,
+	useLspFoldsWithTreesitterFallback = {
+		enabled = true
+	},
 	pauseFoldsOnSearch = true,
 	foldtext = {
 		enabled = true,
-		padding = 3,
+		padding = {
+            width = 3,
+        },
 		lineCount = {
 			template = "%d lines", -- `%d` is replaced with the number of folded lines
 			hlgroup = "Comment",

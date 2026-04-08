@@ -1,0 +1,1 @@
+-- render-markdown is configured via plugins/render-markdown.lua opts

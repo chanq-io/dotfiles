@@ -1,0 +1,14 @@
+-- Get the current cycle index based on cycle type
+local function get_cycle_index(cycle_type, cycle_days)
+  if cycle_type == "weekly" then
+    return get_week_of_year()
+  elseif cycle_type == "monthly" then
+    return get_month_of_year()
+  elseif cycle_type == "custom" and cycle_days then
+    -- For custom cycle, divide day of year by number of days per cycle
+    local day = get_day_of_year()
+    return math.floor((day - 1) / cycle_days) + 1
+  else -- default to "daily"
+    return get_day_of_year()
+  end
+end

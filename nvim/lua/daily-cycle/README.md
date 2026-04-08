@@ -1,0 +1,126 @@
+# Daily Cycle - Neovim Plugin
+
+A configurable Neovim plugin that inserts values at the cursor position based on daily, weekly, or monthly cycles.
+
+## Installation
+
+Add to your Neovim config (e.g., `~/.config/nvim/init.lua`):
+
+```lua
+require('daily-cycle').setup({
+  -- Your command configurations here
+})
+```
+
+## Configuration
+
+### Basic Usage (Daily Cycle)
+
+```lua
+require('daily-cycle').setup({
+  DailyPractice = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"}
+})
+```
+
+This creates a `:DailyPractice` command that cycles through musical notes based on the day of year modulo 12.
+
+### Advanced Usage (Specifying Cycle Type)
+
+```lua
+require('daily-cycle').setup({
+  -- Daily cycle (default) - cycles based on day of year (1-365/366)
+  DailyPractice = {
+    values = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"},
+    cycle = "daily"
+  },
+
+  -- Weekly cycle - cycles based on week of year (1-52/53)
+  WeeklyFocus = {
+    values = {"Speed", "Accuracy", "Scales", "Arpeggios", "Sight-reading"},
+    cycle = "weekly"
+  },
+
+  -- Monthly cycle - cycles based on month of year (1-12)
+  MonthlyTheme = {
+    values = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"},
+    cycle = "monthly"
+  }
+})
+```
+
+## Cycle Types
+
+- `daily` (default): Cycles through values based on day of year (1-365/366)
+- `weekly`: Cycles through values based on week of year (1-52/53)
+- `monthly`: Cycles through values based on month of year (1-12)
+- `custom`: Cycles through values every N days (requires `days` parameter)
+
+## Example Configurations
+
+### Programming Practice
+```lua
+require('daily-cycle').setup({
+  DailyLang = {
+    values = {"Python", "JavaScript", "Rust", "Go", "TypeScript"},
+    cycle = "daily"
+  }
+})
+```
+
+### Study Topics
+```lua
+require('daily-cycle').setup({
+  WeeklyTopic = {
+    values = {"Algorithms", "System Design", "Databases", "Networks"},
+    cycle = "weekly"
+  }
+})
+```
+
+### Project Priorities
+```lua
+require('daily-cycle').setup({
+  MonthlyGoal = {
+    values = {"Q1-Features", "Q2-Performance", "Q3-Testing", "Q4-Documentation"},
+    cycle = "monthly"
+  }
+})
+```
+
+### Custom N-Day Cycles
+```lua
+require('daily-cycle').setup({
+  -- Change every 7 days
+  WeeklyProject = {
+    values = {"Project A", "Project B", "Project C"},
+    cycle = "custom",
+    days = 7
+  },
+
+  -- Change every 14 days (bi-weekly)
+  BiWeeklyFocus = {
+    values = {"Backend", "Frontend"},
+    cycle = "custom",
+    days = 14
+  },
+
+  -- Change every 3 days
+  RotatingTask = {
+    values = {"Code Review", "Documentation", "Testing", "Refactoring"},
+    cycle = "custom",
+    days = 3
+  }
+})
+```
+
+## Usage
+
+Once configured, simply run your custom command in Neovim:
+
+```
+:DailyPractice
+```
+
+This will insert the current cycle value at your cursor position.
+
+

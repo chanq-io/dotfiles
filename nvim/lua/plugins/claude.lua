@@ -3,12 +3,9 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    {
-      "MeanderingProgrammer/render-markdown.nvim",
-      ft = { "markdown", "codecompanion" }
-    },
+    "MeanderingProgrammer/render-markdown.nvim"
   },
   opts = {
-    log_level = "DEBUG",  -- Remove the nested 'opts'
+    log_level = "DEBUG"
   },
 }

@@ -48,5 +48,7 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = Ayu
+theme = Rose Pine
+#theme = Ayu
 keybind = shift+enter=text:"\n"
+font-family = "FiraMono Nerd Font Mono"

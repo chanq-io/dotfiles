@@ -1,1 +1,1 @@
-return { "chriskempson/base16-vim" }
+return { "RRethy/base16-nvim" }

@@ -57,7 +57,7 @@ vim.cmd [[
     syntax enable
     au BufEnter * if &buftype == 'terminal' | :startinsert | endif
     nnoremap ,b :buffer *
-    
+
     set t_Co=16
     hi NormalFloat guibg=None ctermbg=None
     hi CursorLine guibg=NONE guifg=NONE
@@ -65,7 +65,8 @@ vim.cmd [[
     hi Normal guibg=NONE ctermbg=NONE
 
     "colorscheme darkmatrix
-    colorscheme ayu
+    "colorscheme ayu
+    colorscheme base16-rose-pine
 
 
     au BufNewFile,BufRead *.rs set filetype=rust

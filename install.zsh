@@ -141,24 +141,43 @@ create_symlink "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"
 
 brew_install_if_missing 1Password-cli
 brew_install_if_missing ag
+brew_install_if_missing awscli
 brew_install_if_missing bat
 brew_install_if_missing chafa
+brew_install_if_missing claude-agent-acp
 brew_install_if_missing cmake
+brew_install_if_missing deno
 brew_install_if_missing eza
 brew_install_if_missing fd
+brew_install_if_missing fdk-aac
+brew_install_if_missing fdk-aac-encoder
 brew_install_if_missing ffmpeg
 brew_install_if_missing fzf
+brew_install_if_missing gifsicle
+brew_install_if_missing git-extras
+brew_install_if_missing gh
+brew_install_if_missing graphviz
 brew_install_if_missing jq
+brew_install_if_missing just
+brew_install_if_missing httpie
 brew_install_if_missing llvm
 brew_install_if_missing nvim
 brew_install_if_missing p7zip
-brew_install_if_missing podman
+brew_install_if_missing protobuf
+brew_install_if_missing psql
 brew_install_if_missing rg
+brew_install_if_missing sox
+brew_install_if_missing supabase
+brew_install_if_missing telnet
+brew_install_if_missing terraform
 brew_install_if_missing tldr
 brew_install_if_missing tree-sitter tree-sitter-cli
 brew_install_if_missing ueberzugpp jstkdng/programs/ueberzugpp
 brew_install_if_missing utftex
+brew_install_if_missing uv
+brew_install_if_missing vercel-cli
 brew_install_if_missing viu
+brew_install_if_missing watch
 brew_install_if_missing wget
 
 brew_install_rust
@@ -167,6 +186,7 @@ brew_install_starship
 brew_install_uv
 
 brew_cask_install_if_missing claude-code
+brew_cask_install_if_missing docker
 brew_cask_install_if_missing font-fira-mono-nerd-font
 brew_cask_install_if_missing ghostty
 brew_cask_install_if_missing spotify
