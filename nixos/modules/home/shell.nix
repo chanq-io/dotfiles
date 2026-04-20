@@ -16,7 +16,7 @@
       ];
     };
 
-    initExtra = ''
+    initContent = ''
       # Starship handles the venv indicator itself.
       export VIRTUAL_ENV_DISABLE_PROMPT=1
 
