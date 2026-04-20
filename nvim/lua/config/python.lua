@@ -1,14 +1,10 @@
--- Locate python3 using PATH
--- local python_path = vim.fn.exepath("python3")
--- if python_path == nil or python_path == "" then
---   python_path = vim.g.homebrew_install_dir .. "/bin/python3"
---   if utils.file_or_dir_exists(python_path) then
---     vim.g.python3_host_prog = python_path
---   end
--- else
---   vim.g.python3_host_prog = python_path
--- end
-vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim_venv/bin/python")
+-- Pin nvim's python3 provider to the pynvim-enabled venv if it exists
+-- (macOS workflow). On NixOS the neovim wrapper bundles pynvim, so leave
+-- python3_host_prog unset and let nvim auto-detect.
+local venv_python = vim.fn.expand("~/.config/nvim_venv/bin/python")
+if vim.fn.filereadable(venv_python) == 1 then
+  vim.g.python3_host_prog = venv_python
+end
 
 vim.cmd [[
     autocmd BufWritePre * :%s/\s\+$//e
