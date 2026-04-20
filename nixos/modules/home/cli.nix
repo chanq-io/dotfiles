@@ -20,7 +20,7 @@
     # Monitoring
     btop
     procs
-    du-dust
+    dust
     duf
     bandwhich
 
