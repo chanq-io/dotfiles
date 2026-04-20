@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/boot.nix
+    ../../modules/nixos/desktop.nix
     ../../modules/nixos/hardware.nix
     ../../modules/nixos/locale.nix
     ../../modules/nixos/networking.nix
@@ -13,14 +14,6 @@
   ];
 
   networking.hostName = "shrike";
-
-  programs.hyprland.enable = true;
-
-  environment.loginShellInit = ''
-    if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = "1" ]; then
-      exec Hyprland
-    fi
-  '';
 
   environment.systemPackages = with pkgs; [
     hyprland
