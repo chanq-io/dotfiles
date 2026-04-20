@@ -20,6 +20,8 @@
       taplo
       tree-sitter
     ];
+
+    extraPython3Packages = ps: with ps; [ pynvim ];
   };
 
   # Point ~/.config/nvim at the repo so lazy.nvim keeps working normally.
