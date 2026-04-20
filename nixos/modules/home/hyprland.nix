@@ -105,6 +105,7 @@ in
         "$mod, D, exec, $menu"
         "$mod, Q, killactive"
         "$mod SHIFT, E, exit"
+        "$mod SHIFT, R, exec, hyprctl reload"
         "$mod, F, togglefloating"
         "$mod, P, pseudo"
         "$mod, J, togglesplit"
