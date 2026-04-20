@@ -21,5 +21,9 @@
     # App navigators
     lazygit
     lazydocker
+
+    # Build tools (needed by nvim plugins like telescope-fzf-native)
+    gcc
+    gnumake
   ];
 }
