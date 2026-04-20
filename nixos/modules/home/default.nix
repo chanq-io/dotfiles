@@ -7,6 +7,7 @@
     ./git.nix
     ./neovim.nix
     ./shell.nix
+    ./terminal.nix
   ];
 
   home.username = "cardamom";

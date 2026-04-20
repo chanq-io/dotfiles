@@ -18,7 +18,6 @@
 
   environment.systemPackages = with pkgs; [
     hyprland
-    kitty
     waybar
     wofi
     mako
