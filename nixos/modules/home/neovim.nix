@@ -7,6 +7,12 @@
     viAlias = true;
     vimAlias = true;
 
+    # Treesitter parsers only — built-in treesitter (nvim 0.12+) picks
+    # them up from the runtime path. No plugin setup is called.
+    plugins = with pkgs.vimPlugins; [
+      nvim-treesitter.withAllGrammars
+    ];
+
     # LSPs and plugin dependencies provided via Nix so they don't need
     # to be rebuilt on every machine. Plugin set itself is managed by
     # lazy.nvim out of the symlinked config below.
