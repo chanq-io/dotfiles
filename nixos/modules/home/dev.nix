@@ -6,8 +6,11 @@
     nodejs_22
     python313
     uv
-    rustup
+    rustc
+    cargo
+    rust-analyzer
     go
+    gopls
 
     # Node package managers
     pnpm
