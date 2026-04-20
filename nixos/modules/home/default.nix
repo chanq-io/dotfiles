@@ -3,6 +3,7 @@
 {
   imports = [
     ./cli.nix
+    ./dev.nix
     ./git.nix
     ./shell.nix
   ];
