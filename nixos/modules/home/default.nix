@@ -3,13 +3,16 @@
 {
   imports = [
     ./cli.nix
+    ./cliphist.nix
     ./dev.nix
+    ./gammastep.nix
     ./git.nix
     ./hypridle.nix
     ./hyprland.nix
     ./hyprlock.nix
     ./mako.nix
     ./neovim.nix
+    ./screenshot.nix
     ./shell.nix
     ./terminal.nix
     ./wallpaper.nix

@@ -18,9 +18,6 @@
 
   environment.systemPackages = with pkgs; [
     hyprland
-    grim
-    slurp
-    wl-clipboard
     firefox
     os-prober
     git

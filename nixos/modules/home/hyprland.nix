@@ -109,6 +109,15 @@ in
         "$mod SHIFT, E, exit"
         "$mod SHIFT, R, exec, hyprctl reload"
         "$mod, L, exec, hyprlock"
+
+        # Screenshots (hyprshot wraps grim+slurp). Copies to clipboard +
+        # saves to ~/Pictures/Screenshots.
+        "$mod, S, exec, hyprshot -m region"
+        "$mod SHIFT, S, exec, hyprshot -m window"
+        ", Print, exec, hyprshot -m output"
+
+        # Clipboard history — wofi dmenu over cliphist.
+        "$mod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
         "$mod, F, togglefloating"
         "$mod, P, pseudo"
         "$mod, J, togglesplit"
