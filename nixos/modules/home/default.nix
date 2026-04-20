@@ -7,6 +7,7 @@
     ./dev.nix
     ./gammastep.nix
     ./git.nix
+    ./gui-apps.nix
     ./hypridle.nix
     ./hyprland.nix
     ./hyprlock.nix
