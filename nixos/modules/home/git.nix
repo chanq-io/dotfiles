@@ -1,12 +1,16 @@
 { ... }:
 
 {
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+
   programs.git = {
     enable = true;
-    userName = "Pierre Chanquion";
-    userEmail = "pierre@chanq.io";
-    delta.enable = true;
-    extraConfig = {
+    settings = {
+      user.name = "Pierre Chanquion";
+      user.email = "pierre@chanq.io";
       core.editor = "nvim";
       init.defaultBranch = "main";
       pull.rebase = true;
