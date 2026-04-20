@@ -5,7 +5,7 @@
     packages = with pkgs; [
       nerd-fonts.fira-mono
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
     ];
 
     # Emoji fallback chain — so CJK/symbols/emoji render everywhere
