@@ -24,4 +24,14 @@
       };
     };
   };
+
+  # 1Password GUI + CLI. GUI needs polkit integration so 1Password-CLI can
+  # authorise unlock via the GUI (biometric / system password). The CLI
+  # alone also works via account sign-in, but polkit enables the
+  # `op eval ...` workflow inheriting GUI unlock state.
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "cardamom" ];
+  };
 }
