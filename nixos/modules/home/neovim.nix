@@ -29,6 +29,7 @@ let
 
   queriesFor = lang:
     pkgs.fetchFromGitHub {
+      name = "queries-${lang.name}";
       owner = "neovim-treesitter";
       repo = "nvim-treesitter-queries-${lang.name}";
       inherit (lang) rev hash;
