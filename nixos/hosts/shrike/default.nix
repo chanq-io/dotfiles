@@ -11,6 +11,7 @@
     ../../modules/nixos/networking.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/services.nix
+    ../../modules/nixos/steam.nix
     ../../modules/nixos/users.nix
   ];
 
