@@ -12,6 +12,7 @@
     # whatever version their authors pinned.
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
+    betterbird.url = "github:Heehaaw/betterbird-flake";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {

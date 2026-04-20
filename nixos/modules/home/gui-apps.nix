@@ -8,10 +8,10 @@
   home.packages = [
     pkgs.firefox
     pkgs.ungoogled-chromium
-    pkgs.betterbird
     pkgs.spotify
     pkgs.maestral-gui
     inputs.zen-browser.packages.${pkgs.system}.default
     inputs.claude-desktop.packages.${pkgs.system}.claude-desktop
+    inputs.betterbird.packages.${pkgs.system}.betterbird
   ];
 }
