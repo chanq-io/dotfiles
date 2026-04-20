@@ -1,6 +1,10 @@
 { ... }:
 
 {
+  imports = [
+    ./cli.nix
+  ];
+
   home.username = "cardamom";
   home.homeDirectory = "/home/cardamom";
   home.stateVersion = "25.11";
