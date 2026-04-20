@@ -12,10 +12,4 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = "*";
   };
-
-  environment.loginShellInit = ''
-    if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = "1" ]; then
-      exec Hyprland
-    fi
-  '';
 }

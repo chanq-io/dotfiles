@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services.openssh.enable = true;
@@ -11,4 +11,17 @@
   # Docker daemon. User is added to the docker group in users.nix so
   # everyday container work doesn't need sudo.
   virtualisation.docker.enable = true;
+
+  # greetd + tuigreet replace the auto-exec-Hyprland-from-login-shell flow.
+  # Gives a proper login prompt on tty1 and keeps the PAM session owned by
+  # the right user. --cmd is the compositor to launch on successful login.
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+        user = "greeter";
+      };
+    };
+  };
 }
