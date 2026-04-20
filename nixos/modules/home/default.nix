@@ -3,6 +3,7 @@
 {
   imports = [
     ./cli.nix
+    ./shell.nix
   ];
 
   home.username = "cardamom";
