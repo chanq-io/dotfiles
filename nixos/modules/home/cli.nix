@@ -33,6 +33,9 @@
     wget
     inetutils
 
+    # Desktop notifications CLI (notify-send)
+    libnotify
+
     # Terminal images / graphics
     chafa
     viu
