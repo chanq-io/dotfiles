@@ -31,8 +31,9 @@ in
 
       exec-once = [
         # waybar + mako start via their systemd user units (programs.waybar
-        # and services.mako). Additional daemons (swww, hypridle, cliphist,
-        # gammastep) land here as their modules arrive.
+        # and services.mako). hypridle starts via its HM systemd user unit.
+        # swww-daemon has no HM systemd wrapper, so launch it here.
+        "swww-daemon"
       ];
 
       env = [
@@ -107,6 +108,7 @@ in
         "$mod, Q, killactive"
         "$mod SHIFT, E, exit"
         "$mod SHIFT, R, exec, hyprctl reload"
+        "$mod, L, exec, loginctl lock-session"
         "$mod, F, togglefloating"
         "$mod, P, pseudo"
         "$mod, J, togglesplit"
