@@ -3,9 +3,8 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/nixos/nix.nix
   ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -53,7 +52,6 @@
     packages = with pkgs; [ ];
   };
 
-  nixpkgs.config.allowUnfree = true;
   programs.hyprland.enable = true;
 
   services.pipewire = {
