@@ -185,7 +185,7 @@ brew_install_nvm
 brew_install_starship
 brew_install_uv
 
-brew_cask_install_if_missing claude-code
+brew_cask_install_if_missing claude-code@latest
 brew_cask_install_if_missing docker
 brew_cask_install_if_missing font-fira-mono-nerd-font
 brew_cask_install_if_missing ghostty

@@ -1,8 +1,10 @@
-require("nvim-treesitter.configs").setup({
-  highlight = {
-    enable = true,
-    disable = { "just" },
-  },
+-- Disable treesitter highlighting for just files (use vim syntax instead)
+vim.treesitter.language.register("just", "just")
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "just",
+  callback = function(args)
+    vim.treesitter.stop(args.buf)
+  end,
 })
 require("just").setup({
     fidget_message_limit = 32, -- limit for length of fidget progress message

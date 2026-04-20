@@ -1,10 +1,2 @@
-local ok, configs = pcall(require, 'nvim-treesitter.configs')
-if ok then
-  configs.setup({
-    auto_install = false,
-    ensure_installed = { 'markdown', 'markdown_inline' },
-    highlight = { enable = true },
-    indent = { enable = true },
-  })
-end
-
+-- nvim-treesitter plugin removed: neovim 0.12+ has built-in treesitter support.
+-- Highlighting and indent are enabled by default in neovim 0.12.
