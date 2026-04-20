@@ -8,6 +8,7 @@
     ../../modules/nixos/locale.nix
     ../../modules/nixos/networking.nix
     ../../modules/nixos/nix.nix
+    ../../modules/nixos/services.nix
     ../../modules/nixos/users.nix
   ];
 
@@ -37,8 +38,6 @@
     wget
     efibootmgr
   ];
-
-  services.openssh.enable = true;
 
   system.stateVersion = "25.11";
 }
