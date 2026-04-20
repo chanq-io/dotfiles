@@ -27,7 +27,6 @@
     firefox
     os-prober
     git
-    neovim
     wget
     efibootmgr
   ];

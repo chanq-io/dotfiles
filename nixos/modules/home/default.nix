@@ -5,6 +5,7 @@
     ./cli.nix
     ./dev.nix
     ./git.nix
+    ./neovim.nix
     ./shell.nix
   ];
 
