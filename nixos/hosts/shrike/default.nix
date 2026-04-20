@@ -7,16 +7,10 @@
     ../../modules/nixos/locale.nix
     ../../modules/nixos/networking.nix
     ../../modules/nixos/nix.nix
+    ../../modules/nixos/users.nix
   ];
 
   networking.hostName = "shrike";
-
-  users.users.cardamom = {
-    isNormalUser = true;
-    description = "Pierre Chanquion";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
-    packages = with pkgs; [ ];
-  };
 
   programs.hyprland.enable = true;
 
