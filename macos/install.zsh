@@ -152,7 +152,7 @@ brew_install_uv (){
 
 mkdir -p ~/.cargo ~/.config/
 
-create_symlink "$HOME/.dotfiles/macos/shell/zshrc" ~/.zshrc
+create_symlink "$HOME/.dotfiles/shell/zshrc" ~/.zshrc
 create_symlink "$HOME/.dotfiles/macos/ghostty/config" ~/.config/ghostty/config
 create_symlink "$HOME/.dotfiles/macos/cargo/config.toml" ~/.cargo/config.toml
 create_symlink "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"

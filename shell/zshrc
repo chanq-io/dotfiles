@@ -14,8 +14,8 @@ zvm_after_init() {
 
 antidote load
 
-source ~/.dotfiles/macos/shell/aliases.zsh
-source ~/.dotfiles/macos/shell/variables.zsh
+source ~/.dotfiles/shell/aliases.zsh
+source ~/.dotfiles/shell/variables.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ ! -d "$NVM_DIR" ] && mkdir -p "$NVM_DIR"
