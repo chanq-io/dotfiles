@@ -134,10 +134,10 @@ brew_install_uv (){
 
 mkdir -p ~/.cargo ~/.config/
 
-create_symlink "$HOME/.dotfiles/shell/zshrc" ~/.zshrc
-create_symlink "$HOME/.dotfiles/ghostty/config" ~/.config/ghostty/config
-create_symlink "$HOME/.dotfiles/cargo/config.toml" ~/.cargo/config.toml
-create_symlink "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"
+create_symlink "$HOME/.dotfiles/macos/shell/zshrc" ~/.zshrc
+create_symlink "$HOME/.dotfiles/macos/ghostty/config" ~/.config/ghostty/config
+create_symlink "$HOME/.dotfiles/macos/cargo/config.toml" ~/.cargo/config.toml
+create_symlink "$HOME/.dotfiles/macos/nvim" "$HOME/.config/nvim"
 
 brew_install_if_missing 1Password-cli
 brew_install_if_missing ag
