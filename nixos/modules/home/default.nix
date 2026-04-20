@@ -5,6 +5,7 @@
     ./cli.nix
     ./dev.nix
     ./git.nix
+    ./hyprland.nix
     ./neovim.nix
     ./shell.nix
     ./terminal.nix
