@@ -4,8 +4,8 @@ then
     source ~/.private-local-config.zsh
 fi
 
-# ALIASES
-# =======
+# PORTABLE ALIASES & FUNCTIONS
+# ============================
 alias notes="nvim ~/Code/personal/zettelkasten/index.md"
 alias v="nvim"
 alias vi=v
@@ -14,11 +14,8 @@ alias vd="nvim -d"
 alias ls=eza
 alias l="ls -l"
 alias la="l -a"
-alias zconf="v ~/.dotfiles/macos/shell/zshrc"
 alias acreds="v ~/.aws/credentials"
 alias latest_commit_hash='git log | head -n1 | awk "{print \$2;}"'
-alias install-deps='. ~/.dotfiles/macos/install.zsh'
-alias update-deps='. ~/.dotfiles/macos/update.zsh'
 
 aws-sso() {
     local profile=""
