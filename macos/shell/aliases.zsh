@@ -14,11 +14,11 @@ alias vd="nvim -d"
 alias ls=eza
 alias l="ls -l"
 alias la="l -a"
-alias zconf="v ~/.dotfiles/shell/zshrc"
+alias zconf="v ~/.dotfiles/macos/shell/zshrc"
 alias acreds="v ~/.aws/credentials"
 alias latest_commit_hash='git log | head -n1 | awk "{print \$2;}"'
-alias install-deps='. ~/.dotfiles/install.zsh'
-alias update-deps='. ~/.dotfiles/update.zsh'
+alias install-deps='. ~/.dotfiles/macos/install.zsh'
+alias update-deps='. ~/.dotfiles/macos/update.zsh'
 
 aws-sso() {
     local profile=""
