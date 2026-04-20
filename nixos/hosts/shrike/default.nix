@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/boot.nix
     ../../modules/nixos/desktop.nix
+    ../../modules/nixos/fonts.nix
     ../../modules/nixos/hardware.nix
     ../../modules/nixos/locale.nix
     ../../modules/nixos/networking.nix
