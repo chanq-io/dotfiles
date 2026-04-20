@@ -10,15 +10,33 @@ RESET='\033[0m'
 create_symlink() {
     local source="$1"
     local target="$2"
+    local resolved_source resolved_target
 
-    if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
-        echo -e "${GREEN}✓${RESET} ${BLUE}$target${RESET} already linked"
+    # Resolve source to a canonical absolute path so the guard below cannot
+    # miss due to tilde expansion, trailing slashes, or intermediate symlinks.
+    resolved_source="$(realpath "$source" 2>/dev/null)"
+    if [ -z "$resolved_source" ]; then
+        echo -e "${RED}✗${RESET} Source ${BOLD}$source${RESET} does not exist; refusing to link"
+        return 1
+    fi
+
+    if [ -L "$target" ]; then
+        resolved_target="$(realpath "$target" 2>/dev/null)"
+        if [ "$resolved_target" = "$resolved_source" ]; then
+            echo -e "${GREEN}✓${RESET} ${BLUE}$target${RESET} already linked"
+            return 0
+        fi
+        echo -e "${YELLOW}⚠${RESET}  ${BOLD}$target${RESET} is a symlink to ${resolved_target:-<broken>}; leaving alone"
+        return 1
     elif [ -e "$target" ]; then
         echo -e "${YELLOW}⚠${RESET}  ${BOLD}$target${RESET} exists but is not the expected symlink"
-    else
-        ln -s "$source" "$target"
-        echo -e "${GREEN}✓${RESET} Created: ${BLUE}$target${RESET} → ${GREEN}$source${RESET}"
+        return 1
     fi
+
+    # -h prevents ln from following target if it races into existence as a
+    # symlink-to-directory (the bug that produced the recursive nvim/nvim link).
+    ln -sh "$source" "$target"
+    echo -e "${GREEN}✓${RESET} Created: ${BLUE}$target${RESET} → ${GREEN}$source${RESET}"
 }
 install_brew (){
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
