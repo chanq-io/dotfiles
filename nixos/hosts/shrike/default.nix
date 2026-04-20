@@ -4,13 +4,11 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/boot.nix
+    ../../modules/nixos/networking.nix
     ../../modules/nixos/nix.nix
   ];
 
-  networking = {
-    hostName = "shrike";
-    networkmanager.enable = true;
-  };
+  networking.hostName = "shrike";
 
   time.timeZone = "Europe/London";
   i18n.defaultLocale = "en_GB.UTF-8";
