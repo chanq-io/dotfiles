@@ -11,7 +11,9 @@
     ./hyprland.nix
     ./hyprlock.nix
     ./mako.nix
+    ./media.nix
     ./neovim.nix
+    ./qpwgraph.nix
     ./screenshot.nix
     ./shell.nix
     ./terminal.nix
