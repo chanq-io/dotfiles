@@ -38,6 +38,11 @@ in
 
       env = [
         "XCURSOR_SIZE,24"
+        # Steam + other XWayland-only apps check $DISPLAY at startup and
+        # bail if unset. Hyprland starts XWayland on :0 on-demand, but
+        # child processes inherit the env at spawn time — so export it
+        # unconditionally.
+        "DISPLAY,:0"
       ];
 
       general = {
