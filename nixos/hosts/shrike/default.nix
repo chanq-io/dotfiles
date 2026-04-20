@@ -19,7 +19,6 @@
 
   environment.systemPackages = with pkgs; [
     hyprland
-    firefox
     os-prober
     git
     wget
