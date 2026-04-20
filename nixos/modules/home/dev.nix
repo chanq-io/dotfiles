@@ -25,6 +25,9 @@
     lazygit
     lazydocker
 
+    # AI coding
+    claude-code
+
     # Build tools (needed by nvim plugins like telescope-fzf-native)
     gcc
     gnumake
