@@ -30,8 +30,9 @@ in
       "$menu" = "wofi --show drun";
 
       exec-once = [
-        # Autostarts get added as their modules land (waybar, mako, swww,
-        # hypridle, cliphist, gammastep). For now hyprland boots bare.
+        # waybar + mako start via their systemd user units (programs.waybar
+        # and services.mako). Additional daemons (swww, hypridle, cliphist,
+        # gammastep) land here as their modules arrive.
       ];
 
       env = [

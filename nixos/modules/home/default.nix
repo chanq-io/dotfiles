@@ -6,9 +6,12 @@
     ./dev.nix
     ./git.nix
     ./hyprland.nix
+    ./mako.nix
     ./neovim.nix
     ./shell.nix
     ./terminal.nix
+    ./waybar.nix
+    ./wofi.nix
   ];
 
   home.username = "cardamom";

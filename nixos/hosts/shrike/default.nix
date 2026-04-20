@@ -18,9 +18,6 @@
 
   environment.systemPackages = with pkgs; [
     hyprland
-    waybar
-    wofi
-    mako
     grim
     slurp
     wl-clipboard
