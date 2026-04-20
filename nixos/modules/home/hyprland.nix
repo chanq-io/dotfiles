@@ -108,7 +108,7 @@ in
         "$mod, Q, killactive"
         "$mod SHIFT, E, exit"
         "$mod SHIFT, R, exec, hyprctl reload"
-        "$mod, L, exec, loginctl lock-session"
+        "$mod, L, exec, hyprlock"
         "$mod, F, togglefloating"
         "$mod, P, pseudo"
         "$mod, J, togglesplit"
