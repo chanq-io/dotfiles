@@ -37,6 +37,7 @@ in
       ];
 
       env = [
+        "XCURSOR_THEME,Bibata-Modern-Ice"
         "XCURSOR_SIZE,24"
         # Steam + other XWayland-only apps check $DISPLAY at startup and
         # bail if unset. Hyprland starts XWayland on :0 on-demand, but
