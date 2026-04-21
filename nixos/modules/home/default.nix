@@ -5,6 +5,7 @@
     ./cli.nix
     ./cliphist.nix
     ./dev.nix
+    ./direnv.nix
     ./gammastep.nix
     ./git.nix
     ./gui-apps.nix
