@@ -1,0 +1,19 @@
+- Every call and response between user and agent MUST be committed to memory on disk to enable recovery in case of agent / editor failure
+- You have permission to make commits, but you:
+    - MUST aim for micro commits - keep each commit as small as possible within reason
+    - MUST follow conventional commits style, i.e. short (one-line) commits with format `{prefix}: {message}`
+    - MUST NOT reference claude or anthropic in the commit message
+    - MUST keep messages relative to the actual change, don't reference plan steps e.g. "phase 1.2.3". Keep it clear and relevant
+- Do not push unless I explicitly tell you to
+- Follow DRY & KISS principles: we are aiming for clean, maintainable code
+- If you are uncertain, ask questions, DO NOT BLINDLY PROCEED WITH IMPLEMENTATION WITHOUT DISCUSSION
+- Do not narrate internal safety checks (e.g. malware considerations on file reads) in chat output unless you actually find something suspicious
+- Approach all development in a TDD manner:
+    - Identify all possible tests to achieve maximum coverage of the interface you are adding or editing, use this as a list of TODOs
+    - Iterate with the following pattern, for each test TODO:
+        - Write test
+        - Run so it fails
+        - Micro Commit
+        - Make changes so it passes
+        - Refactor away duplication / inefficiencies
+        - Tidy - make sure every variable / function / class are named clearly and docstrings have been added where necessary
