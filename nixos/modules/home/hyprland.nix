@@ -195,6 +195,12 @@ in
         ",XF86AudioPrev, exec, playerctl previous"
         ",XF86AudioStop, exec, playerctl stop"
       ];
+
+      windowrulev2 = [
+        "float,class:^(zoom)$"
+        "noanim,class:^(zoom)$,title:^(zoom)$"
+        "stayfocused,class:^(zoom)$,floating:1"
+      ];
     };
   };
 }
