@@ -24,7 +24,7 @@ vim.cmd [[
     no <F10> :CargoTestUnitExact
     no <F11> :CargoTestUnit --workspace<CR>
     no <F12> :CargoTestAll --workspace<CR>
-    no <leader>c :CodeCompanionChat<CR>
+    no <leader>c :ClaudeCode<CR>
     no <leader>f :Telescope find_files<CR>
     no <leader>s :Telescope live_grep<CR>
     no <leader>b :Telescope buffers<CR>

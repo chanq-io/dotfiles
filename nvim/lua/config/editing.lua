@@ -66,7 +66,8 @@ vim.cmd [[
 
     "colorscheme darkmatrix
     "colorscheme ayu
-    colorscheme base16-rose-pine
+    "colorscheme base16-rose-pine
+    colorscheme petrolnoir
 
 
     au BufNewFile,BufRead *.rs set filetype=rust

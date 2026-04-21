@@ -1,7 +1,27 @@
-{ ... }:
+{ pkgs, ... }:
 
 let
   theme = import ../../../lib/theme.nix;
+
+  # Waybar 0.14 duplicates bars on rapid monitor hotplug (the new output
+  # event fires before the old bar instance is torn down). This listener
+  # watches Hyprland IPC for monitor-added events and does a clean
+  # systemctl restart with a short debounce so we always end up with
+  # exactly one bar.
+  waybar-monitor-guard = pkgs.writeShellScript "waybar-monitor-guard" ''
+    socket="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+    debounce_pid=""
+    ${pkgs.socat}/bin/socat -U - "UNIX-CONNECT:$socket" | while IFS= read -r line; do
+      case "$line" in
+        monitoraddedv2*|monitorremoved*)
+          # Kill any pending debounce so rapid flickers collapse to one restart.
+          [ -n "$debounce_pid" ] && kill "$debounce_pid" 2>/dev/null
+          ( sleep 2 && systemctl --user restart waybar.service ) &
+          debounce_pid=$!
+          ;;
+      esac
+    done
+  '';
 in
 {
   programs.waybar = {
@@ -122,5 +142,22 @@ in
         color: ${theme.base03};
       }
     '';
+  };
+
+  # Restart waybar on monitor hotplug so the bar-duplication bug can't
+  # accumulate (waybar 0.14 race condition).
+  systemd.user.services.waybar-monitor-guard = {
+    Unit = {
+      Description = "Restart waybar on Hyprland monitor hotplug";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+      ConditionEnvironment = "HYPRLAND_INSTANCE_SIGNATURE";
+    };
+    Service = {
+      ExecStart = "${waybar-monitor-guard}";
+      Restart = "on-failure";
+      RestartSec = 2;
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }

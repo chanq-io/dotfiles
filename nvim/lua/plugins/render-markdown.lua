@@ -7,7 +7,7 @@ return {
         vim.treesitter.language.register('markdown', 'telekasten')
     end,
     opts = {
-        file_types = { 'markdown', 'telekasten', 'codecompanion' },
+        file_types = { 'markdown', 'telekasten' },
         completions = { lsp = { enabled = true } },
     },
 }

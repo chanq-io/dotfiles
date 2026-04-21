@@ -1,10 +1,7 @@
 return {
-  "olimorris/codecompanion.nvim",
+  "coder/claudecode.nvim",
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    "MeanderingProgrammer/render-markdown.nvim"
+    "folke/snacks.nvim",
   },
-  opts = {
-    log_level = "DEBUG"
-  },
+  opts = {},
 }

@@ -8,6 +8,8 @@ Personal dotfiles and system configuration for macOS and NixOS.
 
 The long-term goal is to migrate the macOS host to [nix-darwin](https://github.com/LnL7/nix-darwin) so both machines share the same flake and home-manager modules.
 
+> **[Cheatsheets](CHEATSHEET.md)** — quick-reference guides for every tool in the stack.
+
 ---
 
 ## Repository layout
