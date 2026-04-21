@@ -46,8 +46,8 @@ in
       ];
 
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
+        gaps_in = 10;
+        gaps_out = 20;
         border_size = 2;
         "col.active_border" = "rgba(${toHypr theme.base0A "ee"}) rgba(${toHypr theme.base0D "ee"}) 45deg";
         "col.inactive_border" = "rgba(${toHypr theme.base02 "aa"})";
@@ -56,7 +56,7 @@ in
       };
 
       decoration = {
-        rounding = 6;
+        rounding = 4;
         active_opacity = 1.0;
         inactive_opacity = 0.95;
         blur = {
