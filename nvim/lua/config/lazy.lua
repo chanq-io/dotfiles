@@ -40,5 +40,8 @@ require("lazy").setup({
   -- Disable luarocks support; we don't depend on lua rocks and hererocks
   -- bootstrap fails on NixOS (no luarocks/gcc in the sandbox it builds in).
   rocks = { enabled = false },
+  ui = {
+    backdrop = 0,
+  },
 
 })

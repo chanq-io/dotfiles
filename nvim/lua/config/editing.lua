@@ -59,15 +59,27 @@ vim.cmd [[
     nnoremap ,b :buffer *
 
     set t_Co=16
-    hi NormalFloat guibg=None ctermbg=None
-    hi CursorLine guibg=NONE guifg=NONE
-    hi NonText ctermbg=none
-    hi Normal guibg=NONE ctermbg=NONE
 
     "colorscheme darkmatrix
     "colorscheme ayu
     "colorscheme base16-rose-pine
     colorscheme petrolnoir
+
+    " Apply transparency overrides after colorscheme loads
+    autocmd ColorScheme * hi NormalFloat guibg=NONE ctermbg=NONE
+    autocmd ColorScheme * hi CursorLine guibg=NONE guifg=NONE
+    autocmd ColorScheme * hi NonText ctermbg=NONE
+    autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
+    autocmd ColorScheme * hi LazyNormal guibg=NONE ctermbg=NONE
+    autocmd ColorScheme * hi LazyBackdrop guibg=NONE ctermbg=NONE
+
+    " Also set them now for the current colorscheme
+    hi NormalFloat guibg=NONE ctermbg=NONE
+    hi CursorLine guibg=NONE guifg=NONE
+    hi NonText ctermbg=NONE
+    hi Normal guibg=NONE ctermbg=NONE
+    hi LazyNormal guibg=NONE ctermbg=NONE
+    hi LazyBackdrop guibg=NONE ctermbg=NONE
 
 
     au BufNewFile,BufRead *.rs set filetype=rust

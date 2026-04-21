@@ -2,12 +2,14 @@
 
 {
   imports = [
+    ./claude.nix
     ./cli.nix
     ./cliphist.nix
     ./dev.nix
     ./direnv.nix
     ./gammastep.nix
     ./git.nix
+    ./gtk.nix
     ./gui-apps.nix
     ./hypridle.nix
     ./hyprland.nix

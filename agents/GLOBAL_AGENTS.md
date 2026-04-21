@@ -1,4 +1,4 @@
-- Every call and response between user and agent MUST be committed to memory on disk to enable recovery in case of agent / editor failure
+- Use Claude Code's built-in memory system to persist important context (decisions, user preferences, project state) so it survives session restarts
 - You have permission to make commits, but you:
     - MUST aim for micro commits - keep each commit as small as possible within reason
     - MUST follow conventional commits style, i.e. short (one-line) commits with format `{prefix}: {message}`
