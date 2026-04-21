@@ -3,6 +3,17 @@
 let
   theme = import ../../../lib/theme.nix;
 
+  # Wait for Hyprland's IPC socket before starting waybar, so the
+  # hyprland/* modules can connect immediately. Times out after 30s.
+  wait-for-hyprland = pkgs.writeShellScript "wait-for-hyprland" ''
+    socket="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket.sock"
+    elapsed=0
+    while [ ! -S "$socket" ] && [ "$elapsed" -lt 30 ]; do
+      sleep 0.5
+      elapsed=$((elapsed + 1))
+    done
+  '';
+
   # Waybar 0.14 duplicates bars on rapid monitor hotplug (the new output
   # event fires before the old bar instance is torn down). This listener
   # watches Hyprland IPC for monitor-added events and does a clean
@@ -159,6 +170,10 @@ in
       }
     '';
   };
+
+  # Wait for Hyprland IPC socket before launching waybar.
+  systemd.user.services.waybar.Service.ExecStartPre =
+    "${wait-for-hyprland}";
 
   # Restart waybar on monitor hotplug so the bar-duplication bug can't
   # accumulate (waybar 0.14 race condition).
