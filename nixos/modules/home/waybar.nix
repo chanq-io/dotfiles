@@ -36,7 +36,7 @@ in
 
       modules-left = [ "hyprland/workspaces" "hyprland/window" ];
       modules-center = [ "clock" ];
-      modules-right = [ "pulseaudio" "network" "cpu" "memory" "tray" ];
+      modules-right = [ "pulseaudio" "network" "cpu" "memory" "tray" "custom/power" ];
 
       "hyprland/workspaces" = {
         format = "{id}";
@@ -87,6 +87,12 @@ in
         icon-size = 18;
         spacing = 8;
       };
+
+      "custom/power" = {
+        format = "⏻";
+        tooltip = false;
+        on-click = "hyprctl dispatch exit";
+      };
     };
 
     style = ''
@@ -125,7 +131,7 @@ in
         text-shadow: none;
       }
 
-      #window, #clock, #cpu, #memory, #network, #pulseaudio, #tray {
+      #window, #clock, #cpu, #memory, #network, #pulseaudio, #tray, #custom-power {
         padding: 0 10px;
         color: ${theme.base05};
       }
@@ -140,6 +146,16 @@ in
 
       #pulseaudio.muted {
         color: ${theme.base03};
+      }
+
+      #custom-power {
+        color: ${theme.base08};
+        padding: 0 12px;
+      }
+
+      #custom-power:hover {
+        background-color: ${theme.base08};
+        color: ${theme.base00};
       }
     '';
   };
