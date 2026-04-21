@@ -3,7 +3,7 @@
 Personal dotfiles and system configuration for macOS and NixOS.
 
 - **macOS** is set up imperatively: a zsh installer (`macos/install.zsh`) installs Homebrew packages and symlinks tracked configs into place. Currently the only working setup.
-- **NixOS** (host: `shrike`) will be set up declaratively via a Nix flake under `nixos/`, with [home-manager](https://github.com/nix-community/home-manager) handling user-level configuration. **Not yet implemented** — see the [TODO](#todo) section.
+- **NixOS** (host: `shrike`) is set up declaratively via a Nix flake under `nixos/`, with [home-manager](https://github.com/nix-community/home-manager) handling user-level configuration.
 - Shared dotfiles (`shell/`, `nvim/`, `lib/`) live at the repo root so both hosts can consume them.
 
 The long-term goal is to migrate the macOS host to [nix-darwin](https://github.com/LnL7/nix-darwin) so both machines share the same flake and home-manager modules.
@@ -21,7 +21,7 @@ The long-term goal is to migrate the macOS host to [nix-darwin](https://github.c
 │   ├── update.zsh
 │   ├── ghostty/               # ghostty terminal config
 │   └── cargo/                 # cargo config
-├── nixos/                     # NixOS flake (under construction)
+├── nixos/                     # NixOS flake
 │   ├── flake.nix
 │   ├── flake.lock
 │   ├── hosts/
@@ -44,7 +44,7 @@ The long-term goal is to migrate the macOS host to [nix-darwin](https://github.c
 | Host     | OS         | Hardware                                       | Status      |
 | -------- | ---------- | ---------------------------------------------- | ----------- |
 | (laptop) | macOS      | MacBook                                        | Live        |
-| `shrike` | NixOS 25.11 | TUXEDO PRO XL AMD Gen2, Ryzen 9000, AMD GPU, 64GB RAM, dual-boot with Windows | Pre-flake (basic config running) |
+| `shrike` | NixOS 25.11 | TUXEDO PRO XL AMD Gen2, Ryzen 9000, AMD GPU, 64GB RAM, dual-boot with Windows | Live        |
 
 ---
 
@@ -281,63 +281,3 @@ Roadmap: a future iteration may swap the static palette for a runtime-generated 
 - **CLI mail / calendar**: explore `aerc` + `khal` + `vdirsyncer` + `mbsync` as a TUI replacement for Betterbird. Provider-dependent: trivial for plain IMAP/CalDAV, fiddly for Gmail/O365 due to OAuth.
 - **tmux / zellij**: add if local sessions need to survive terminal close, or once SSH workflows pick up.
 - **Secrets management**: currently out-of-band (generate on first install, back up `~/.ssh/` to 1Password). Migrate to [agenix](https://github.com/ryantm/agenix) if/when a second machine joins, to enable repo-tracked encrypted secrets.
-
----
-
-## TODO
-
-Build-out checklist for the NixOS flake. Will be removed once the system is up and running.
-
-### Foundation
-- [ ] Promote `nvim/` from `macos/nvim/` to repo root
-- [ ] Promote `shell/` from `macos/shell/` to repo root, split aliases into `aliases.zsh` (portable) + `aliases.macos.zsh` + `aliases.nixos.zsh`
-- [ ] Update `macos/install.zsh` to symlink from new root locations
-- [ ] Create `lib/theme.nix` with Base16 Black Metal Bathory palette
-- [ ] Scaffold `nixos/flake.nix` with nixpkgs (nixos-25.11) and home-manager (release-25.11) inputs
-- [ ] Scaffold `nixos/hosts/shrike/{default.nix,hardware-configuration.nix}`
-
-### System modules (`nixos/modules/nixos/`)
-- [ ] `boot.nix` — GRUB + sleek-grub-theme + latest kernel
-- [ ] `hardware.nix` — PipeWire (with JACK API), AMD graphics, hardware.graphics
-- [ ] `networking.nix` — hostname, NetworkManager, firewall
-- [ ] `locale.nix` — Europe/London, en_GB.UTF-8, US keyboard
-- [ ] `services.nix` — openssh, docker, greetd + tuigreet
-- [ ] `desktop.nix` — `programs.hyprland.enable`, XDG portals
-- [ ] `fonts.nix` — Fira Mono Nerd Font, Noto Sans, Noto Color Emoji
-- [ ] `users.nix` — cardamom user, groups (wheel, networkmanager, video, docker, audio)
-- [ ] `nix.nix` — flakes, allowUnfree, auto-optimise, weekly GC
-- [ ] `steam.nix` — `programs.steam.enable`
-
-### Home modules (`nixos/modules/home/`)
-- [ ] `default.nix` — entry point, imports
-- [ ] `shell.nix` — zsh + antidote-equivalent plugins + starship + alias/variable file inlining
-- [ ] `cli.nix` — files/search/system tools (eza, bat, fd, rg, fzf, zoxide, yazi, jq, tldr, dust, duf, procs, bandwhich, glow, etc.)
-- [ ] `dev.nix` — languages + build (rust, fnm, pnpm, deno, uv, cmake, llvm, protobuf, just, tree-sitter, terraform, awscli, supabase, vercel, k9s, kubectl, etc.)
-- [ ] `git.nix` — git config + delta + lazygit + gh
-- [ ] `neovim.nix` — halfway-house: install neovim + LSP/formatter/runtime deps, symlink `~/.dotfiles/nvim` → `~/.config/nvim`
-- [ ] `direnv.nix` — direnv + nix-direnv
-- [ ] `terminal.nix` — kitty (Base16 theme, JetBrains Mono / Fira Mono Nerd, opacity 0.9, beam cursor)
-- [ ] `hyprland.nix` — monitor (HDMI-A-3, 3840x2160@30, scale 1.5), keybinds, gaps, animations, exec-once
-- [ ] `waybar.nix` — bottom position, workspaces left, time centre, cpu/ram/net/vol right
-- [ ] `wofi.nix` — themed, 500x400, overlay
-- [ ] `mako.nix` — themed, JetBrains Mono 10, rounded corners, urgency colours
-- [ ] `hyprlock.nix` — blurred wallpaper, time, password input
-- [ ] `hypridle.nix` — lock after 5min, DPMS off after 10min
-- [ ] `wallpaper.nix` — swww + wallpaper symlink
-- [ ] `screenshot.nix` (or merge into hyprland) — hyprshot + grim/slurp + keybinds
-- [ ] `cliphist.nix` — clipboard history daemon + Super+V binding
-- [ ] `gammastep.nix` — blue-light filter
-- [ ] `qpwgraph.nix` — PipeWire patchbay
-- [ ] `media.nix` — playerctl, spotify-player, ffmpeg/sox/etc.
-- [ ] `gui-apps.nix` — Zen, ungoogled-chromium, 1Password, claude-desktop, Betterbird, Spotify, maestral, claude-code (CLI)
-
-### Bringup
-- [ ] Copy current `/etc/nixos/hardware-configuration.nix` from `shrike` into `hosts/shrike/`
-- [ ] Initial `nixos-rebuild switch --flake ~/.dotfiles/nixos#shrike` from `shrike`
-- [ ] Verify Hyprland starts, theme applied across all components
-- [ ] SCP wallpaper(s) into `~/wallpapers/`
-- [ ] Test container runtime (`docker run hello-world`)
-- [ ] Test JACK-aware audio app
-- [ ] Confirm Steam launches, AMD GPU drivers loaded
-- [ ] Verify SSH still accessible at `192.168.1.223`
-- [ ] Push commits to remote once stable
