@@ -23,7 +23,7 @@ let
 
   style = ''
     * {
-      font-family: "Iosevka Nerd Font Mono", sans-serif;
+      font-family: "${theme.fonts.mono}", sans-serif;
       font-size: 13px;
     }
 

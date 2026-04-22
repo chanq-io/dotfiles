@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  theme = import ../../../lib/theme.nix;
+in
 {
   fonts = {
     packages = with pkgs; [
@@ -13,7 +16,7 @@
     # without each app needing to list Noto explicitly.
     fontconfig = {
       defaultFonts = {
-        monospace = [ "Iosevka Nerd Font Mono" ];
+        monospace = [ theme.fonts.mono ];
         sansSerif = [ "Noto Sans" ];
         serif = [ "Noto Serif" ];
         emoji = [ "Noto Color Emoji" ];

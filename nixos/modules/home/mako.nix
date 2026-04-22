@@ -7,7 +7,7 @@ in
   services.mako = {
     enable = true;
     settings = {
-      font = "Iosevka Nerd Font Mono 10";
+      font = "${theme.fonts.mono} 10";
       background-color = theme.base00;
       text-color = theme.base05;
       border-color = theme.base02;

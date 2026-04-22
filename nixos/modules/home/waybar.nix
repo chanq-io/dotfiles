@@ -108,7 +108,7 @@ in
 
     style = ''
       * {
-        font-family: "Iosevka Nerd Font Mono", sans-serif;
+        font-family: "${theme.fonts.mono}", sans-serif;
         font-size: 15px;
         min-height: 0;
       }

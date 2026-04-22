@@ -3,6 +3,10 @@
 # wofi, mako, hyprlock, neovim, etc.). Kept as pure data so a future runtime
 # pipeline (e.g. wallust / matugen) can drop-in replace the source file.
 {
+  fonts = {
+    mono = "Iosevka Nerd Font Mono";
+  };
+
   base00 = "#0b0d10";   # bg
   base01 = "#101419";   # lighter bg
   base02 = "#1a212b";   # selection bg

@@ -58,7 +58,7 @@ in
           text = "cmd[update:1000] date +\"%H:%M\"";
           color = "rgba(${toHypr theme.base05 "ff"})";
           font_size = 96;
-          font_family = "Iosevka Nerd Font Mono";
+          font_family = theme.fonts.mono;
           position = "0, 200";
           halign = "center";
           valign = "center";
@@ -67,7 +67,7 @@ in
           text = "cmd[update:60000] date +\"%A, %d %B\"";
           color = "rgba(${toHypr theme.base04 "ff"})";
           font_size = 18;
-          font_family = "Iosevka Nerd Font Mono";
+          font_family = theme.fonts.mono;
           position = "0, 120";
           halign = "center";
           valign = "center";
@@ -76,7 +76,7 @@ in
           text = "$USER";
           color = "rgba(${toHypr theme.base0A "ff"})";
           font_size = 14;
-          font_family = "Iosevka Nerd Font Mono";
+          font_family = theme.fonts.mono;
           position = "0, -60";
           halign = "center";
           valign = "center";

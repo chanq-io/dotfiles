@@ -8,7 +8,7 @@ in
     enable = true;
 
     font = {
-      name = "Iosevka Nerd Font Mono";
+      name = theme.fonts.mono;
       size = 13;
     };
 
