@@ -102,7 +102,7 @@ in
       "custom/power" = {
         format = "⏻";
         tooltip = false;
-        on-click = "hyprctl dispatch exit";
+        on-click = "echo -e 'Logout\nRestart\nShutdown' | wofi --dmenu --prompt 'Power' | xargs -I {} sh -c 'case \"{}\" in Logout) hyprctl dispatch exit;; Restart) systemctl reboot;; Shutdown) systemctl poweroff;; esac'";
       };
     };
 
