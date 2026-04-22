@@ -44,12 +44,22 @@ in
         # child processes inherit the env at spawn time — so export it
         # unconditionally.
         "DISPLAY,:0"
+        # XWayland apps handle their own scaling when force_zero_scaling
+        # is on (see xwayland block below). These tell GTK/Qt apps the
+        # scale factor so text and UI elements remain crisp.
+        "GDK_SCALE,2"
+        "QT_SCALE_FACTOR,1.5"
       ];
 
+      # Let XWayland apps render at native resolution instead of having
+      # Hyprland scale them. Fixes cursor-position misalignment in apps
+      # like Zoom that use XWayland with fractional monitor scaling.
+      xwayland.force_zero_scaling = true;
+
       general = {
-        gaps_in = 10;
-        gaps_out = 20;
-        border_size = 2;
+        gaps_in = 15;
+        gaps_out = 30;
+        border_size = 1;
         "col.active_border" = "rgba(${toHypr theme.base0A "ee"}) rgba(${toHypr theme.base0D "ee"}) 45deg";
         "col.inactive_border" = "rgba(${toHypr theme.base02 "aa"})";
         layout = "dwindle";
@@ -74,21 +84,7 @@ in
         };
       };
 
-      animations = {
-        enabled = true;
-        bezier = [
-          "overshot,0.05,0.9,0.1,1.05"
-          "smoothOut,0.36,0,0.66,-0.56"
-          "smoothIn,0.25,1,0.5,1"
-        ];
-        animation = [
-          "windows,1,5,overshot,slide"
-          "windowsOut,1,4,smoothOut,slide"
-          "border,1,10,default"
-          "fade,1,10,smoothIn"
-          "workspaces,1,6,default"
-        ];
-      };
+      animations.enabled = false;
 
       dwindle = {
         pseudotile = true;
@@ -98,6 +94,11 @@ in
       input = {
         kb_layout = "us";
         follow_mouse = 1;
+        # Prevent Hyprland from re-focusing an already-focused window when
+        # the mouse moves within it. Without this, XWayland override-redirect
+        # popups (e.g. Zoom menus) close instantly because the parent window
+        # reclaims focus.
+        mouse_refocus = false;
         sensitivity = 0;
         touchpad.natural_scroll = true;
       };
@@ -196,11 +197,6 @@ in
         ",XF86AudioStop, exec, playerctl stop"
       ];
 
-      windowrulev2 = [
-        "float,class:^(zoom)$"
-        "noanim,class:^(zoom)$,title:^(zoom)$"
-        "stayfocused,class:^(zoom)$,floating:1"
-      ];
     };
   };
 }

@@ -3,6 +3,7 @@
 {
   fonts = {
     packages = with pkgs; [
+      nerd-fonts.iosevka
       nerd-fonts.fira-mono
       noto-fonts
       noto-fonts-color-emoji
@@ -12,7 +13,7 @@
     # without each app needing to list Noto explicitly.
     fontconfig = {
       defaultFonts = {
-        monospace = [ "FiraMono Nerd Font Mono" ];
+        monospace = [ "Iosevka Nerd Font Mono" ];
         sansSerif = [ "Noto Sans" ];
         serif = [ "Noto Serif" ];
         emoji = [ "Noto Color Emoji" ];

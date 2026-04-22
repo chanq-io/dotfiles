@@ -23,7 +23,7 @@ let
 
   style = ''
     * {
-      font-family: "FiraMono Nerd Font Mono", sans-serif;
+      font-family: "Iosevka Nerd Font Mono", sans-serif;
       font-size: 13px;
     }
 

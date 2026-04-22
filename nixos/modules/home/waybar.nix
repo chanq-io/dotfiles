@@ -42,7 +42,7 @@ in
     settings.main = {
       layer = "top";
       position = "bottom";
-      height = 30;
+      height = 40;
       spacing = 4;
 
       modules-left = [ "hyprland/workspaces" "hyprland/window" ];
@@ -108,8 +108,8 @@ in
 
     style = ''
       * {
-        font-family: "FiraMono Nerd Font Mono", sans-serif;
-        font-size: 13px;
+        font-family: "Iosevka Nerd Font Mono", sans-serif;
+        font-size: 15px;
         min-height: 0;
       }
 

@@ -8,7 +8,7 @@ in
     enable = true;
 
     font = {
-      name = "FiraMono Nerd Font Mono";
+      name = "Iosevka Nerd Font Mono";
       size = 13;
     };
 

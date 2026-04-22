@@ -11,8 +11,8 @@
     pkgs.spotify
     pkgs.maestral-gui
     pkgs.zoom-us
-    inputs.zen-browser.packages.${pkgs.system}.default
-    inputs.claude-desktop.packages.${pkgs.system}.claude-desktop
-    inputs.betterbird.packages.${pkgs.system}.betterbird
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+    inputs.betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird
   ];
 }
