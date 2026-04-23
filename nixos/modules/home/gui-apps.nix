@@ -8,6 +8,7 @@
   home.packages = [
     pkgs.firefox
     pkgs.ungoogled-chromium
+    pkgs.google-chrome
     pkgs.spotify
     pkgs.maestral-gui
     pkgs.zoom-us

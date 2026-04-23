@@ -9,6 +9,7 @@
     rustc
     cargo
     rust-analyzer
+    cargo-make
     go
     gopls
 

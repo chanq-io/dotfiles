@@ -2,6 +2,8 @@
 
 {
   services.openssh.enable = true;
+  programs.ssh.startAgent = true;
+  programs.ssh.extraConfig = "AddKeysToAgent yes";
 
   # Ship terminfo for every terminal emulator we might SSH in from
   # (ghostty, wezterm, kitty, etc.). Without this, remote sessions fail

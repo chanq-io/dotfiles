@@ -49,6 +49,9 @@ in
         # scale factor so text and UI elements remain crisp.
         "GDK_SCALE,2"
         "QT_SCALE_FACTOR,1.5"
+        # Force Steam to use XWayland — its native Wayland path silently
+        # fails to create windows on wlroots-based compositors like Hyprland.
+        "SDL_VIDEODRIVER,x11"
       ];
 
       # Let XWayland apps render at native resolution instead of having
@@ -178,6 +181,13 @@ in
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
+      ];
+
+      # Steam: its empty-title XWayland popups (login, notifications) get
+      # lost without these — force them to stay focused and have a minimum size.
+      windowrulev2 = [
+        "stayfocused, title:^()$, class:^(steam)$"
+        "minsize 1 1, title:^()$, class:^(steam)$"
       ];
 
       # Volume keys (repeat-on-hold via bindel).

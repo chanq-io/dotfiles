@@ -7,3 +7,6 @@ if [[ -f ~/.private_zsh_keys.zsh ]]; then
   source ~/.private_zsh_keys.zsh
 fi
 
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
+export SSH_AUTH_SOCK_BRIDGE="$SSH_AUTH_SOCK"
+
