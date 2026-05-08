@@ -17,12 +17,10 @@
           timeout = 300;
           on-timeout = "loginctl lock-session";
         }
-        {
-          # 10 minutes → monitors off
-          timeout = 600;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
+        # DPMS-off listener intentionally absent: toggling DPMS on this
+        # 4K@30 HDMI link causes the monitor to drop signal long enough for
+        # Hyprland to treat it as a disconnect, which reflows windows and
+        # mangles fullscreen-app resolutions on resume.
       ];
     };
   };
