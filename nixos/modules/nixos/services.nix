@@ -14,6 +14,12 @@
   # everyday container work doesn't need sudo.
   virtualisation.docker.enable = true;
 
+  # Trust traffic from Docker bridges so containers can reach host-published
+  # ports (e.g. supabase auth → host:54321 custom access token hook). Without
+  # this, packets from user-defined bridges (br-*) hit INPUT via nixos-fw and
+  # get dropped — Docker's DNAT only bypasses the firewall for docker0.
+  networking.firewall.trustedInterfaces = [ "docker0" "br-+" ];
+
   # greetd + tuigreet replace the auto-exec-Hyprland-from-login-shell flow.
   # Gives a proper login prompt on tty1 and keeps the PAM session owned by
   # the right user. --cmd is the compositor to launch on successful login.

@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     # Language toolchains
-    nodejs_22
+    nodejs_24
     python313
     uv
     rustc
@@ -28,6 +28,7 @@
 
     # AI coding
     claude-code
+    claude-agent-acp
 
     # Build tools (needed by nvim plugins like telescope-fzf-native)
     gcc

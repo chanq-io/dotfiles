@@ -183,11 +183,10 @@ in
         "$mod, mouse:273, resizewindow"
       ];
 
-      # Steam: its empty-title XWayland popups (login, notifications) get
-      # lost without these — force them to stay focused and have a minimum size.
       windowrulev2 = [
         "stayfocused, title:^()$, class:^(steam)$"
         "minsize 1 1, title:^()$, class:^(steam)$"
+        "opacity 1.0 override 1.0 override, class:^(steam)$"
       ];
 
       # Volume keys (repeat-on-hold via bindel).

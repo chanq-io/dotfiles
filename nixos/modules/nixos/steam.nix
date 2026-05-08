@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  # Steam pulls in a 32-bit runtime and wraps itself in a FHS env. Two
-  # extras: remoteplay.openFirewall for friends-over-the-internet, and
-  # gamescope for a compositor that plays nicer than hyprland for fullscreen
-  # games.
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -12,6 +8,19 @@
     gamescopeSession.enable = true;
   };
 
-  # 32-bit OpenGL/Vulkan for most games that aren't yet pure 64-bit.
   hardware.graphics.enable32Bit = true;
+
+  # Patch the Steam .desktop file to remove PrefersNonDefaultGPU which
+  # causes app launchers to run Steam on a secondary GPU, breaking window
+  # rendering on Hyprland with multi-GPU setups.
+  environment.systemPackages = [
+    (pkgs.runCommand "steam-desktop-fix" { } ''
+      mkdir -p $out/share/applications
+      sed \
+        -e '/PrefersNonDefaultGPU/d' \
+        -e '/X-KDE-RunOnDiscreteGpu/d' \
+        ${pkgs.steam}/share/applications/steam.desktop \
+        > $out/share/applications/steam.desktop
+    '')
+  ];
 }

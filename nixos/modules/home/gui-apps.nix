@@ -5,6 +5,11 @@
   # 1Password GUI for polkit) live in modules/nixos/*. Community flakes
   # (zen-browser, claude-desktop) come from flake inputs threaded through
   # extraSpecialArgs in flake.nix.
+
+  # Betterbird/Thunderbird otherwise binds profiles to the install path; on
+  # NixOS that path changes every rebuild, spawning a fresh empty profile.
+  home.sessionVariables.MOZ_LEGACY_PROFILES = "1";
+
   home.packages = [
     pkgs.firefox
     pkgs.ungoogled-chromium
