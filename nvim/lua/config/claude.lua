@@ -15,7 +15,10 @@ require("codecompanion").setup({
       claude_code = function()
         return require("codecompanion.adapters").extend("claude_code", {
           env = {
-            CLAUDE_CODE_OAUTH_TOKEN = "cmd:op read op://personal/ClaudeAPI/credential --no-newline",
+            CLAUDE_CODE_EXECUTABLE = vim.fn.exepath("claude"),
+          },
+          defaults = {
+            model = "Opus 4.7 (1M context)",
           },
         })
       end,
