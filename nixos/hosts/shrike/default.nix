@@ -8,6 +8,7 @@
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/hardware.nix
     ../../modules/nixos/locale.nix
+    ../../modules/nixos/memory.nix
     ../../modules/nixos/networking.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/services.nix
