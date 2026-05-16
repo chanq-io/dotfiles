@@ -10,4 +10,14 @@
     memoryPercent = 50;
     priority = 100;
   };
+
+  # Userspace OOM killer. Without enableUserSlices, oomd runs but watches
+  # nothing under user-*.slice — which is why the 2026-05-15 freeze fell
+  # through to the kernel OOM killer (which picks by oom_score_adj and
+  # killed sandboxed Zoom helpers instead of the actual offender,
+  # rust-analyzer). Defaults: act at 60% PSI sustained 30s.
+  systemd.oomd = {
+    enable = true;
+    enableUserSlices = true;
+  };
 }
