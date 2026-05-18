@@ -13,8 +13,8 @@
 
       listener = [
         {
-          # 5 minutes → lock screen
-          timeout = 300;
+          # 1 hour → lock screen
+          timeout = 3600;
           on-timeout = "loginctl lock-session";
         }
         # DPMS-off listener intentionally absent: toggling DPMS on this
