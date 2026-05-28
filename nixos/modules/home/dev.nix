@@ -25,6 +25,7 @@
     # App navigators
     lazygit
     lazydocker
+    gh
 
     # AI coding
     claude-code
