@@ -29,6 +29,8 @@
     # AI coding
     claude-code
     claude-agent-acp
+    codex
+    codex-acp
 
     # Build tools (needed by nvim plugins like telescope-fzf-native)
     gcc
