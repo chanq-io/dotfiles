@@ -12,7 +12,6 @@
     yazi
 
     # Text & search
-    silver-searcher
     jq
     yq-go
     sd
