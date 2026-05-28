@@ -14,6 +14,8 @@
     # Text & search
     silver-searcher
     jq
+    yq-go
+    sd
     glow
     tldr
 
@@ -47,6 +49,12 @@
 
     # Task runners
     just
+
+    # Dev utilities
+    watchexec
+    hyperfine
+    tokei
+    difftastic
 
     # Databases
     redis
