@@ -6,6 +6,7 @@ require("mason").setup({
         "html-lsp",
         "pyright",
         "taplo",
+        "texlab",
         "typescript-language-server",
         "yaml-language-server",
     },

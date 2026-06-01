@@ -24,6 +24,7 @@
     ./wallpaper.nix
     ./waybar.nix
     ./wofi.nix
+    ./zathura.nix
   ];
 
   home.username = "cardamom";

@@ -66,6 +66,7 @@ in
       nodePackages.vscode-langservers-extracted
       yaml-language-server
       taplo
+      texlab
       tree-sitter
     ];
 
