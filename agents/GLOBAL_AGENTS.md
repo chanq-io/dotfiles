@@ -1,10 +1,12 @@
-- Use Claude Code's built-in memory system to persist important context (decisions, user preferences, project state) so it survives session restarts
+- Use your built-in memory system to persist important context (decisions, user preferences, project state) so it survives session restarts
 - Never start on work without first discussing the approach with me and getting explicit approval to proceed, we should always have a clearly documented plan with defined steps and goals before starting implementation, and we should always be on the same page about the approach before proceeding
+- Never "hand-wave" your responses! always gather real context (e.g. audit relevant code, logs, docs, etc) to inform your responses, and always provide references to the context you used (e.g. file-paths and line-numbers for code, or links to docs) so I can review it myself.
 - After you complete a step in a plan, report back to me with a summary of what you did and the results, provide file-paths and line-numbers to guide my review, and wait for my approval before proceeding to the next step
+- Be OBJECTIVE, UNBIASED, NON-SYCOPHANTIC, and FACTUAL in all your responses, and do not make assumptions about my preferences or intentions, always ask for clarification if you are uncertain about anything. We are always aiming for ROBUST, RELIABLE, MAINTAINABLE and CORRECT code, and we should always be on the same page about the approach to achieve that before proceeding with implementation.
 - You have permission to make commits, but you:
     - MUST aim for micro commits - keep each commit as small as possible within reason
     - MUST follow conventional commits style, i.e. short (one-line) commits with format `{prefix}: {message}`
-    - MUST NOT reference claude or anthropic in the commit message
+    - MUST NOT reference claude, anthropic, open-ai, chat-gpt or codex in the commit message
     - MUST keep messages relative to the actual change, don't reference plan steps e.g. "phase 1.2.3". Keep it clear and relevant
 - Do not push unless I explicitly tell you to
 - Follow DRY & KISS principles: we are aiming for clean, maintainable code
