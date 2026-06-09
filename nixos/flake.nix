@@ -33,7 +33,9 @@
         # Pull fast-moving AI packages from appropriate sources.
         # claude-code: hourly-updated flake (default = latest). To pin a
         # specific build, swap `.default` for `."2.1.155"` etc.
-        # claude-agent-acp: nixpkgs-unstable (slower-moving, less critical).
+        # claude-agent-acp / codex: nixpkgs-unstable (slower-moving, less
+        # critical). Stable 25.11 freezes codex far behind upstream
+        # (0.92 vs 0.13x), so pull it from unstable like claude-agent-acp.
         { nixpkgs.overlays = let
             unstable = import inputs.nixpkgs-unstable {
               system = "x86_64-linux";
@@ -43,6 +45,8 @@
             (final: prev: {
               claude-code = inputs.nix-claude-code.packages.${final.stdenv.hostPlatform.system}.default;
               claude-agent-acp = unstable.claude-agent-acp;
+              codex = unstable.codex;
+              codex-acp = unstable.codex-acp;
             })
           ];
         }
