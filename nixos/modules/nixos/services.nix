@@ -11,8 +11,11 @@
   environment.enableAllTerminfo = true;
 
   # Docker daemon. User is added to the docker group in users.nix so
-  # everyday container work doesn't need sudo.
+  # everyday container work doesn't need sudo. The 25.11 module defaults
+  # the package to docker_28, which a later stable security update marked
+  # insecure (unmaintained since 2025-11); pin docker_29 as recommended.
   virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_29;
 
   # Trust traffic from Docker bridges so containers can reach host-published
   # ports (e.g. supabase auth → host:54321 custom access token hook). Without
