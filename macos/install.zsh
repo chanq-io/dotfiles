@@ -182,6 +182,7 @@ brew_install_if_missing httpie
 brew_install_if_missing llvm
 brew_install_if_missing nvim
 brew_install_if_missing p7zip
+brew_install_if_missing pandoc
 brew_install_if_missing protobuf
 brew_install_if_missing psql
 brew_install_if_missing rg

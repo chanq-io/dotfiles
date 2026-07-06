@@ -17,6 +17,7 @@
     sd
     glow
     tldr
+    pandoc
 
     # Monitoring
     btop
