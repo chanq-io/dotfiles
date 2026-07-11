@@ -50,6 +50,6 @@
 
 theme = Rose Pine
 #theme = Ayu
-keybind = shift+enter=text:"\n"
+keybind = shift+enter=text:\n
 font-family = "FiraMono Nerd Font Mono"
 macos-option-as-alt = left
