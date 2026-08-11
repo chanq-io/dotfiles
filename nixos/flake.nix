@@ -19,7 +19,10 @@
     # if a release ever regresses; see overlay below.
     nix-claude-code.url = "github:ryoppippi/nix-claude-code";
 
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    # 1.21.13b regresses Linux UI font selection, causing the browser chrome
+    # to fall back to a serif face. Keep the last known-good Zen build until
+    # upstream fixes the regression.
+    zen-browser.url = "github:0xc000022070/zen-browser-flake/fc9b27eb5585548282004fac3f0d34fcf2f06467";
     claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
     betterbird.url = "github:Heehaaw/betterbird-flake";
   };
