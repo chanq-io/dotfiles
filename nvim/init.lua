@@ -14,7 +14,9 @@ require("config.lualine")
 require('todo-comments')
 require('config.mini')
 require("config.editing")
+require("config.keymaps")
 require("config.just")
+require('config.scnvim')
 require("config.render-markdown")
 require('daily-cycle').setup({
   PracticeKey = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"},

@@ -1,0 +1,4688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neovim Keymaps</title>
+  <style>
+    :root {
+      --bg: #1e1e2e;
+      --bg-surface: #313244;
+      --text: #cdd6f4;
+      --text-muted: #a6adc8;
+      --accent: #89b4fa;
+      --border: #45475a;
+      --success: #a6e3a1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .meta {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .search-container {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      padding: 1rem 0;
+      z-index: 100;
+    }
+
+    #search {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      outline: none;
+    }
+
+    #search:focus {
+      border-color: var(--accent);
+    }
+
+    .stats {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: var(--bg-surface);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .stat-value {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .category {
+      margin: 2rem 0;
+    }
+
+    .category h2 {
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg-surface);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background: var(--bg-surface);
+    }
+
+    .mode {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      background: var(--bg-surface);
+      font-size: 0.85rem;
+      min-width: 2rem;
+      text-align: center;
+    }
+
+    .key {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      background: var(--bg-surface);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .source {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Neovim Keymaps</h1>
+    <p class="meta">Generated on 2026-07-05 21:27:40</p>
+
+    <div class="search-container">
+      <input type="text" id="search" placeholder="Search keymaps... (press / to focus)" />
+    </div>
+
+    <div class="stats">
+      <div class="stat">Total: <span class="stat-value">564</span></div>
+      <div class="stat">Showing: <span class="stat-value" id="visible-count">564</span></div>
+    </div>
+
+    <div id="results">
+
+      <div class="category" data-category="Command">
+        <h2> Command</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&quot;{reg} use register {reg} for next operation command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&quot;{reg}</code></td>
+              <td>Use register {reg} for next operation</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=". repeat last change command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">.</code></td>
+              <td>Repeat last change</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-r&gt; redo command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-r&gt;</code></td>
+              <td>Redo</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="@@ repeat last macro command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">@@</code></td>
+              <td>Repeat last macro</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="@{a-z} execute macro from register command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">@{a-z}</code></td>
+              <td>Execute macro from register</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="c change to end of line command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">C</code></td>
+              <td>Change to end of line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="d delete to end of line command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">D</code></td>
+              <td>Delete to end of line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="j join line below with current line command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">J</code></td>
+              <td>Join line below with current line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="p paste before cursor command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">P</code></td>
+              <td>Paste before cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="r enter replace mode command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">R</code></td>
+              <td>Enter replace mode</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="s delete line and start insert command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">S</code></td>
+              <td>Delete line and start insert</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="u undo all changes on line command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">U</code></td>
+              <td>Undo all changes on line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="x delete character before cursor command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">X</code></td>
+              <td>Delete character before cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="y yank to end of line command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">Y</code></td>
+              <td>Yank to end of line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="cc change line (delete and insert) command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">cc</code></td>
+              <td>Change line (delete and insert)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="dd delete line command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">dd</code></td>
+              <td>Delete line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gj join lines without space command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gJ</code></td>
+              <td>Join lines without space</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gp paste before and move cursor after command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gP</code></td>
+              <td>Paste before and move cursor after</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gp paste after and move cursor after command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gp</code></td>
+              <td>Paste after and move cursor after</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="p paste after cursor command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">p</code></td>
+              <td>Paste after cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="q stop recording macro command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">q</code></td>
+              <td>Stop recording macro</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="q{a-z} record macro into register command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">q{a-z}</code></td>
+              <td>Record macro into register</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="r{char} replace character with {char} command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">r{char}</code></td>
+              <td>Replace character with {char}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="s delete character and insert command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">s</code></td>
+              <td>Delete character and insert</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="u undo command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">u</code></td>
+              <td>Undo</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="x delete character under cursor command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">x</code></td>
+              <td>Delete character under cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="yy yank (copy) line command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">yy</code></td>
+              <td>Yank (copy) line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="~ toggle case of character command vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">~</code></td>
+              <td>Toggle case of character</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Comments">
+        <h2> Comments</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="gbc comment toggle current block comments comment">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gbc</code></td>
+              <td>Comment toggle current block</td>
+              <td class="source">Comment</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gc comment textobject comments vim/_core/defaults.lua">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">gc</code></td>
+              <td>Comment textobject</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gca comment insert end of line comments comment">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gcA</code></td>
+              <td>Comment insert end of line</td>
+              <td class="source">Comment</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gco comment insert above comments comment">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gcO</code></td>
+              <td>Comment insert above</td>
+              <td class="source">Comment</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gcc comment toggle current line comments comment">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gcc</code></td>
+              <td>Comment toggle current line</td>
+              <td class="source">Comment</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gco comment insert below comments comment">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gco</code></td>
+              <td>Comment insert below</td>
+              <td class="source">Comment</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Completion">
+        <h2> Completion</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&lt;c-space&gt; cmp.utils.keymap.set_map completion cmp">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-Space&gt;</code></td>
+              <td>cmp.utils.keymap.set_map</td>
+              <td class="source">cmp</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-]&gt; copilot#dismiss() . &quot;\&lt;c-]&gt;&quot; completion ">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-]&gt;</code></td>
+              <td>copilot#Dismiss() . &quot;\&lt;C-]&gt;&quot;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;s-tab&gt; cmp.utils.keymap.set_map completion cmp">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;S-Tab&gt;</code></td>
+              <td>cmp.utils.keymap.set_map</td>
+              <td class="source">cmp</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="File Explorer">
+        <h2> File Explorer</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="gx opens filepath or uri under cursor with the system handler (file explorer, web browser, …) file explorer vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gx</code></td>
+              <td>Opens filepath or URI under cursor with the system handler (file explorer, web browser, …)</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gx opens filepath or uri under cursor with the system handler (file explorer, web browser, …) file explorer vim/_core/defaults.lua">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">gx</code></td>
+              <td>Opens filepath or URI under cursor with the system handler (file explorer, web browser, …)</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gx opens filepath or uri under cursor with the system handler (file explorer, web browser, …) file explorer vim/_core/defaults.lua">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">gx</code></td>
+              <td>Opens filepath or URI under cursor with the system handler (file explorer, web browser, …)</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Fold">
+        <h2> Fold</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="[z move to start of current open fold fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[z</code></td>
+              <td>Move to start of current open fold</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]z move to end of current open fold fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]z</code></td>
+              <td>Move to end of current open fold</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="za toggle all folds under cursor recursively fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zA</code></td>
+              <td>Toggle all folds under cursor recursively</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zc close all folds under cursor recursively fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zC</code></td>
+              <td>Close all folds under cursor recursively</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zd delete all folds under cursor recursively fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zD</code></td>
+              <td>Delete all folds under cursor recursively</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ze delete all folds in file fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zE</code></td>
+              <td>Delete all folds in file</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zm close all folds fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zM</code></td>
+              <td>Close all folds</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zn enable folding fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zN</code></td>
+              <td>Enable folding</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zo open all folds under cursor recursively fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zO</code></td>
+              <td>Open all folds under cursor recursively</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zr open all folds fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zR</code></td>
+              <td>Open all folds</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zx undo manually opened/closed folds fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zX</code></td>
+              <td>Undo manually opened/closed folds</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="za toggle fold under cursor fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">za</code></td>
+              <td>Toggle fold under cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zc close fold under cursor fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zc</code></td>
+              <td>Close fold under cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zd delete fold under cursor fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zd</code></td>
+              <td>Delete fold under cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zf{motion} create fold for {motion} fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zf{motion}</code></td>
+              <td>Create fold for {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zi toggle folding fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zi</code></td>
+              <td>Toggle folding</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zj move to next fold fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zj</code></td>
+              <td>Move to next fold</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zk move to previous fold fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zk</code></td>
+              <td>Move to previous fold</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zm fold more (increase foldlevel) fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zm</code></td>
+              <td>Fold more (increase foldlevel)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zn disable folding fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zn</code></td>
+              <td>Disable folding</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zo open fold under cursor fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zo</code></td>
+              <td>Open fold under cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zr fold less (decrease foldlevel) fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zr</code></td>
+              <td>Fold less (decrease foldlevel)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zv open folds to reveal cursor line fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zv</code></td>
+              <td>Open folds to reveal cursor line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zx update folds and open cursor line fold vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zx</code></td>
+              <td>Update folds and open cursor line</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Git">
+        <h2> Git</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search=" r call vimspector#reset() git ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> R</code></td>
+              <td>call vimspector#Reset()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" r call vimspector#reset() git ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> R</code></td>
+              <td>call vimspector#Reset()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" r call vimspector#reset() git ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> R</code></td>
+              <td>call vimspector#Reset()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" r call vimspector#reset() git ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> R</code></td>
+              <td>call vimspector#Reset()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" r call vimspector#reset() git ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> R</code></td>
+              <td>call vimspector#Reset()</td>
+              <td class="source">-</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Insert">
+        <h2>󰏫 Insert</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="a append at end of line insert vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">A</code></td>
+              <td>Append at end of line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i insert at beginning of line insert vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">I</code></td>
+              <td>Insert at beginning of line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="o open line above insert vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">O</code></td>
+              <td>Open line above</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a append after cursor insert vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">a</code></td>
+              <td>Append after cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gi insert at column 1 insert vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gI</code></td>
+              <td>Insert at column 1</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gi insert at last insert position insert vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gi</code></td>
+              <td>Insert at last insert position</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i insert before cursor insert vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">i</code></td>
+              <td>Insert before cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="o open line below insert vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">o</code></td>
+              <td>Open line below</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Insert Mode">
+        <h2> Insert Mode</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&lt;c-@&gt; insert previously inserted text and exit insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-@&gt;</code></td>
+              <td>Insert previously inserted text and exit</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-[&gt; exit insert mode (alias) insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-[&gt;</code></td>
+              <td>Exit insert mode (alias)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-a&gt; insert previously inserted text insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-a&gt;</code></td>
+              <td>Insert previously inserted text</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-c&gt; exit insert mode (no abbreviation) insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-c&gt;</code></td>
+              <td>Exit insert mode (no abbreviation)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-d&gt; unindent line insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-d&gt;</code></td>
+              <td>Unindent line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-h&gt; delete character before cursor insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-h&gt;</code></td>
+              <td>Delete character before cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-n&gt; next completion match insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-n&gt;</code></td>
+              <td>Next completion match</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-o&gt; execute one normal command insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-o&gt;</code></td>
+              <td>Execute one normal command</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-p&gt; previous completion match insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-p&gt;</code></td>
+              <td>Previous completion match</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-r&gt;{reg} insert contents of register insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-r&gt;{reg}</code></td>
+              <td>Insert contents of register</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-t&gt; indent line insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-t&gt;</code></td>
+              <td>Indent line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-u&gt; delete to beginning of line insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-u&gt;</code></td>
+              <td>Delete to beginning of line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt; delete word before cursor insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-w&gt;</code></td>
+              <td>Delete word before cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;esc&gt; exit insert mode insert mode vim">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;Esc&gt;</code></td>
+              <td>Exit insert mode</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="LSP">
+        <h2> LSP</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;&lt;c-d&gt; show diagnostics under the cursor lsp ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-W&gt;&lt;C-D&gt;</code></td>
+              <td>Show diagnostics under the cursor</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;d show diagnostics under the cursor lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-W&gt;d</code></td>
+              <td>Show diagnostics under the cursor</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[d jump to the first diagnostic in the current buffer lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[D</code></td>
+              <td>Jump to the first diagnostic in the current buffer</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[d jump to the previous diagnostic in the current buffer lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[d</code></td>
+              <td>Jump to the previous diagnostic in the current buffer</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]d jump to the last diagnostic in the current buffer lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]D</code></td>
+              <td>Jump to the last diagnostic in the current buffer</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]d jump to the next diagnostic in the current buffer lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]d</code></td>
+              <td>Jump to the next diagnostic in the current buffer</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gd (callback) lsp vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gD</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gd (callback) lsp vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gd</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gr (callback) lsp vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gr</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gra vim.lsp.buf.code_action() lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">gra</code></td>
+              <td>vim.lsp.buf.code_action()</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gra vim.lsp.buf.code_action() lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gra</code></td>
+              <td>vim.lsp.buf.code_action()</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gra vim.lsp.buf.code_action() lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">gra</code></td>
+              <td>vim.lsp.buf.code_action()</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gri vim.lsp.buf.implementation() lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gri</code></td>
+              <td>vim.lsp.buf.implementation()</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="grn vim.lsp.buf.rename() lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">grn</code></td>
+              <td>vim.lsp.buf.rename()</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="grr vim.lsp.buf.references() lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">grr</code></td>
+              <td>vim.lsp.buf.references()</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="grt vim.lsp.buf.type_definition() lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">grt</code></td>
+              <td>vim.lsp.buf.type_definition()</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="grx vim.lsp.codelens.run() lsp vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">grx</code></td>
+              <td>vim.lsp.codelens.run()</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Misc">
+        <h2>󰘦 Misc</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&lt;c-^&gt; edit alternate file misc vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-^&gt;</code></td>
+              <td>Edit alternate file</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-g&gt; show file and position info misc vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-g&gt;</code></td>
+              <td>Show file and position info</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-l&gt; redraw screen misc vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-l&gt;</code></td>
+              <td>Redraw screen</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zq quit without saving misc vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">ZQ</code></td>
+              <td>Quit without saving</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zz save and quit misc vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">ZZ</code></td>
+              <td>Save and quit</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g8 show utf-8 encoding of character misc vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g8</code></td>
+              <td>Show UTF-8 encoding of character</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g&lt;c-g&gt; show cursor position info misc vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g&lt;C-g&gt;</code></td>
+              <td>Show cursor position info</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gf go to file:line under cursor misc vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gF</code></td>
+              <td>Go to file:line under cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gf go to file under cursor misc vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gf</code></td>
+              <td>Go to file under cursor</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Character">
+        <h2>󰁍 Motion: Character</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&lt;bs&gt; move cursor left motion: character vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;BS&gt;</code></td>
+              <td>Move cursor left</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;space&gt; move cursor right motion: character vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;Space&gt;</code></td>
+              <td>Move cursor right</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="h move cursor left motion: character vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">h</code></td>
+              <td>Move cursor left</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="j move cursor down motion: character vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">j</code></td>
+              <td>Move cursor down</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="k move cursor up motion: character vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">k</code></td>
+              <td>Move cursor up</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="l move cursor right motion: character vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">l</code></td>
+              <td>Move cursor right</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Diff">
+        <h2> Motion: Diff</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="[c jump to previous change/diff motion: diff vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[c</code></td>
+              <td>Jump to previous change/diff</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]c jump to next change/diff motion: diff vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]c</code></td>
+              <td>Jump to next change/diff</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Find">
+        <h2>󰈞 Motion: Find</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search=", repeat last f/f/t/t in reverse motion: find vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">,</code></td>
+              <td>Repeat last f/F/t/T in reverse</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="; repeat last f/f/t/t motion motion: find vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">;</code></td>
+              <td>Repeat last f/F/t/T motion</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="f{char} find char backward in line motion: find vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">F{char}</code></td>
+              <td>Find char backward in line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="t{char} move before char backward (till) motion: find vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">T{char}</code></td>
+              <td>Move before char backward (till)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="f{char} find char forward in line motion: find vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">f{char}</code></td>
+              <td>Find char forward in line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="t{char} move before char forward (till) motion: find vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">t{char}</code></td>
+              <td>Move before char forward (till)</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Jump">
+        <h2>󰁔 Motion: Jump</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="1&lt;c-]&gt; jump to first matching tag motion: jump vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">1&lt;C-]&gt;</code></td>
+              <td>Jump to first matching tag</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-i&gt; go to newer position in jump list motion: jump vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-i&gt;</code></td>
+              <td>Go to newer position in jump list</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-o&gt; go to older position in jump list motion: jump vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-o&gt;</code></td>
+              <td>Go to older position in jump list</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-t&gt; jump back in tag stack motion: jump vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-t&gt;</code></td>
+              <td>Jump back in tag stack</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;tab&gt; go to newer position in jump list motion: jump vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;Tab&gt;</code></td>
+              <td>Go to newer position in jump list</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g, go to newer position in change list motion: jump vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g,</code></td>
+              <td>Go to newer position in change list</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g; go to older position in change list motion: jump vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g;</code></td>
+              <td>Go to older position in change list</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g&lt;c-]&gt; jump to tag (show list if multiple) motion: jump vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g&lt;C-]&gt;</code></td>
+              <td>Jump to tag (show list if multiple)</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Line">
+        <h2>󰌑 Motion: Line</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="$ move to end of line motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">$</code></td>
+              <td>Move to end of line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="+ move to first non-blank of next line motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">+</code></td>
+              <td>Move to first non-blank of next line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="- move to first non-blank of previous line motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">-</code></td>
+              <td>Move to first non-blank of previous line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="0 move to beginning of line motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">0</code></td>
+              <td>Move to beginning of line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="^ move to first non-blank character motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">^</code></td>
+              <td>Move to first non-blank character</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="_ move to first non-blank [count-1] lines down motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">_</code></td>
+              <td>Move to first non-blank [count-1] lines down</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g$ move to end of screen line motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g$</code></td>
+              <td>Move to end of screen line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gm move to middle of line motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gM</code></td>
+              <td>Move to middle of line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g^ move to first non-blank of screen line motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g^</code></td>
+              <td>Move to first non-blank of screen line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g_ move to last non-blank character motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g_</code></td>
+              <td>Move to last non-blank character</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gm move to middle of screen line motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gm</code></td>
+              <td>Move to middle of screen line</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="| move to column [count] motion: line vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">|</code></td>
+              <td>Move to column [count]</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Mark">
+        <h2> Motion: Mark</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&#39;&quot; jump to position when last edited motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&#39;&quot;</code></td>
+              <td>Jump to position when last edited</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&#39;&#39; jump to previous position (line) motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&#39;&#39;</code></td>
+              <td>Jump to previous position (line)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&#39;. jump to last change (line) motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&#39;.</code></td>
+              <td>Jump to last change (line)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&#39;&lt; jump to start of last visual selection motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&#39;&lt;</code></td>
+              <td>Jump to start of last visual selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&#39;&gt; jump to end of last visual selection motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&#39;&gt;</code></td>
+              <td>Jump to end of last visual selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&#39;[ jump to start of last change/yank motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&#39;[</code></td>
+              <td>Jump to start of last change/yank</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&#39;] jump to end of last change/yank motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&#39;]</code></td>
+              <td>Jump to end of last change/yank</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&#39;^ jump to position of last insert motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&#39;^</code></td>
+              <td>Jump to position of last insert</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&#39;{a-za-z} jump to mark line (first non-blank) motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&#39;{a-zA-Z}</code></td>
+              <td>Jump to mark line (first non-blank)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="`. jump to last change (exact) motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">`.</code></td>
+              <td>Jump to last change (exact)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="`` jump to previous position (exact) motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">``</code></td>
+              <td>Jump to previous position (exact)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="`{a-za-z} jump to mark position (exact) motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">`{a-zA-Z}</code></td>
+              <td>Jump to mark position (exact)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="m{a-za-z} set mark at cursor position motion: mark vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">m{a-zA-Z}</code></td>
+              <td>Set mark at cursor position</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Screen">
+        <h2>󰍉 Motion: Screen</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&lt;c-b&gt; scroll backward one screen motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-b&gt;</code></td>
+              <td>Scroll backward one screen</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-d&gt; scroll down half screen motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-d&gt;</code></td>
+              <td>Scroll down half screen</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-e&gt; scroll down one line (keep cursor) motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-e&gt;</code></td>
+              <td>Scroll down one line (keep cursor)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-f&gt; scroll forward one screen motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-f&gt;</code></td>
+              <td>Scroll forward one screen</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-u&gt; scroll up half screen motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-u&gt;</code></td>
+              <td>Scroll up half screen</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-y&gt; scroll up one line (keep cursor) motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-y&gt;</code></td>
+              <td>Scroll up one line (keep cursor)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="h move to top of screen (high) motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">H</code></td>
+              <td>Move to top of screen (High)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="l move to bottom of screen (low) motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">L</code></td>
+              <td>Move to bottom of screen (Low)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="m move to middle of screen (middle) motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">M</code></td>
+              <td>Move to middle of screen (Middle)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="z- move line to bottom, cursor to first non-blank motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">z-</code></td>
+              <td>Move line to bottom, cursor to first non-blank</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="z. move line to center, cursor to first non-blank motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">z.</code></td>
+              <td>Move line to center, cursor to first non-blank</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="z&lt;cr&gt; move line to top, cursor to first non-blank motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">z&lt;CR&gt;</code></td>
+              <td>Move line to top, cursor to first non-blank</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zb move cursor line to bottom of screen motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zb</code></td>
+              <td>Move cursor line to bottom of screen</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zt move cursor line to top of screen motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zt</code></td>
+              <td>Move cursor line to top of screen</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zz center cursor line on screen motion: screen vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zz</code></td>
+              <td>Center cursor line on screen</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Search">
+        <h2> Motion: Search</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="# search word under cursor backward motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">#</code></td>
+              <td>Search word under cursor backward</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="* search word under cursor forward motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">*</code></td>
+              <td>Search word under cursor forward</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="/ search forward motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">/</code></td>
+              <td>Search forward</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="? search backward motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">?</code></td>
+              <td>Search backward</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="n repeat search in opposite direction motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">N</code></td>
+              <td>Repeat search in opposite direction</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g# search partial word backward motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g#</code></td>
+              <td>Search partial word backward</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g* search partial word forward motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g*</code></td>
+              <td>Search partial word forward</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gn search backward and select match motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gN</code></td>
+              <td>Search backward and select match</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gn search forward and select match motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gn</code></td>
+              <td>Search forward and select match</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="n repeat search in same direction motion: search vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">n</code></td>
+              <td>Repeat search in same direction</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Spell">
+        <h2>󰓆 Motion: Spell</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="[s move to previous bad word (no rare) motion: spell vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[S</code></td>
+              <td>Move to previous bad word (no rare)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[s move to previous misspelled word motion: spell vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[s</code></td>
+              <td>Move to previous misspelled word</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]s move to next bad word (no rare) motion: spell vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]S</code></td>
+              <td>Move to next bad word (no rare)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]s move to next misspelled word motion: spell vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]s</code></td>
+              <td>Move to next misspelled word</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="z= suggest corrections for word motion: spell vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">z=</code></td>
+              <td>Suggest corrections for word</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zg add word to spellfile (good) motion: spell vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zg</code></td>
+              <td>Add word to spellfile (good)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zug undo zg (remove good word) motion: spell vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zug</code></td>
+              <td>Undo zg (remove good word)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zuw undo zw (remove wrong word) motion: spell vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zuw</code></td>
+              <td>Undo zw (remove wrong word)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="zw add word to spellfile (wrong) motion: spell vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">zw</code></td>
+              <td>Add word to spellfile (wrong)</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Vertical">
+        <h2>󰁅 Motion: Vertical</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="% jump to matching bracket/paren/brace motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">%</code></td>
+              <td>Jump to matching bracket/paren/brace</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="( move to previous sentence motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">(</code></td>
+              <td>Move to previous sentence</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=") move to next sentence motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">)</code></td>
+              <td>Move to next sentence</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g go to last line (or line [count]) motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">G</code></td>
+              <td>Go to last line (or line [count])</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[( move to previous unmatched ( motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[(</code></td>
+              <td>Move to previous unmatched (</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[m move to previous method end motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[M</code></td>
+              <td>Move to previous method end</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[[ move to previous section/function start motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[[</code></td>
+              <td>Move to previous section/function start</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[] move to previous section/function end motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[]</code></td>
+              <td>Move to previous section/function end</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[m move to previous method start motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[m</code></td>
+              <td>Move to previous method start</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[{ move to previous unmatched { motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[{</code></td>
+              <td>Move to previous unmatched {</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]) move to next unmatched ) motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">])</code></td>
+              <td>Move to next unmatched )</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]m move to next method end motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]M</code></td>
+              <td>Move to next method end</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="][ move to next section/function end motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">][</code></td>
+              <td>Move to next section/function end</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]] move to next section/function start motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]]</code></td>
+              <td>Move to next section/function start</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]m move to next method start motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]m</code></td>
+              <td>Move to next method start</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]} move to next unmatched } motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]}</code></td>
+              <td>Move to next unmatched }</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gg go to first line (or line [count]) motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gg</code></td>
+              <td>Go to first line (or line [count])</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="{ move to previous paragraph motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">{</code></td>
+              <td>Move to previous paragraph</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="} move to next paragraph motion: vertical vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">}</code></td>
+              <td>Move to next paragraph</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Motion: Word">
+        <h2>󰊄 Motion: Word</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="b move to start of previous word motion: word vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">B</code></td>
+              <td>Move to start of previous WORD</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="e move to end of word motion: word vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">E</code></td>
+              <td>Move to end of WORD</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="w move to start of next word (space-separated) motion: word vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">W</code></td>
+              <td>Move to start of next WORD (space-separated)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="b move to start of previous word motion: word vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">b</code></td>
+              <td>Move to start of previous word</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="e move to end of word motion: word vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">e</code></td>
+              <td>Move to end of word</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ge move to end of previous word motion: word vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gE</code></td>
+              <td>Move to end of previous WORD</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ge move to end of previous word motion: word vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">ge</code></td>
+              <td>Move to end of previous word</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="w move to start of next word motion: word vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">w</code></td>
+              <td>Move to start of next word</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Navigation">
+        <h2> Navigation</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search=" d jump to next cword navigation lazy">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> D</code></td>
+              <td>Jump to next cword</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" d jump to next cword navigation lazy">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> D</code></td>
+              <td>Jump to next cword</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" d jump to next cword navigation lazy">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> D</code></td>
+              <td>Jump to next cword</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" d add cursor and jump to next cword navigation lazy">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> d</code></td>
+              <td>Add cursor and jump to next cword</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" d add cursor and jump to next cword navigation lazy">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> d</code></td>
+              <td>Add cursor and jump to next cword</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" d add cursor and jump to next cword navigation lazy">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> d</code></td>
+              <td>Add cursor and jump to next cword</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=",b buffer * navigation ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">,b</code></td>
+              <td>buffer *</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[  add empty line above cursor navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[ </code></td>
+              <td>Add empty line above cursor</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[&lt;c-l&gt; :lpfile navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[&lt;C-L&gt;</code></td>
+              <td>:lpfile</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[&lt;c-q&gt; :cpfile navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[&lt;C-Q&gt;</code></td>
+              <td>:cpfile</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[&lt;c-t&gt; :ptprevious navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[&lt;C-T&gt;</code></td>
+              <td>:ptprevious</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[a :rewind navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[A</code></td>
+              <td>:rewind</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[b :brewind navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[B</code></td>
+              <td>:brewind</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[l :lrewind navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[L</code></td>
+              <td>:lrewind</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[q :crewind navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[Q</code></td>
+              <td>:crewind</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[t :trewind navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[T</code></td>
+              <td>:trewind</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[[ &lt;cmd&gt;telekasten insert_link&lt;cr&gt; navigation ">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">[[</code></td>
+              <td>&lt;Cmd&gt;Telekasten insert_link&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[a :previous navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[a</code></td>
+              <td>:previous</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[b :bprevious navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[b</code></td>
+              <td>:bprevious</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[i go to indent scope top navigation ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">[i</code></td>
+              <td>Go to indent scope top</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[i go to indent scope top navigation ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">[i</code></td>
+              <td>Go to indent scope top</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[i go to indent scope top navigation ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">[i</code></td>
+              <td>Go to indent scope top</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[i go to indent scope top navigation ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[i</code></td>
+              <td>Go to indent scope top</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[l :lprevious navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[l</code></td>
+              <td>:lprevious</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[n select previous node navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">[n</code></td>
+              <td>Select previous node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[n select previous node navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">[n</code></td>
+              <td>Select previous node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[q :cprevious navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[q</code></td>
+              <td>:cprevious</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="[t :tprevious navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">[t</code></td>
+              <td>:tprevious</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]  add empty line below cursor navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">] </code></td>
+              <td>Add empty line below cursor</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]&lt;c-l&gt; :lnfile navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]&lt;C-L&gt;</code></td>
+              <td>:lnfile</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]&lt;c-q&gt; :cnfile navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]&lt;C-Q&gt;</code></td>
+              <td>:cnfile</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]&lt;c-t&gt; :ptnext navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]&lt;C-T&gt;</code></td>
+              <td>:ptnext</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]a :last navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]A</code></td>
+              <td>:last</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]b :blast navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]B</code></td>
+              <td>:blast</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]l :llast navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]L</code></td>
+              <td>:llast</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]q :clast navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]Q</code></td>
+              <td>:clast</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]t :tlast navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]T</code></td>
+              <td>:tlast</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]a :next navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]a</code></td>
+              <td>:next</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]b :bnext navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]b</code></td>
+              <td>:bnext</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]i go to indent scope bottom navigation ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]i</code></td>
+              <td>Go to indent scope bottom</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]i go to indent scope bottom navigation ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">]i</code></td>
+              <td>Go to indent scope bottom</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]i go to indent scope bottom navigation ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">]i</code></td>
+              <td>Go to indent scope bottom</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]i go to indent scope bottom navigation ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">]i</code></td>
+              <td>Go to indent scope bottom</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]l :lnext navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]l</code></td>
+              <td>:lnext</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]n select next node navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">]n</code></td>
+              <td>Select next node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]n select next node navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">]n</code></td>
+              <td>Select next node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]q :cnext navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]q</code></td>
+              <td>:cnext</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="]t :tnext navigation vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">]t</code></td>
+              <td>:tnext</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Operator">
+        <h2>󰁕 Operator</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="! filter {motion} through external command operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">!</code></td>
+              <td>Filter {motion} through external command</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt; indent left {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;</code></td>
+              <td>Indent left {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="= auto-indent {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">=</code></td>
+              <td>Auto-indent {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&gt; indent right {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&gt;</code></td>
+              <td>Indent right {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="c change {motion} (delete and insert) operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">c</code></td>
+              <td>Change {motion} (delete and insert)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="d delete {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">d</code></td>
+              <td>Delete {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g? rot13 encode {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g?</code></td>
+              <td>ROT13 encode {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gu make uppercase {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gU</code></td>
+              <td>Make uppercase {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gq format {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gq</code></td>
+              <td>Format {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gu make lowercase {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gu</code></td>
+              <td>Make lowercase {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gw format {motion} (keep cursor) operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gw</code></td>
+              <td>Format {motion} (keep cursor)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g~ toggle case {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g~</code></td>
+              <td>Toggle case {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="y yank (copy) {motion} operator vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">y</code></td>
+              <td>Yank (copy) {motion}</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Other">
+        <h2> Other</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search=" - resize other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> -</code></td>
+              <td>resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" - resize other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> -</code></td>
+              <td>resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" - resize other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> -</code></td>
+              <td>resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" - resize other ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> -</code></td>
+              <td>resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" - resize other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> -</code></td>
+              <td>resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" = vertical resize other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> =</code></td>
+              <td>vertical resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" = vertical resize other ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> =</code></td>
+              <td>vertical resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" = vertical resize other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> =</code></td>
+              <td>vertical resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" = vertical resize other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> =</code></td>
+              <td>vertical resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" = vertical resize other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> =</code></td>
+              <td>vertical resize</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" ? open keymaps cheatsheet other keymaps">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> ?</code></td>
+              <td>Open keymaps cheatsheet</td>
+              <td class="source">keymaps</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" a add cursors to cword other lazy">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> a</code></td>
+              <td>Add cursors to cword</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" a add cursors to cword other lazy">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> a</code></td>
+              <td>Add cursors to cword</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" a add cursors to cword other lazy">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> a</code></td>
+              <td>Add cursors to cword</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" c codecompanionchat other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> c</code></td>
+              <td>CodeCompanionChat</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" c codecompanionchat other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> c</code></td>
+              <td>CodeCompanionChat</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" c codecompanionchat other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> c</code></td>
+              <td>CodeCompanionChat</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" c codecompanionchat other ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> c</code></td>
+              <td>CodeCompanionChat</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" c codecompanionchat other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> c</code></td>
+              <td>CodeCompanionChat</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" j %!jq . other ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> j</code></td>
+              <td>%!jq .</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" j %!jq . other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> j</code></td>
+              <td>%!jq .</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" j %!jq . other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> j</code></td>
+              <td>%!jq .</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" j %!jq . other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> j</code></td>
+              <td>%!jq .</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" j %!jq . other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> j</code></td>
+              <td>%!jq .</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" m add cursors to the lines of the visual area other lazy">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> m</code></td>
+              <td>Add cursors to the lines of the visual area</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" m add cursors to the lines of the visual area other lazy">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> m</code></td>
+              <td>Add cursors to the lines of the visual area</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" r (callback) other vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> r</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" z &lt;cmd&gt;telekasten panel&lt;cr&gt; other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> z</code></td>
+              <td>&lt;Cmd&gt;Telekasten panel&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" zi &lt;cmd&gt;telekasten insert_img_link&lt;cr&gt; other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> zI</code></td>
+              <td>&lt;Cmd&gt;Telekasten insert_img_link&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" zb &lt;cmd&gt;telekasten show_backlinks&lt;cr&gt; other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> zb</code></td>
+              <td>&lt;Cmd&gt;Telekasten show_backlinks&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" zc &lt;cmd&gt;telekasten show_calendar&lt;cr&gt; other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> zc</code></td>
+              <td>&lt;Cmd&gt;Telekasten show_calendar&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" zd &lt;cmd&gt;telekasten goto_today&lt;cr&gt; other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> zd</code></td>
+              <td>&lt;Cmd&gt;Telekasten goto_today&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" zf &lt;cmd&gt;telekasten find_notes&lt;cr&gt; other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> zf</code></td>
+              <td>&lt;Cmd&gt;Telekasten find_notes&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" zg &lt;cmd&gt;telekasten search_notes&lt;cr&gt; other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> zg</code></td>
+              <td>&lt;Cmd&gt;Telekasten search_notes&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" zn &lt;cmd&gt;telekasten new_note&lt;cr&gt; other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> zn</code></td>
+              <td>&lt;Cmd&gt;Telekasten new_note&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" zz &lt;cmd&gt;telekasten follow_link&lt;cr&gt; other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> zz</code></td>
+              <td>&lt;Cmd&gt;Telekasten follow_link&lt;CR&gt;</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&amp; :help &amp;-default other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&amp;</code></td>
+              <td>:help &amp;-default</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="1gd (callback) other vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">1gD</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-down&gt; add cursor and move down other lazy">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-Down&gt;</code></td>
+              <td>Add cursor and move down</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-down&gt; add cursor and move down other lazy">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-Down&gt;</code></td>
+              <td>Add cursor and move down</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-down&gt; add cursor and move down other lazy">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;C-Down&gt;</code></td>
+              <td>Add cursor and move down</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-down&gt; add cursor and move down other lazy">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;C-Down&gt;</code></td>
+              <td>Add cursor and move down</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-up&gt; add cursor and move up other lazy">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-Up&gt;</code></td>
+              <td>Add cursor and move up</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-up&gt; add cursor and move up other lazy">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;C-Up&gt;</code></td>
+              <td>Add cursor and move up</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-up&gt; add cursor and move up other lazy">
+              <td><span class="mode">󰰄</span></td>
+              <td><code class="key">&lt;C-Up&gt;</code></td>
+              <td>Add cursor and move up</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-up&gt; add cursor and move up other lazy">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;C-Up&gt;</code></td>
+              <td>Add cursor and move up</td>
+              <td class="source">lazy</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;h &lt;c-\&gt;&lt;c-n&gt;&lt;c-w&gt;h other ">
+              <td><span class="mode">󰰥</span></td>
+              <td><code class="key">&lt;C-W&gt;h</code></td>
+              <td>&lt;C-\&gt;&lt;C-N&gt;&lt;C-W&gt;h</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;j &lt;c-\&gt;&lt;c-n&gt;&lt;c-w&gt;j other ">
+              <td><span class="mode">󰰥</span></td>
+              <td><code class="key">&lt;C-W&gt;j</code></td>
+              <td>&lt;C-\&gt;&lt;C-N&gt;&lt;C-W&gt;j</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;k &lt;c-\&gt;&lt;c-n&gt;&lt;c-w&gt;k other ">
+              <td><span class="mode">󰰥</span></td>
+              <td><code class="key">&lt;C-W&gt;k</code></td>
+              <td>&lt;C-\&gt;&lt;C-N&gt;&lt;C-W&gt;k</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;l &lt;c-\&gt;&lt;c-n&gt;&lt;c-w&gt;l other ">
+              <td><span class="mode">󰰥</span></td>
+              <td><code class="key">&lt;C-W&gt;l</code></td>
+              <td>&lt;C-\&gt;&lt;C-N&gt;&lt;C-W&gt;l</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-]&gt; (callback) other vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-]&gt;</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-u&gt; cppfastbuild other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;D-u&gt;</code></td>
+              <td>CppFastBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-u&gt; cppfastbuild other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;D-u&gt;</code></td>
+              <td>CppFastBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-u&gt; cppfastbuild other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;D-u&gt;</code></td>
+              <td>CppFastBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-u&gt; cppfastbuild other ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;D-u&gt;</code></td>
+              <td>CppFastBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-u&gt; cppfastbuild other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;D-u&gt;</code></td>
+              <td>CppFastBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-y&gt; cppcleanbuild other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;D-y&gt;</code></td>
+              <td>CppCleanBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-y&gt; cppcleanbuild other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;D-y&gt;</code></td>
+              <td>CppCleanBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-y&gt; cppcleanbuild other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;D-y&gt;</code></td>
+              <td>CppCleanBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-y&gt; cppcleanbuild other ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;D-y&gt;</code></td>
+              <td>CppCleanBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-y&gt; cppcleanbuild other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;D-y&gt;</code></td>
+              <td>CppCleanBuild</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f2&gt; zettelnew other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;F2&gt;</code></td>
+              <td>ZettelNew</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f2&gt; zettelnew other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;F2&gt;</code></td>
+              <td>ZettelNew</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f2&gt; zettelnew other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;F2&gt;</code></td>
+              <td>ZettelNew</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f2&gt; zettelnew other ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;F2&gt;</code></td>
+              <td>ZettelNew</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f2&gt; zettelnew other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;F2&gt;</code></td>
+              <td>ZettelNew</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f3&gt; zettelopen other ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;F3&gt;</code></td>
+              <td>ZettelOpen</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f3&gt; zettelopen other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;F3&gt;</code></td>
+              <td>ZettelOpen</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f3&gt; zettelopen other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;F3&gt;</code></td>
+              <td>ZettelOpen</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f3&gt; zettelopen other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;F3&gt;</code></td>
+              <td>ZettelOpen</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f3&gt; zettelopen other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;F3&gt;</code></td>
+              <td>ZettelOpen</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="@ :help v_@-default other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">@</code></td>
+              <td>:help v_@-default</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="@ :help v_@-default other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">@</code></td>
+              <td>:help v_@-default</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="k (callback) other vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">K</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="q :help v_q-default other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">Q</code></td>
+              <td>:help v_Q-default</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="q :help v_q-default other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">Q</code></td>
+              <td>:help v_Q-default</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ai object scope with border other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">ai</code></td>
+              <td>Object scope with border</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ai object scope with border other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">ai</code></td>
+              <td>Object scope with border</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ai object scope with border other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">ai</code></td>
+              <td>Object scope with border</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="an select parent (outer) node other vim/_core/defaults.lua">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">an</code></td>
+              <td>Select parent (outer) node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="an select parent (outer) node other vim/_core/defaults.lua">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">an</code></td>
+              <td>Select parent (outer) node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="an select parent (outer) node other vim/_core/defaults.lua">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">an</code></td>
+              <td>Select parent (outer) node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g0 (callback) other vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g0</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="go vim.lsp.buf.document_symbol() other vim/_core/defaults.lua">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gO</code></td>
+              <td>vim.lsp.buf.document_symbol()</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gs toggle arguments other ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gS</code></td>
+              <td>Toggle arguments</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gw (callback) other vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gW</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g[ (callback) other vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g[</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="g] (callback) other vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">g]</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ga (callback) other vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">ga</code></td>
+              <td>(callback)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ii object scope other ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">ii</code></td>
+              <td>Object scope</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ii object scope other ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">ii</code></td>
+              <td>Object scope</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ii object scope other ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">ii</code></td>
+              <td>Object scope</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="in select child (inner) node other vim/_core/defaults.lua">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">in</code></td>
+              <td>Select child (inner) node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="in select child (inner) node other vim/_core/defaults.lua">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">in</code></td>
+              <td>Select child (inner) node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="in select child (inner) node other vim/_core/defaults.lua">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">in</code></td>
+              <td>Select child (inner) node</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Snippets">
+        <h2> Snippets</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&lt;s-tab&gt; vim.snippet.jump if active, otherwise &lt;s-tab&gt; snippets vim/_core/defaults.lua">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;S-Tab&gt;</code></td>
+              <td>vim.snippet.jump if active, otherwise &lt;S-Tab&gt;</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;s-tab&gt; vim.snippet.jump if active, otherwise &lt;s-tab&gt; snippets vim/_core/defaults.lua">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;S-Tab&gt;</code></td>
+              <td>vim.snippet.jump if active, otherwise &lt;S-Tab&gt;</td>
+              <td class="source">vim/_core/defaults.lua</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Telescope">
+        <h2> Telescope</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search=" c telescope commands telescope telescope.nvim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> C</code></td>
+              <td>Telescope commands</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" c telescope commands telescope telescope.nvim">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> C</code></td>
+              <td>Telescope commands</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" c telescope commands telescope telescope.nvim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> C</code></td>
+              <td>Telescope commands</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" c telescope commands telescope telescope.nvim">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> C</code></td>
+              <td>Telescope commands</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" c telescope commands telescope telescope.nvim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> C</code></td>
+              <td>Telescope commands</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b telescope buffers telescope telescope.nvim">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> b</code></td>
+              <td>Telescope buffers</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b telescope buffers telescope telescope.nvim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> b</code></td>
+              <td>Telescope buffers</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b telescope buffers telescope telescope.nvim">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> b</code></td>
+              <td>Telescope buffers</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b telescope buffers telescope telescope.nvim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> b</code></td>
+              <td>Telescope buffers</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b telescope buffers telescope telescope.nvim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> b</code></td>
+              <td>Telescope buffers</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" f telescope find_files telescope telescope.nvim">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> f</code></td>
+              <td>Telescope find_files</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" f telescope find_files telescope telescope.nvim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> f</code></td>
+              <td>Telescope find_files</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" f telescope find_files telescope telescope.nvim">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> f</code></td>
+              <td>Telescope find_files</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" f telescope find_files telescope telescope.nvim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> f</code></td>
+              <td>Telescope find_files</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" f telescope find_files telescope telescope.nvim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> f</code></td>
+              <td>Telescope find_files</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l telescope builtin.lsp_ telescope telescope.nvim">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> l</code></td>
+              <td>Telescope builtin.lsp_</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l telescope builtin.lsp_ telescope telescope.nvim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> l</code></td>
+              <td>Telescope builtin.lsp_</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l telescope builtin.lsp_ telescope telescope.nvim">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> l</code></td>
+              <td>Telescope builtin.lsp_</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l telescope builtin.lsp_ telescope telescope.nvim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> l</code></td>
+              <td>Telescope builtin.lsp_</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l telescope builtin.lsp_ telescope telescope.nvim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> l</code></td>
+              <td>Telescope builtin.lsp_</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" s telescope live_grep telescope telescope.nvim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> s</code></td>
+              <td>Telescope live_grep</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" s telescope live_grep telescope telescope.nvim">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> s</code></td>
+              <td>Telescope live_grep</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" s telescope live_grep telescope telescope.nvim">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> s</code></td>
+              <td>Telescope live_grep</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" s telescope live_grep telescope telescope.nvim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> s</code></td>
+              <td>Telescope live_grep</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" s telescope live_grep telescope telescope.nvim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> s</code></td>
+              <td>Telescope live_grep</td>
+              <td class="source">telescope.nvim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Testing">
+        <h2> Testing</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search=" a call vimspector#addwatch() testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> A</code></td>
+              <td>call vimspector#AddWatch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" a call vimspector#addwatch() testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> A</code></td>
+              <td>call vimspector#AddWatch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" a call vimspector#addwatch() testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> A</code></td>
+              <td>call vimspector#AddWatch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" a call vimspector#addwatch() testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> A</code></td>
+              <td>call vimspector#AddWatch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" a call vimspector#addwatch() testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> A</code></td>
+              <td>call vimspector#AddWatch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b call vimspector#togglebreakpoint() testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> B</code></td>
+              <td>call vimspector#ToggleBreakpoint()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b call vimspector#togglebreakpoint() testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> B</code></td>
+              <td>call vimspector#ToggleBreakpoint()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b call vimspector#togglebreakpoint() testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> B</code></td>
+              <td>call vimspector#ToggleBreakpoint()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b call vimspector#togglebreakpoint() testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> B</code></td>
+              <td>call vimspector#ToggleBreakpoint()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" b call vimspector#togglebreakpoint() testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> B</code></td>
+              <td>call vimspector#ToggleBreakpoint()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" e call vimspector#evaluate() testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> E</code></td>
+              <td>call vimspector#Evaluate()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" e call vimspector#evaluate() testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> E</code></td>
+              <td>call vimspector#Evaluate()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" e call vimspector#evaluate() testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> E</code></td>
+              <td>call vimspector#Evaluate()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" e call vimspector#evaluate() testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> E</code></td>
+              <td>call vimspector#Evaluate()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" e call vimspector#evaluate() testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> E</code></td>
+              <td>call vimspector#Evaluate()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l call vimspector#launch() testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> L</code></td>
+              <td>call vimspector#Launch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l call vimspector#launch() testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> L</code></td>
+              <td>call vimspector#Launch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l call vimspector#launch() testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> L</code></td>
+              <td>call vimspector#Launch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l call vimspector#launch() testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> L</code></td>
+              <td>call vimspector#Launch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" l call vimspector#launch() testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> L</code></td>
+              <td>call vimspector#Launch()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" n call vimspector#stepinto() testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> N</code></td>
+              <td>call vimspector#StepInto()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" n call vimspector#stepinto() testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> N</code></td>
+              <td>call vimspector#StepInto()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" n call vimspector#stepinto() testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> N</code></td>
+              <td>call vimspector#StepInto()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" n call vimspector#stepinto() testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> N</code></td>
+              <td>call vimspector#StepInto()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" n call vimspector#stepinto() testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> N</code></td>
+              <td>call vimspector#StepInto()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" o call vimspector#stepover() testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> O</code></td>
+              <td>call vimspector#StepOver()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" o call vimspector#stepover() testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> O</code></td>
+              <td>call vimspector#StepOver()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" o call vimspector#stepover() testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> O</code></td>
+              <td>call vimspector#StepOver()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" o call vimspector#stepover() testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> O</code></td>
+              <td>call vimspector#StepOver()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" o call vimspector#stepover() testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> O</code></td>
+              <td>call vimspector#StepOver()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" u call vimspector#stepout() testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key"> U</code></td>
+              <td>call vimspector#StepOut()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" u call vimspector#stepout() testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key"> U</code></td>
+              <td>call vimspector#StepOut()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" u call vimspector#stepout() testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key"> U</code></td>
+              <td>call vimspector#StepOut()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" u call vimspector#stepout() testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key"> U</code></td>
+              <td>call vimspector#StepOut()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search=" u call vimspector#stepout() testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key"> U</code></td>
+              <td>call vimspector#StepOut()</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-o&gt; cpptest testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;D-o&gt;</code></td>
+              <td>CppTest</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-o&gt; cpptest testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;D-o&gt;</code></td>
+              <td>CppTest</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-o&gt; cpptest testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;D-o&gt;</code></td>
+              <td>CppTest</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-o&gt; cpptest testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;D-o&gt;</code></td>
+              <td>CppTest</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;d-o&gt; cpptest testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;D-o&gt;</code></td>
+              <td>CppTest</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f10&gt; cargotestunitexact testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;F10&gt;</code></td>
+              <td>CargoTestUnitExact</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f10&gt; cargotestunitexact testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;F10&gt;</code></td>
+              <td>CargoTestUnitExact</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f10&gt; cargotestunitexact testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;F10&gt;</code></td>
+              <td>CargoTestUnitExact</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f10&gt; cargotestunitexact testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;F10&gt;</code></td>
+              <td>CargoTestUnitExact</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f10&gt; cargotestunitexact testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;F10&gt;</code></td>
+              <td>CargoTestUnitExact</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f11&gt; cargotestunit --workspace testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;F11&gt;</code></td>
+              <td>CargoTestUnit --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f11&gt; cargotestunit --workspace testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;F11&gt;</code></td>
+              <td>CargoTestUnit --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f11&gt; cargotestunit --workspace testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;F11&gt;</code></td>
+              <td>CargoTestUnit --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f11&gt; cargotestunit --workspace testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;F11&gt;</code></td>
+              <td>CargoTestUnit --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f11&gt; cargotestunit --workspace testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;F11&gt;</code></td>
+              <td>CargoTestUnit --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f12&gt; cargotestall --workspace testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;F12&gt;</code></td>
+              <td>CargoTestAll --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f12&gt; cargotestall --workspace testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;F12&gt;</code></td>
+              <td>CargoTestAll --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f12&gt; cargotestall --workspace testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;F12&gt;</code></td>
+              <td>CargoTestAll --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f12&gt; cargotestall --workspace testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;F12&gt;</code></td>
+              <td>CargoTestAll --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f12&gt; cargotestall --workspace testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;F12&gt;</code></td>
+              <td>CargoTestAll --workspace</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f7&gt; cargotestcrate testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;F7&gt;</code></td>
+              <td>CargoTestCrate</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f7&gt; cargotestcrate testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;F7&gt;</code></td>
+              <td>CargoTestCrate</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f7&gt; cargotestcrate testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;F7&gt;</code></td>
+              <td>CargoTestCrate</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f7&gt; cargotestcrate testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;F7&gt;</code></td>
+              <td>CargoTestCrate</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f7&gt; cargotestcrate testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;F7&gt;</code></td>
+              <td>CargoTestCrate</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f8&gt; cargotestcrateunit testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;F8&gt;</code></td>
+              <td>CargoTestCrateUnit</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f8&gt; cargotestcrateunit testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;F8&gt;</code></td>
+              <td>CargoTestCrateUnit</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f8&gt; cargotestcrateunit testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;F8&gt;</code></td>
+              <td>CargoTestCrateUnit</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f8&gt; cargotestcrateunit testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;F8&gt;</code></td>
+              <td>CargoTestCrateUnit</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f8&gt; cargotestcrateunit testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;F8&gt;</code></td>
+              <td>CargoTestCrateUnit</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f9&gt; cargotestintegrationexact testing ">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;F9&gt;</code></td>
+              <td>CargoTestIntegrationExact</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f9&gt; cargotestintegrationexact testing ">
+              <td><span class="mode">󰰢</span></td>
+              <td><code class="key">&lt;F9&gt;</code></td>
+              <td>CargoTestIntegrationExact</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f9&gt; cargotestintegrationexact testing ">
+              <td><span class="mode">󰰵</span></td>
+              <td><code class="key">&lt;F9&gt;</code></td>
+              <td>CargoTestIntegrationExact</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f9&gt; cargotestintegrationexact testing ">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;F9&gt;</code></td>
+              <td>CargoTestIntegrationExact</td>
+              <td class="source">-</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;f9&gt; cargotestintegrationexact testing ">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">&lt;F9&gt;</code></td>
+              <td>CargoTestIntegrationExact</td>
+              <td class="source">-</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Text Object">
+        <h2>󰅪 Text Object</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="a&quot; a double-quoted string (includes quotes) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">a&quot;</code></td>
+              <td>A double-quoted string (includes quotes)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a&quot; select a double-quoted string text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">a&quot;</code></td>
+              <td>Select a double-quoted string</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a&#39; a single-quoted string (includes quotes) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">a&#39;</code></td>
+              <td>A single-quoted string (includes quotes)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a) select a parentheses block text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">a)</code></td>
+              <td>Select a parentheses block</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a) a parentheses block (includes parens) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">a)</code></td>
+              <td>A parentheses block (includes parens)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a&gt; an angle bracket block text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">a&gt;</code></td>
+              <td>An angle bracket block</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ab a brace block (alias) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">aB</code></td>
+              <td>A brace block (alias)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="aw a word (includes surrounding space) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">aW</code></td>
+              <td>A WORD (includes surrounding space)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a] a bracket block (includes brackets) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">a]</code></td>
+              <td>A bracket block (includes brackets)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a` a backtick string (includes backticks) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">a`</code></td>
+              <td>A backtick string (includes backticks)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ab a parentheses block (alias) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">ab</code></td>
+              <td>A parentheses block (alias)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ap a paragraph text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">ap</code></td>
+              <td>A paragraph</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ap select a paragraph text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">ap</code></td>
+              <td>Select a paragraph</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="as a sentence text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">as</code></td>
+              <td>A sentence</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="at a tag block (includes tags) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">at</code></td>
+              <td>A tag block (includes tags)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="aw select a word text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">aw</code></td>
+              <td>Select a word</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="aw a word (includes surrounding space) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">aw</code></td>
+              <td>A word (includes surrounding space)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a} a brace block (includes braces) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">a}</code></td>
+              <td>A brace block (includes braces)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="a} select a brace block text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">a}</code></td>
+              <td>Select a brace block</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i&quot; inner double-quoted string text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">i&quot;</code></td>
+              <td>Inner double-quoted string</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i&quot; select inner double quotes text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">i&quot;</code></td>
+              <td>Select inner double quotes</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i&#39; inner single-quoted string text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">i&#39;</code></td>
+              <td>Inner single-quoted string</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i) inner parentheses block text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">i)</code></td>
+              <td>Inner parentheses block</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i) select inner parentheses text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">i)</code></td>
+              <td>Select inner parentheses</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i&gt; inner angle bracket block text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">i&gt;</code></td>
+              <td>Inner angle bracket block</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ib inner brace block (alias) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">iB</code></td>
+              <td>Inner brace block (alias)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="iw inner word text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">iW</code></td>
+              <td>Inner WORD</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i] inner bracket block text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">i]</code></td>
+              <td>Inner bracket block</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i` inner backtick string text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">i`</code></td>
+              <td>Inner backtick string</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ib inner parentheses block (alias) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">ib</code></td>
+              <td>Inner parentheses block (alias)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ip select inner paragraph text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">ip</code></td>
+              <td>Select inner paragraph</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="ip inner paragraph text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">ip</code></td>
+              <td>Inner paragraph</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="is inner sentence text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">is</code></td>
+              <td>Inner sentence</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="it inner tag block (html/xml) text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">it</code></td>
+              <td>Inner tag block (HTML/XML)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="iw select inner word text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">iw</code></td>
+              <td>Select inner word</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="iw inner word text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">iw</code></td>
+              <td>Inner word</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i} select inner braces text object vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">i}</code></td>
+              <td>Select inner braces</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="i} inner brace block text object vim">
+              <td><span class="mode">󰰑</span></td>
+              <td><code class="key">i}</code></td>
+              <td>Inner brace block</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Visual">
+        <h2>󰒉 Visual</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&lt; indent selection left visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;</code></td>
+              <td>Indent selection left</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-v&gt; enter visual block mode visual vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-v&gt;</code></td>
+              <td>Enter visual block mode</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;esc&gt; exit visual mode visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&lt;Esc&gt;</code></td>
+              <td>Exit visual mode</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="= auto-indent selection visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">=</code></td>
+              <td>Auto-indent selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&gt; indent selection right visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">&gt;</code></td>
+              <td>Indent selection right</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="j join selected lines visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">J</code></td>
+              <td>Join selected lines</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="o move to other corner (block mode) visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">O</code></td>
+              <td>Move to other corner (block mode)</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="u make selection uppercase visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">U</code></td>
+              <td>Make selection uppercase</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="v enter visual line mode visual vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">V</code></td>
+              <td>Enter visual line mode</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="c change selection visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">c</code></td>
+              <td>Change selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="d delete selection visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">d</code></td>
+              <td>Delete selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gq format selection visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">gq</code></td>
+              <td>Format selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="gv reselect last visual selection visual vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">gv</code></td>
+              <td>Reselect last visual selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="o move to other end of selection visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">o</code></td>
+              <td>Move to other end of selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="u make selection lowercase visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">u</code></td>
+              <td>Make selection lowercase</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="v enter visual (character) mode visual vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">v</code></td>
+              <td>Enter visual (character) mode</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="y yank selection visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">y</code></td>
+              <td>Yank selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="~ toggle case of selection visual vim">
+              <td><span class="mode">󰰫</span></td>
+              <td><code class="key">~</code></td>
+              <td>Toggle case of selection</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category" data-category="Window">
+        <h2> Window</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Key</th>
+              <th>Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;+ increase window height window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;+</code></td>
+              <td>Increase window height</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;- decrease window height window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;-</code></td>
+              <td>Decrease window height</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;&lt; decrease window width window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;&lt;</code></td>
+              <td>Decrease window width</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;= make all windows equal size window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;=</code></td>
+              <td>Make all windows equal size</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;&gt; increase window width window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;&gt;</code></td>
+              <td>Increase window width</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;h move window to far left window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;H</code></td>
+              <td>Move window to far left</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;j move window to bottom window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;J</code></td>
+              <td>Move window to bottom</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;k move window to top window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;K</code></td>
+              <td>Move window to top</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;l move window to far right window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;L</code></td>
+              <td>Move window to far right</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;r rotate windows upward/leftward window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;R</code></td>
+              <td>Rotate windows upward/leftward</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;t move window to new tab window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;T</code></td>
+              <td>Move window to new tab</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;w move to previous window window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;W</code></td>
+              <td>Move to previous window</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;_ maximize window height window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;_</code></td>
+              <td>Maximize window height</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;b move to bottom-right window window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;b</code></td>
+              <td>Move to bottom-right window</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;c close current window window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;c</code></td>
+              <td>Close current window</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;h move to window left window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;h</code></td>
+              <td>Move to window left</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;j move to window below window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;j</code></td>
+              <td>Move to window below</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;k move to window above window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;k</code></td>
+              <td>Move to window above</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;l move to window right window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;l</code></td>
+              <td>Move to window right</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;n new window with empty file window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;n</code></td>
+              <td>New window with empty file</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;o close all other windows window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;o</code></td>
+              <td>Close all other windows</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;p move to previous (last accessed) window window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;p</code></td>
+              <td>Move to previous (last accessed) window</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;q quit current window window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;q</code></td>
+              <td>Quit current window</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;r rotate windows downward/rightward window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;r</code></td>
+              <td>Rotate windows downward/rightward</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;s split window horizontally window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;s</code></td>
+              <td>Split window horizontally</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;t move to top-left window window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;t</code></td>
+              <td>Move to top-left window</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;v split window vertically window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;v</code></td>
+              <td>Split window vertically</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;w move to next window window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;w</code></td>
+              <td>Move to next window</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;x exchange window with next window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;x</code></td>
+              <td>Exchange window with next</td>
+              <td class="source">vim</td>
+            </tr>
+
+            <tr class="keymap-row" data-search="&lt;c-w&gt;| maximize window width window vim">
+              <td><span class="mode">󰰓</span></td>
+              <td><code class="key">&lt;C-w&gt;|</code></td>
+              <td>Maximize window width</td>
+              <td class="source">vim</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="no-results hidden" id="no-results">No keymaps found matching your search.</div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const rows = document.querySelectorAll('.keymap-row');
+    const categories = document.querySelectorAll('.category');
+    const visibleCount = document.getElementById('visible-count');
+    const noResults = document.getElementById('no-results');
+
+    function filterKeymaps() {
+      const query = searchInput.value.toLowerCase();
+      let visible = 0;
+
+      rows.forEach(row => {
+        const searchText = row.dataset.search;
+        const matches = !query || searchText.includes(query);
+        row.classList.toggle('hidden', !matches);
+        if (matches) visible++;
+      });
+
+      categories.forEach(cat => {
+        const visibleRows = cat.querySelectorAll('.keymap-row:not(.hidden)');
+        cat.classList.toggle('hidden', visibleRows.length === 0);
+      });
+
+      visibleCount.textContent = visible;
+      noResults.classList.toggle('hidden', visible > 0);
+    }
+
+    searchInput.addEventListener('input', filterKeymaps);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === '/' && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+      if (e.key === 'Escape') {
+        searchInput.blur();
+        searchInput.value = '';
+        filterKeymaps();
+      }
+    });
+  </script>
+</body>
+</html>
+

@@ -164,6 +164,7 @@ brew_install_if_missing bat
 brew_install_if_missing chafa
 brew_install_if_missing claude-agent-acp
 brew_install_if_missing cmake
+brew_install_if_missing codex
 brew_install_if_missing deno
 brew_install_if_missing dust
 brew_install_if_missing eza

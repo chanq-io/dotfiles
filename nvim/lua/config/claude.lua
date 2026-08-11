@@ -17,9 +17,10 @@ require("codecompanion").setup({
           env = {
             CLAUDE_CODE_EXECUTABLE = vim.fn.exepath("claude"),
           },
-          defaults = {
-            model = "Opus 4.7 (1M context)",
-          },
+          -- Model is inherited from Claude Code's own default (`model` in
+          -- ~/.claude/settings.json) so it lives in a single place. No
+          -- `defaults.model` override here — that just forced us to chase
+          -- renamed picker labels on each model release.
         })
       end,
       codex = function()

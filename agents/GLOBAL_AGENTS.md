@@ -9,11 +9,19 @@
     - MUST NOT reference claude, anthropic, open-ai, chat-gpt or codex in the commit message
     - MUST keep messages relative to the actual change, don't reference plan steps e.g. "phase 1.2.3". Keep it clear and relevant
 - Do not push unless I explicitly tell you to
-- Follow DRY & KISS principles: we are aiming for clean, maintainable code
 - If you are uncertain, ask questions, DO NOT BLINDLY PROCEED WITH IMPLEMENTATION WITHOUT DISCUSSION
 - Do not narrate internal safety checks (e.g. malware considerations on file reads) in chat output unless you actually find something suspicious
-- Approach all development in a TDD manner:
+- Approach all DESIGN WORK in a GOAL FOCUSED and HIGHLY OBJECTIVE manner:
+    - Always refer back to the stated objectives / goals / requirements provided by the user. If the user has not provided objective / goals / requirements via a doc or a ticket before requesting a design, STOP and request a specification doc / ticket from them.
+    - Stick within the stated objectives / goals / requirements, do not tangent.
+    - Aim for a minimal viable changes to achieve the goals. If a minimal, surgical change is not possible, explore bigger changes, but still aim to minimise blast radius.
+    - Follow DRY & KISS principles: we are aiming for clean, maintainable code
+    - Identify comprehensive test matrices for implementation agents to follow.
+    - If the planned code is going to make changes to existing behaviour, make sure the plan requires existing behaviour is pinned under test before making changes
+    - Conduct an adversarial review at the end of your design process, ENSURE you have not introduced scope / feature creep.
+- Approach all IMPLEMENTATION WORK in a TDD manner:
     - Identify all possible tests to achieve maximum coverage of the interface you are adding or editing, use this as a list of TODOs
+    - Follow DRY & KISS principles: we are aiming for clean, maintainable code
     - Iterate with the following pattern, for each test TODO:
         - Write test
         - Run so it fails
@@ -21,3 +29,13 @@
         - Make changes so it passes
         - Refactor away duplication / inefficiencies
         - Tidy - make sure every variable / function / class are named clearly and docstrings have been added where necessary
+- Approach all REVIEW WORK in a GOAL FOCUSED and HIGHLY OBJECTIVE manner:
+    - Always refer back to the stated objectives / goals / requirements in the design when reviewing.
+    - Ensure the implementation agent's changes are focused on the objectives / goals / requirements and are the minimum viable change required to meet the goal
+    - Ensure the implementation agent's changes is not introducing scope or feature creep
+    - Ensure the implementation agent's changes are not introducing security risks
+    - Ensure the implementation agent's changes are not significantly reduce performance
+    - Ensure the implementation agent's changes are follow DRY & KISS principles: we are aiming for clean, maintainable code
+    - Ensure the implementation agent's changes are not introducing regressions
+    - If there is an obvious performance win that does not introduce significant scope creep, suggest it
+    - If there is an obvious encapsulation / cleanup win that does not introduce significant scope creep, suggest it
