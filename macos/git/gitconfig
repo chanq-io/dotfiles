@@ -1,0 +1,25 @@
+[user]
+	name = Pierre Chanquion
+	email = pierre@chanq.io
+[core]
+	editor = nvim
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	line-numbers = true
+[merge]
+	conflictStyle = zdiff3
+[diff]
+	tool = difftastic
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+	difftool = true
+[alias]
+	# structural (syntax-aware) diffs via difftastic; delta handles regular git diff
+	dft = difftool
+	dlog = !GIT_EXTERNAL_DIFF=difft git log -p --ext-diff
