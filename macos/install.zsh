@@ -155,6 +155,7 @@ mkdir -p ~/.cargo ~/.config/
 create_symlink "$HOME/.dotfiles/shell/zshrc" ~/.zshrc
 create_symlink "$HOME/.dotfiles/macos/ghostty/config" ~/.config/ghostty/config
 create_symlink "$HOME/.dotfiles/macos/cargo/config.toml" ~/.cargo/config.toml
+create_symlink "$HOME/.dotfiles/macos/git/gitconfig" ~/.gitconfig
 create_symlink "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"
 
 brew_install_if_missing 1Password-cli
@@ -166,6 +167,7 @@ brew_install_if_missing claude-agent-acp
 brew_install_if_missing cmake
 brew_install_if_missing codex
 brew_install_if_missing deno
+brew_install_if_missing difftastic
 brew_install_if_missing dust
 brew_install_if_missing eza
 brew_install_if_missing fd
@@ -174,6 +176,7 @@ brew_install_if_missing fdk-aac-encoder
 brew_install_if_missing ffmpeg
 brew_install_if_missing fzf
 brew_install_if_missing gifsicle
+brew_install_if_missing git-delta
 brew_install_if_missing git-extras
 brew_install_if_missing gh
 brew_install_if_missing graphviz
