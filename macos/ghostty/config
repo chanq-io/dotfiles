@@ -53,3 +53,4 @@ theme = Rose Pine
 keybind = shift+enter=text:\n
 font-family = "FiraCode Nerd Font Mono"
 macos-option-as-alt = left
+window-save-state = always
