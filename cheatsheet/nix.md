@@ -4,6 +4,19 @@ Purely functional package manager and build system.
 
 ---
 
+## This Setup (NixOS aliases)
+
+From `shell/aliases.nixos.zsh`:
+
+| Alias | Expands to |
+|-------|-----------|
+| `nixos-rebuild` | `sudo nixos-rebuild switch --flake ~/.dotfiles/nixos#shrike` — **shadows the real binary**; use `command nixos-rebuild` for `build`/`boot`/`test` |
+| `update-deps` | `nix flake update --flake ~/.dotfiles/nixos` + rebuild switch |
+| `clean-deps` | `nix-collect-garbage --delete-older-than 7d` + regenerate boot entries |
+| `zconf` | Edit `nixos/modules/home/shell.nix` |
+
+---
+
 ## Flake Commands (nix 2.x)
 
 | Command | Action |

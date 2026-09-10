@@ -4,6 +4,13 @@ Swiss-army knife for audio/video processing, conversion, and streaming.
 
 ---
 
+## This Setup
+
+- NixOS builds `ffmpeg-full` with unfree codecs, so **`-c:a libfdk_aac` is available** (best AAC encoder); macOS gets the same via brew `fdk-aac`.
+- Shell helpers (`shell/aliases.zsh`): `to-mp3 <in> <out>` (320k), `to-mp4 <in> <out>` (h264+aac), `to-wav <in> <out>` (16 kHz pcm, whisper-ready).
+
+---
+
 ## Basic Syntax
 
 ```bash

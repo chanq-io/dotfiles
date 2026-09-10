@@ -4,6 +4,12 @@ Command-line interface for Amazon Web Services. Covers the most frequently used 
 
 ---
 
+## This Setup
+
+`aws-sso --profile <name>` (`shell/aliases.zsh`): clears stale `AWS_*` env credentials, runs `aws sso login`, then exports the fresh credentials into the current shell via `aws configure export-credentials`.
+
+---
+
 ## Configuration
 
 ```bash

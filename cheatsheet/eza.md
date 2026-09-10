@@ -2,6 +2,8 @@
 
 A modern, maintained replacement for `ls` with sensible defaults, colors, and Git integration.
 
+**In this setup `ls` *is* eza** (`shell/aliases.zsh`), with `l` = `eza -l` and `la` = `eza -la` — GNU ls flags may not apply.
+
 ## Basic Usage
 
 ```bash

@@ -4,6 +4,13 @@ Essential commands for building, running, and managing containers with Docker an
 
 ---
 
+## This Setup
+
+- NixOS: pinned to `docker_29`; user is in the `docker` group (**no sudo needed**); `docker0`/`br-*` are firewall-trusted so containers can reach host-published ports.
+- Shell helpers (`shell/aliases.zsh`): `docker-kill <pattern>` kills containers matching an id/image pattern; `docker-rm-all` removes **all** containers + images + prunes volumes (destructive).
+
+---
+
 ## Container Lifecycle
 
 | Command | Description |
