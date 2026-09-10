@@ -93,14 +93,35 @@ if [[ "${1:-}" == "-l" || "${1:-}" == "--list" ]]; then
         --bind='ctrl-/:change-preview-window(down,70%,wrap|right,70%,wrap)' || true
 else
     # Search mode (default): fuzzy over every entry of every sheet. Rows are
-    # "sheet │ content ‹ section" — fixed columns so the list scans cleanly;
-    # section-heading rows are bold and act as dividers. The section name at
-    # the end keeps section terms matchable (e.g. "telekasten").
+    # fixed-width columns — "sheet │ content… ‹ section" — with the content
+    # hard-truncated so the list reads as a table; --no-hscroll keeps rows
+    # left-anchored instead of scrolling to expose the matched characters.
+    # Section-heading rows are bold and act as dividers; the section suffix
+    # keeps section terms matchable (e.g. "telekasten").
     # Index fields are tab-separated: file, line, styled display text, section
     # start line. fzf shows and matches only the display text (--with-nth
     # transforms the line before matching, so no --nth on top of it).
     build_index() {
-        awk '
+        # LC_ALL=C forces byte semantics: macOS awk is otherwise UTF-8-aware
+        # (and errors on stray non-UTF-8 bytes in sheet content), while the
+        # truncation/padding logic below is written for bytes.
+        LC_ALL=C awk '
+        # Truncate to roughly max bytes without splitting a UTF-8 sequence.
+        function vtrunc(s, max) {
+            if (length(s) <= max) return s
+            s = substr(s, 1, max - 1)
+            sub(/[\300-\367][\200-\277]*$/, "", s)
+            return s "…"
+        }
+        # Pad to w display columns, compensating for multibyte characters
+        # (padding is byte-based; each lead byte class hides 1-3 extra bytes).
+        function vpad(s, w,   extra, fmt) {
+            extra = gsub(/[\302-\337]/, "&", s) \
+                  + 2 * gsub(/[\340-\357]/, "&", s) \
+                  + 3 * gsub(/[\360-\367]/, "&", s)
+            fmt = "%-" (w + extra) "s"
+            return sprintf(fmt, s)
+        }
         # Entries are held one line before printing so a table header row can
         # be discarded when the following line reveals it (|---|---| separator).
         function flush() { if (pending != "") { print pending; pending = "" } }
@@ -112,7 +133,7 @@ else
             text = $0; sub(/^#+[ \t]+/, "", text)
             if (length($1) == 1) { section = ""; next }   # H1 = sheet title
             section = text; secstart = FNR
-            printf "%s.md\t%d\t\033[36m%-12s\033[0m \033[2m│\033[0m \033[1m%s\033[0m\t%d\n", \
+            printf "%s.md\t%d\t\033[36m%-14.14s\033[0m \033[2m│\033[0m \033[1m%s\033[0m\t%d\n", \
                 sheet, FNR, sheet, text, FNR
             next
         }
@@ -122,17 +143,20 @@ else
         {
             flush()
             text = $0
+            gsub(/\t/, " ", text)
             gsub(/^[ \t]+/, "", text); gsub(/[ \t]+$/, "", text)
             if (text ~ /^\|.*\|$/) {                      # table row -> a · b
                 sub(/^\|[ \t]*/, "", text)
                 sub(/[ \t]*\|$/, "", text)
-                gsub(/[ \t]*\|[ \t]*/, " \033[2m·\033[0m ", text)
+                gsub(/[ \t]*\|[ \t]*/, " · ", text)
             }
+            text = vpad(vtrunc(text, 56), 56)
+            gsub(/ · /, " \033[2m·\033[0m ", text)        # dim separators last
             if (section != "")
-                pending = sprintf("%s.md\t%d\t\033[36m%-12s\033[0m \033[2m│\033[0m %s\033[2m  ‹ %s\033[0m\t%d", \
-                    sheet, FNR, sheet, text, section, secstart)
+                pending = sprintf("%s.md\t%d\t\033[36m%-14.14s\033[0m \033[2m│\033[0m %s \033[2m‹ %s\033[0m\t%d", \
+                    sheet, FNR, sheet, text, vtrunc(section, 30), secstart)
             else
-                pending = sprintf("%s.md\t%d\t\033[36m%-12s\033[0m \033[2m│\033[0m %s\t%d", \
+                pending = sprintf("%s.md\t%d\t\033[36m%-14.14s\033[0m \033[2m│\033[0m %s\t%d", \
                     sheet, FNR, sheet, text, secstart)
         }
         END { flush() }
@@ -140,14 +164,16 @@ else
     }
     build_index | fzf \
         --ansi \
+        --no-hscroll \
+        --layout=reverse \
         --prompt='cheatsheet> ' \
         --query="${*:-}" \
         --delimiter=$'\t' \
         --with-nth=3 \
-        --header='enter: view section · ctrl-o: full sheet · esc: quit' \
+        --header='enter: view section · ctrl-o: full sheet · ctrl-/: preview · esc: quit' \
         --preview="$self --render-section {1} {4}" \
         --preview-window='right,55%,wrap' \
         --bind="enter:execute($self --view-section {1} {4})" \
         --bind="ctrl-o:execute($self --view-sheet {1})" \
-        --bind='ctrl-/:change-preview-window(down,70%,wrap|right,55%,wrap)' || true
+        --bind='ctrl-/:change-preview-window(hidden|down,70%,wrap|right,55%,wrap)' || true
 fi
