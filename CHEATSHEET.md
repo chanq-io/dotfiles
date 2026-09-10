@@ -1,6 +1,6 @@
 # Cheatsheets
 
-Quick-reference guides for every tool in the NixOS `shrike` setup. Each links to a standalone markdown file in [`cheatsheet/`](cheatsheet/).
+Quick-reference guides for the tools in this setup — NixOS `shrike` and macOS (Homebrew). Each links to a standalone markdown file in [`cheatsheet/`](cheatsheet/). Most tools are on both platforms; the Hyprland/Wayland section is NixOS-only, [ghostty](cheatsheet/ghostty.md) is macOS-only.
 
 ---
 
@@ -11,7 +11,8 @@ Quick-reference guides for every tool in the NixOS `shrike` setup. Each links to
 
 ## Shell & Prompt
 
-- [zsh](cheatsheet/zsh.md) — Shell builtins, globbing, history, line editing
+- [zsh](cheatsheet/zsh.md) — Shell builtins, globbing, history, line editing (vi-mode here)
+- [atuin](cheatsheet/atuin.md) — Shell history search (owns `Ctrl+R`)
 - [starship](cheatsheet/starship.md) — Cross-shell prompt config & modules
 - [direnv](cheatsheet/direnv.md) — Per-directory env auto-loading + nix-direnv
 
@@ -21,6 +22,7 @@ Quick-reference guides for every tool in the NixOS `shrike` setup. Each links to
 - [bat](cheatsheet/bat.md) — `cat` with syntax highlighting
 - [fd](cheatsheet/fd.md) — Modern `find`
 - [ripgrep](cheatsheet/ripgrep.md) — Fast recursive grep
+- [sd](cheatsheet/sd.md) — Intuitive find-and-replace (`sed` alternative)
 - [fzf](cheatsheet/fzf.md) — Fuzzy finder
 - [zoxide](cheatsheet/zoxide.md) — Smart `cd` (frecency-based)
 - [yazi](cheatsheet/yazi.md) — TUI file manager
@@ -28,8 +30,9 @@ Quick-reference guides for every tool in the NixOS `shrike` setup. Each links to
 
 ## Editors
 
-- [neovim](cheatsheet/neovim.md) — Motions, text objects, LSP, commands
+- [neovim](cheatsheet/neovim.md) — Motions, LSP, plugin keymaps & custom commands
 - [glow](cheatsheet/glow.md) — TUI markdown renderer
+- [zathura](cheatsheet/zathura.md) — Vim-keybound PDF viewer (SyncTeX with vimtex)
 
 ## Languages & Runtimes
 
@@ -45,6 +48,9 @@ Quick-reference guides for every tool in the NixOS `shrike` setup. Each links to
 ## Build & Task
 
 - [just](cheatsheet/just.md) — Command runner (Makefile alternative)
+- [watchexec](cheatsheet/watchexec.md) — Run commands on file change
+- [hyperfine](cheatsheet/hyperfine.md) — CLI benchmarking
+- [tokei](cheatsheet/tokei.md) — Lines-of-code counter
 
 ## Git & Code Review
 
@@ -52,6 +58,7 @@ Quick-reference guides for every tool in the NixOS `shrike` setup. Each links to
 - [gh](cheatsheet/gh.md) — GitHub CLI
 - [lazygit](cheatsheet/lazygit.md) — TUI git client
 - [delta](cheatsheet/delta.md) — Syntax-highlighted diff pager
+- [difftastic](cheatsheet/difftastic.md) — Structural diff (`git dft` / `git dlog`)
 
 ## Containers & Orchestration
 
@@ -85,7 +92,6 @@ Quick-reference guides for every tool in the NixOS `shrike` setup. Each links to
 - [procs](cheatsheet/procs.md) — Modern `ps`
 - [dust](cheatsheet/dust.md) — Visual disk usage
 - [duf](cheatsheet/duf.md) — Modern `df`
-- [radeontop](cheatsheet/radeontop.md) — AMD GPU monitor
 
 ## Audio & Media
 
@@ -105,14 +111,18 @@ Quick-reference guides for every tool in the NixOS `shrike` setup. Each links to
 ## Misc CLI
 
 - [jq](cheatsheet/jq.md) — JSON processor
+- [yq](cheatsheet/yq.md) — YAML/TOML/XML processor (jq-style)
+- [pandoc](cheatsheet/pandoc.md) — Universal document converter
 - [watch](cheatsheet/watch.md) — Re-run commands at intervals
 - [op](cheatsheet/op.md) — 1Password CLI
 - [claude-code](cheatsheet/claude-code.md) — Claude Code CLI
+- [codex](cheatsheet/codex.md) — OpenAI Codex agentic coding CLI
 
 ## Desktop (Hyprland / Wayland)
 
 - [hyprland](cheatsheet/hyprland.md) — Tiling Wayland compositor
 - [kitty](cheatsheet/kitty.md) — GPU-accelerated terminal
+- [ghostty](cheatsheet/ghostty.md) — Terminal on macOS
 - [waybar](cheatsheet/waybar.md) — Status bar
 - [wofi](cheatsheet/wofi.md) — Application launcher
 - [mako](cheatsheet/mako.md) — Notification daemon
