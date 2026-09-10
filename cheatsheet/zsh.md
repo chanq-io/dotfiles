@@ -4,7 +4,27 @@ Fast, POSIX-compatible shell with powerful globbing, completion, and scripting.
 
 ---
 
-## Line Editing (Emacs Mode)
+## This Setup (plugins change the defaults)
+
+Plugins via antidote (`shell.nix` on NixOS, `install.zsh` on macOS):
+
+| Behavior | Source |
+|----------|--------|
+| **Shell is in vi mode** — `Esc` for normal mode, vi motions/text objects on the command line, `v` in normal mode edits in `$EDITOR` | zsh-vi-mode |
+| **`Ctrl+R` and `Up` open atuin**, not reverse-i-search — see [atuin](atuin.md) | atuin |
+| `Ctrl+T` fuzzy-insert file path, `Alt+C` fuzzy cd, `**<Tab>` completion | fzf integration |
+| Ghost-text suggestion from history; `→` / `End` accepts | zsh-autosuggestions |
+| Live command-line syntax coloring | fast-syntax-highlighting |
+| Colored man pages | zsh-colored-man-pages |
+| uv venv auto-activates on `cd` into a project | zsh-uv-env |
+| `z <partial>` / `zi` smart cd | zoxide |
+| macOS only: `enhancd` (interactive cd), `pycalc` | antidote (macOS list) |
+
+Aliases: `ls`→`eza`, `v`/`vi`/`vim`→`nvim`, `notes`→zettelkasten index. Platform aliases: `update-deps` (flake bump + rebuild on NixOS; brew upgrade on macOS), `nixos-rebuild` (NixOS: always means switch to shrike flake). See `shell/aliases*.zsh`.
+
+## Line Editing (Emacs-style defaults)
+
+Note: with zsh-vi-mode active these apply in insert mode; many emacs bindings still work there.
 
 | Key | Action |
 |-----|--------|
@@ -29,7 +49,7 @@ Fast, POSIX-compatible shell with powerful globbing, completion, and scripting.
 
 | Key / Command | Action |
 |---------------|--------|
-| `Ctrl+R` | Reverse incremental search |
+| `Ctrl+R` | History search — **opens atuin here** (plain zsh: reverse-i-search) |
 | `Ctrl+S` | Forward incremental search |
 | `Ctrl+P` / `Up` | Previous command |
 | `Ctrl+N` / `Down` | Next command |
