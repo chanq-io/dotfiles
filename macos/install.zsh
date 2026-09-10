@@ -179,6 +179,7 @@ brew_install_if_missing gifsicle
 brew_install_if_missing git-delta
 brew_install_if_missing git-extras
 brew_install_if_missing gh
+brew_install_if_missing glow
 brew_install_if_missing graphviz
 brew_install_if_missing jq
 brew_install_if_missing just
