@@ -52,5 +52,6 @@ theme = Rose Pine
 #theme = Ayu
 keybind = shift+enter=text:\n
 font-family = "FiraCode Nerd Font Mono"
+window-title-font-family = "FiraCode Nerd Font Mono"
 macos-option-as-alt = left
 window-save-state = always
