@@ -16,6 +16,7 @@ alias l="ls -l"
 alias la="l -a"
 alias acreds="v ~/.aws/credentials"
 alias latest_commit_hash='git log | head -n1 | awk "{print \$2;}"'
+alias cheatsheet="$HOME/.dotfiles/bin/cheatsheet"
 
 aws-sso() {
     local profile=""

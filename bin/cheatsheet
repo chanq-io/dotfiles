@@ -1,0 +1,64 @@
+#!/usr/bin/env zsh
+# cheatsheet — fuzzy-searchable tool cheatsheets, rendered in the terminal.
+#
+#   cheatsheet              browse all sheets (fzf picker + rendered preview)
+#   cheatsheet <query>      full-text search across all sheets, jump to match
+#
+# Preview/pager use glow when available (rendered markdown), bat otherwise.
+
+set -euo pipefail
+
+SHEET_DIR="${CHEATSHEET_DIR:-$HOME/.dotfiles/cheatsheet}"
+
+if ! command -v fzf >/dev/null; then
+    echo "cheatsheet: fzf is required" >&2
+    exit 1
+fi
+if [[ ! -d "$SHEET_DIR" ]]; then
+    echo "cheatsheet: no such directory: $SHEET_DIR" >&2
+    exit 1
+fi
+
+# Open a sheet full-screen.
+view() {
+    if command -v glow >/dev/null; then
+        glow -p "$1"
+    else
+        bat --language=markdown --style=plain --paging=always "$1"
+    fi
+}
+
+# fzf preview command strings ($FZF_PREVIEW_COLUMNS is expanded by fzf's
+# preview shell at render time, hence single quotes).
+if command -v glow >/dev/null; then
+    preview_sheet='glow -s dark -w $FZF_PREVIEW_COLUMNS {}.md'
+else
+    preview_sheet='bat --color=always --language=markdown --style=plain {}.md'
+fi
+
+cd "$SHEET_DIR"
+
+if [[ $# -eq 0 ]]; then
+    # Browse mode: pick a tool, preview the rendered sheet.
+    local sheet
+    sheet=$(for f in *.md; do print -r -- "${f%.md}"; done | fzf \
+        --prompt='cheatsheet> ' \
+        --preview="$preview_sheet" \
+        --preview-window='right,70%,wrap' \
+        --bind='ctrl-/:change-preview-window(down,70%,wrap|right,70%,wrap)') || return 0
+    view "$sheet.md"
+else
+    # Search mode: full-text match across sheets, preview centred on the hit.
+    if ! command -v rg >/dev/null; then
+        echo "cheatsheet: ripgrep is required for search mode" >&2
+        exit 1
+    fi
+    local match
+    match=$(rg --line-number --no-heading --color=always --smart-case -- "$*" *.md | fzf \
+        --ansi \
+        --prompt="cheatsheet '$*'> " \
+        --delimiter=: \
+        --preview='bat --color=always --language=markdown --style=numbers --highlight-line {2} {1}' \
+        --preview-window='right,60%,wrap,+{2}/2') || return 0
+    view "${match%%:*}"
+fi
