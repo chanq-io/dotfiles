@@ -1,10 +1,12 @@
 #!/usr/bin/env zsh
 # cheatsheet — fuzzy-searchable tool cheatsheets, rendered in the terminal.
 #
-#   cheatsheet              browse all sheets (fzf picker + rendered preview)
-#   cheatsheet <query>      full-text search across all sheets, jump to match
+#   cheatsheet [query]      fuzzy full-text search over every line of every
+#                           sheet (matches tool names and content together),
+#                           preview centred on the hit; optional initial query
+#   cheatsheet -l|--list    browse sheets by name (rendered glow preview)
 #
-# Preview/pager use glow when available (rendered markdown), bat otherwise.
+# Enter opens the selected sheet rendered (glow when available, bat otherwise).
 
 set -euo pipefail
 
@@ -38,8 +40,8 @@ fi
 
 cd "$SHEET_DIR"
 
-if [[ $# -eq 0 ]]; then
-    # Browse mode: pick a tool, preview the rendered sheet.
+if [[ "${1:-}" == "-l" || "${1:-}" == "--list" ]]; then
+    # List mode: pick a tool by name, preview the rendered sheet.
     local sheet
     sheet=$(for f in *.md; do print -r -- "${f%.md}"; done | fzf \
         --prompt='cheatsheet> ' \
@@ -48,17 +50,23 @@ if [[ $# -eq 0 ]]; then
         --bind='ctrl-/:change-preview-window(down,70%,wrap|right,70%,wrap)') || return 0
     view "$sheet.md"
 else
-    # Search mode: full-text match across sheets, preview centred on the hit.
+    # Search mode (default): fuzzy over every non-blank line of every sheet.
+    # Fields are file:line:content; matching skips the line number (--nth) and
+    # the display hides it (--with-nth); preview centres bat on the hit.
     if ! command -v rg >/dev/null; then
         echo "cheatsheet: ripgrep is required for search mode" >&2
         exit 1
     fi
     local match
-    match=$(rg --line-number --no-heading --color=always --smart-case -- "$*" *.md | fzf \
-        --ansi \
-        --prompt="cheatsheet '$*'> " \
+    match=$(rg --line-number --no-heading --color=never -- '\S' *.md | fzf \
+        --prompt='cheatsheet> ' \
+        --query="${*:-}" \
         --delimiter=: \
+        --nth='1,3..' \
+        --with-nth='1,3..' \
+        --tiebreak=begin \
         --preview='bat --color=always --language=markdown --style=numbers --highlight-line {2} {1}' \
-        --preview-window='right,60%,wrap,+{2}/2') || return 0
+        --preview-window='right,60%,wrap,+{2}/2' \
+        --bind='ctrl-/:change-preview-window(down,70%,wrap|right,60%,wrap)') || return 0
     view "${match%%:*}"
 fi
