@@ -4,6 +4,23 @@ A comprehensive reference for core git commands, useful flags, git-extras utilit
 
 ---
 
+## This Setup
+
+Configured in `nixos/modules/home/git.nix` and `macos/git/gitconfig` (kept in sync):
+
+| Alias / setting | Effect |
+|-----------------|--------|
+| `git dft [<commit>]` | Structural diff via [difftastic](difftastic.md) (difftool, no prompt) |
+| `git dlog` | `git log -p` with difftastic structural diffs |
+| [delta](delta.md) is the pager | `git diff`/`show`/`log -p` are syntax-highlighted; `n`/`N` jump between files |
+| `pull.rebase = true` | **`git pull` rebases**, never merges |
+| `push.autoSetupRemote = true` | First push of a new branch needs no `-u origin HEAD` |
+| `merge.conflictStyle = zdiff3` | Conflict markers include the common-ancestor section |
+| `init.defaultBranch = main` | |
+| `.envrc` globally ignored | NixOS only (direnv files never show as untracked) |
+
+Shell helper: `clean-git-branches` deletes all merged branches except `main` and prunes origin (defined in `shell/aliases.zsh`).
+
 ## Core Commands
 
 ### Staging & Committing
