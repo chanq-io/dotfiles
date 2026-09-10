@@ -3,10 +3,12 @@
 #
 #   cheatsheet [query]      fuzzy full-text search over every entry of every
 #                           sheet (tool names, section names, and content all
-#                           match); preview shows the matched section rendered
+#                           match); preview shows the matched section rendered.
+#                           enter: page the section  ctrl-o: page the full
+#                           sheet  esc: quit. Viewers return to the search.
 #   cheatsheet -l|--list    browse sheets by name (rendered glow preview)
 #
-# Enter opens the selected sheet rendered (glow when available, bat otherwise).
+# Rendering uses glow when available, bat otherwise.
 
 set -euo pipefail
 
@@ -22,8 +24,34 @@ if [[ ! -d "$SHEET_DIR" ]]; then
     exit 1
 fi
 
-# Open a sheet full-screen.
-view() {
+render_width() {
+    local w="${FZF_PREVIEW_COLUMNS:-$(tput cols 2>/dev/null || echo 100)}"
+    (( w > 110 )) && w=110
+    print -r -- "$w"
+}
+
+# Render markdown from stdin at a given width.
+render_md() {
+    if command -v glow >/dev/null; then
+        glow -s dark -w "$1" -
+    else
+        bat --color=always --language=markdown --style=plain
+    fi
+}
+
+# Slice one section out of a sheet: from line $2 to the next heading at the
+# same or higher level (a start line before any H2, i.e. the sheet intro,
+# runs to the first H2).
+slice_section() {
+    awk -v s="$2" '
+    NR == s { n = 0; if ($0 ~ /^#+[ \t]/) n = length($1)
+              lvl = (n < 2) ? 2 : n; print; next }
+    NR > s { if ($0 ~ /^#+[ \t]/ && length($1) <= lvl) exit; print }
+    ' "$1"
+}
+
+# Page a whole sheet (glow pager; q returns to the caller).
+view_sheet() {
     if command -v glow >/dev/null; then
         glow -p "$1"
     else
@@ -31,44 +59,43 @@ view() {
     fi
 }
 
-# fzf preview command strings ($FZF_PREVIEW_COLUMNS is expanded by fzf's
-# preview shell at render time, hence single quotes).
+cd "$SHEET_DIR"
+
+case "${1:-}" in
+--render-section)   # internal (fzf preview): rendered section to stdout
+    slice_section "$2" "$3" | render_md "$(render_width)"
+    exit 0
+    ;;
+--view-section)     # internal (fzf enter): rendered section in a pager
+    slice_section "$2" "$3" | render_md "$(render_width)" | less -R
+    exit 0
+    ;;
+--view-sheet)       # internal (fzf ctrl-o / list mode enter): whole sheet
+    view_sheet "$2"
+    exit 0
+    ;;
+esac
+
 if command -v glow >/dev/null; then
     preview_sheet='glow -s dark -w $FZF_PREVIEW_COLUMNS {}.md'
 else
     preview_sheet='bat --color=always --language=markdown --style=plain {}.md'
 fi
 
-cd "$SHEET_DIR"
-
-if [[ "${1:-}" == "--render-section" ]]; then
-    # Internal (fzf preview): render the section of $2 starting at line $3.
-    # The slice runs to the next heading at the same or higher level (a start
-    # line before any H2, i.e. the sheet intro, runs to the first H2).
-    awk -v s="$3" '
-    NR == s { n = 0; if ($0 ~ /^#+[ \t]/) n = length($1)
-              lvl = (n < 2) ? 2 : n; print; next }
-    NR > s { if ($0 ~ /^#+[ \t]/ && length($1) <= lvl) exit; print }
-    ' "$2" | {
-        if command -v glow >/dev/null; then
-            glow -s dark -w "${FZF_PREVIEW_COLUMNS:-100}" -
-        else
-            bat --color=always --language=markdown --style=plain
-        fi
-    }
-elif [[ "${1:-}" == "-l" || "${1:-}" == "--list" ]]; then
-    # List mode: pick a tool by name, preview the rendered sheet.
-    local sheet
-    sheet=$(for f in *.md; do print -r -- "${f%.md}"; done | fzf \
+if [[ "${1:-}" == "-l" || "${1:-}" == "--list" ]]; then
+    # List mode: pick a tool by name, page the rendered sheet, q returns.
+    for f in *.md; do print -r -- "${f%.md}"; done | fzf \
         --prompt='cheatsheet> ' \
+        --header='enter: view sheet · esc: quit' \
         --preview="$preview_sheet" \
         --preview-window='right,70%,wrap' \
-        --bind='ctrl-/:change-preview-window(down,70%,wrap|right,70%,wrap)') || return 0
-    view "$sheet.md"
+        --bind="enter:execute($self --view-sheet {}.md)" \
+        --bind='ctrl-/:change-preview-window(down,70%,wrap|right,70%,wrap)' || true
 else
-    # Search mode (default): fuzzy over every entry of every sheet, indexed as
-    # "sheet › section › content" so section names match too and the list
-    # stays readable (table pipes tidied, separators/fences skipped).
+    # Search mode (default): fuzzy over every entry of every sheet. Rows are
+    # "sheet │ content ‹ section" — fixed columns so the list scans cleanly;
+    # section-heading rows are bold and act as dividers. The section name at
+    # the end keeps section terms matchable (e.g. "telekasten").
     # Index fields are tab-separated: file, line, styled display text, section
     # start line. fzf shows and matches only the display text (--with-nth
     # transforms the line before matching, so no --nth on top of it).
@@ -85,7 +112,7 @@ else
             text = $0; sub(/^#+[ \t]+/, "", text)
             if (length($1) == 1) { section = ""; next }   # H1 = sheet title
             section = text; secstart = FNR
-            printf "%s.md\t%d\t\033[36m%s\033[0m \033[2m›\033[0m \033[1m%s\033[0m\t%d\n", \
+            printf "%s.md\t%d\t\033[36m%-12s\033[0m \033[2m│\033[0m \033[1m%s\033[0m\t%d\n", \
                 sheet, FNR, sheet, text, FNR
             next
         }
@@ -99,27 +126,28 @@ else
             if (text ~ /^\|.*\|$/) {                      # table row -> a · b
                 sub(/^\|[ \t]*/, "", text)
                 sub(/[ \t]*\|$/, "", text)
-                gsub(/[ \t]*\|[ \t]*/, "  \033[2m·\033[0m  ", text)
+                gsub(/[ \t]*\|[ \t]*/, " \033[2m·\033[0m ", text)
             }
             if (section != "")
-                pending = sprintf("%s.md\t%d\t\033[36m%s\033[0m \033[2m› %s ›\033[0m %s\t%d", \
-                    sheet, FNR, sheet, section, text, secstart)
+                pending = sprintf("%s.md\t%d\t\033[36m%-12s\033[0m \033[2m│\033[0m %s\033[2m  ‹ %s\033[0m\t%d", \
+                    sheet, FNR, sheet, text, section, secstart)
             else
-                pending = sprintf("%s.md\t%d\t\033[36m%s\033[0m \033[2m›\033[0m %s\t%d", \
+                pending = sprintf("%s.md\t%d\t\033[36m%-12s\033[0m \033[2m│\033[0m %s\t%d", \
                     sheet, FNR, sheet, text, secstart)
         }
         END { flush() }
         ' *.md
     }
-    local match
-    match=$(build_index | fzf \
+    build_index | fzf \
         --ansi \
         --prompt='cheatsheet> ' \
         --query="${*:-}" \
         --delimiter=$'\t' \
         --with-nth=3 \
+        --header='enter: view section · ctrl-o: full sheet · esc: quit' \
         --preview="$self --render-section {1} {4}" \
         --preview-window='right,55%,wrap' \
-        --bind='ctrl-/:change-preview-window(down,70%,wrap|right,55%,wrap)') || return 0
-    view "${match%%$'\t'*}"
+        --bind="enter:execute($self --view-section {1} {4})" \
+        --bind="ctrl-o:execute($self --view-sheet {1})" \
+        --bind='ctrl-/:change-preview-window(down,70%,wrap|right,55%,wrap)' || true
 fi
