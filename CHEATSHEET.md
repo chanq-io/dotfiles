@@ -2,7 +2,7 @@
 
 Quick-reference guides for the tools in this setup — NixOS `shrike` and macOS (Homebrew). Each links to a standalone markdown file in [`cheatsheet/`](cheatsheet/). Most tools are on both platforms; the Hyprland/Wayland section is NixOS-only, [ghostty](cheatsheet/ghostty.md) is macOS-only.
 
-Browse interactively with the `cheatsheet` command (`bin/cheatsheet`): no args opens an fzf picker with a rendered preview; `cheatsheet <query>` full-text-searches all sheets.
+Search interactively with the `cheatsheet` command (`bin/cheatsheet`): it fuzzy-searches every line of every sheet (space-separated terms, e.g. `nvim checkbox`), with the preview centred on the hit; pass an initial query as arguments. `cheatsheet -l` browses sheets by name with a rendered preview.
 
 ---
 
